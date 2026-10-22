@@ -2,7 +2,12 @@
 
 Self-improving harness that evolves Agentic Operating Procedures (AOPs) from historical operations data, under a fixed execution engine, with a cheap learned verifier calibrated against an expensive human oracle on a budget.
 
-Status: design v0.1. Nothing is built. Experiments E0–E2 gate whether anything should be.
+Status: design v0.2. Nothing is built. Experiments E0–E2 gate whether anything should be.
+
+Deeper treatments live in `docs/`:
+- `docs/rl.md` — how each RL piece works, where the analogy stops, a worked example, hyperparameters
+- `docs/metrics.md` — metric definitions, gate statistics, the verifier-cost curve, v1 targets
+- `docs/selection.md` — which cases get judged and which get escalated; the taxonomy agent's role
 
 ---
 
@@ -157,6 +162,8 @@ Intent routing (which AOP handles an email) is unchanged; stratification is a tr
 
 ## 6. Optimizer — GRPO without gradients
 
+Full treatment, including a worked example: `docs/rl.md`.
+
 ### 6.1 Mapping
 
 | RL piece | Here |
@@ -220,6 +227,8 @@ Why playbook first: structural edits that change SOR traversal are exactly what 
 
 ### 8.1 Escalation policy (ops)
 
+Full treatment, including which cases get judged in the first place: `docs/selection.md`.
+
 - Weekly budget `B` of questions (start: 5).
 - Priority score per case = judge uncertainty (sub-score disagreement, low confidence) + candidate disagreement (high within-group variance) + bucket frontier weight.
 - Question format: one concrete case, the candidate reply, yes/no, and **one sentence of reason**. Rationales are the high-value signal; a bare verdict is nearly worthless for rubric curation.
@@ -251,6 +260,8 @@ All items are itemized, versioned, and carry provenance. Updates are deltas.
 ---
 
 ## 10. Metrics
+
+Definitions, slices, gate statistics and targets: `docs/metrics.md`. Headline set:
 
 - **Per-bucket success curve** (main figure): pass rate by `(complexity, completeness)` bucket over epochs, on the sealed set.
 - **Goodhart gap**: judge score − ops audit score, over epochs. The paper's dependent variable.
@@ -287,7 +298,9 @@ aop_rsi/
   optimizer/    reflector.py, curator.py, edits.py (typed edit schema)
   gate/         paired tests, noise floor, cost rule
   memory/       stores in §9, all versioned with provenance
-  escalation/   priority scoring, question formatting, budget
+  selection/    pre-judge signals, scoring, slice allocation, taxonomy agent (docs/selection.md)
+  escalation/   uncertainty ranking, question formatting, budget
+  metrics/      one row per (epoch, version, split, slice, bucket, metric, value, n) (docs/metrics.md)
   experiments/  e0_agreement.py, e1_snapshot.py, e2_baseline.py
 ```
 

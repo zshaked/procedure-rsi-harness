@@ -3,7 +3,7 @@
 Paste the block below as the first message to the coding agent in the target environment, after it has access to this repository, the existing AOP execution engine, and the case data.
 
 ```
-Read DESIGN.md in full before doing anything else.
+Read DESIGN.md in full before doing anything else, then docs/rl.md, docs/metrics.md and docs/selection.md.
 
 Context you will find locally, not in the repo:
 - The existing AOP execution engine (LangGraph 0.2.76). It is FIXED. Do not modify it. Send targets receive plain dicts, not Pydantic models; the retry parameter is `retry`.
@@ -14,7 +14,7 @@ Produce, in this order, and stop after each to report:
 
 (a) Gap analysis. Read the engine's graph builder and task plan code and the case data schema. List every place DESIGN.md conflicts with what actually exists (field names, outcome classes, snapshot shape, how AOP graphs are represented, how node prompts are stored). Ask before resolving any conflict. Do not write code yet.
 
-(b) Scaffold. Create the layout in DESIGN.md §12 with typed interfaces, dataclasses/Pydantic models, and docstrings only. No loop logic in optimizer/ or gate/. The typed edit schema in optimizer/edits.py must cover every edit type in §6.3 and carry rationale, predicted-fixed case ids, predicted-unaffected case ids, and evidence pointers.
+(b) Scaffold. Create the layout in DESIGN.md §12 with typed interfaces, dataclasses/Pydantic models, and docstrings only. No loop logic in optimizer/ or gate/. The typed edit schema in optimizer/edits.py must cover every edit type in §6.3 and carry rationale, predicted-fixed case ids, predicted-unaffected case ids, and evidence pointers. The metrics/ module must write rows in the shape docs/metrics.md specifies, and selection/ must emit the JSON schema in docs/selection.md §7.
 
 (c) Experiments E0–E2 as runnable scripts in experiments/:
     - e0_agreement.py: given two operators' independent verdicts (yes/no + one-sentence reason) on the same 30 historical replies, compute Cohen's kappa and print the disagreements with both reasons. This script consumes a CSV the humans fill in; it does not call a model.

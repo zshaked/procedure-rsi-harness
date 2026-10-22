@@ -10,6 +10,9 @@ Status: design only. Nothing is built. See `DESIGN.md` §11 — experiments E0�
 |---|---|
 | `DESIGN.md` | The full design: setting, reward, stratification, optimizer, gate, human loops, memory, metrics, experiments, scaffold layout, risks, phasing. |
 | `PROMPT.md` | Entry-point prompt for a coding agent working inside the target environment. |
+| `docs/rl.md` | How each RL piece works (environment, policy, reward, advantage, update, trust region, reward model, Goodhart), where the analogy stops, a worked example, hyperparameters. |
+| `docs/metrics.md` | Metric definitions by split and slice, gate statistics and noise floor, the accuracy-vs-verifier-cost curve, edit/memory health, v1 targets. |
+| `docs/selection.md` | Which cases get judged after a run and which get escalated to operators; the taxonomy agent's role; the calibration trap. |
 
 ## For a coding agent
 
