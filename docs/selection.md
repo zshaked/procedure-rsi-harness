@@ -10,7 +10,7 @@ See `DESIGN.md` §4 for the reward, §5 for buckets, §8.1 for the ops budget.
 
 | Run | Set | Selection? | Why |
 |---|---|---|---|
-| Regression run | Sealed (newest ~150) | **Never.** Judge every case, every candidate. | The gate is a paired comparison. Any selection on the sealed set biases it. ~150 × 2 AOP versions × k_gate candidates is the price of an honest gate. |
+| Regression run | Search validation (`DESIGN.md` §7; formerly "sealed") | **Never.** Judge every case, every candidate. | The gate is a paired comparison. Any selection on it biases it. ~100 × 2 AOP versions × k_gate candidates is the price of an honest gate. It is a validation set, consulted repeatedly, and is reported as such — never as test. |
 | Representative run | Dev (oldest ~250) | Yes | The judge's output here exists to produce *advantage* — a within-group ranking the reflector learns from. Judge where ranking changes what the curator would write. |
 
 Everything below applies to the representative run only.
@@ -66,10 +66,11 @@ for case c in dev_sample:
          + w7 * novelty(c)
 
 ranked = sort(cases, by=s, desc)
-selected = top_n(ranked, 0.50 * budget)              # signal-driven
-         + frontier_sample(cases, 0.25 * budget)     # ∝ p_b(1 − p_b)
-         + coverage_floor(cases, 0.15 * budget)      # ≥ n_min per bucket
-         + uniform_random(cases, 0.10 * budget)      # audit slice, never skipped
+selected = top_n(ranked, 0.45 * budget)              # signal-driven         → learning
+         + frontier_sample(cases, 0.20 * budget)     # ∝ p_b(1 − p_b)        → learning
+         + coverage_floor(cases, 0.15 * budget)      # ≥ n_min per bucket    → learning
+         + uniform_random(cases, 0.10 * budget)      # random-curation       → learning
+         + uniform_random(cases, 0.10 * budget)      # random-calibration    → calibration ONLY
 for c in selected:
     dedupe(G_c, τ_dup)                               # one judge call per reply cluster
 emit (case_id, candidate_ids, reason_tags, s(c))
@@ -79,7 +80,10 @@ Default weights: equal, normalized to [0, 1] per signal. Tune only after E3 show
 
 The coverage floor is not optional: frontier sampling starves buckets at 0% or 100%, and without a minimum per bucket the per-bucket curve goes blind there and regressions in "easy" buckets are invisible until the gate catches them.
 
-The uniform random slice is not optional either: it is the only part of the judged set that is not biased toward the hard tail. Judge calibration (kappa, Brier) is measured here and nowhere else (§8).
+There are **two** uniform random slices, and they must never be merged (v0.2 correction — the earlier text had one slice serving both roles, which leaks curation into calibration):
+
+- **Random-curation**: feeds rubric curation like any other learning query. Its purpose is to keep the rubric grounded on ordinary cases, since every other learning slice is biased toward the hard tail.
+- **Random-calibration**: drawn from the *current* policy's fresh outputs; its answers are used for κ, Brier, the exploitation gap and selective-risk thresholds, and **never** for curation. It is redrawn after every accepted policy change (`../paper/MATH.md` §3.4).
 
 ---
 
@@ -110,9 +114,9 @@ u(c) = judge_uncertainty(c)        # spread of sub-scores, stated confidence
 
 Take the top B (default 5 per week). Each ops question is one concrete case, one candidate reply (the highest-advantage one, or the disputed one when critic and judge disagree), yes/no, and one sentence of reason.
 
-Every answer:
-- becomes a rubric delta with provenance (`DESIGN.md` §4.2),
-- joins the audit set used for kappa **only if the case came from the uniform random slice** — otherwise it is used for rubric curation but excluded from calibration statistics (§8).
+Every answer goes to exactly one role, decided by the slice the case was drawn from:
+- learning slices (signal, frontier, coverage, random-curation) → a rubric delta with provenance (`DESIGN.md` §4.2); never used in calibration statistics;
+- random-calibration → calibration statistics only (§8); never a rubric delta.
 
 ---
 
@@ -160,6 +164,7 @@ Every answer:
 The selected set is the hard, ambiguous tail by construction. Measuring judge kappa on it gives a pessimistic number, and curating the rubric only from ops answers on it drifts the rubric toward hard-case rules and miscalibrates the judge on ordinary cases.
 
 Rules:
-- Kappa, Brier, and the Goodhart gap (`docs/metrics.md` §2) are computed on the uniform random slice only.
-- Rubric curation uses every ops answer, but each rubric line records which slice its evidence came from. A line supported only by tail cases is flagged for review before it is applied to frontier sampling weights.
-- The random slice is 10% of judge budget and at least 2 of the B weekly ops questions.
+- Kappa, Brier, and the exploitation gap (`docs/metrics.md` §2) are computed on the random-calibration slice only, drawn from the current policy's outputs.
+- Rubric curation uses every *learning* answer and no calibration answer. Each rubric line records which slice its evidence came from; a line supported only by tail cases is flagged for review before it is applied to frontier sampling weights.
+- Each random slice is 10% of judge budget; at least 1 of the B weekly ops questions goes to each.
+- The sample-size cost of calibration is stated in `../paper/MATH.md` §3.3; the weekly calibration share is what bounds how often stand-in status can be recertified.

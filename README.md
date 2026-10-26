@@ -2,7 +2,7 @@
 
 A self-improving harness for Agentic Operating Procedures (AOPs): procedures expressed as DAGs and executed by a fixed LangGraph engine, evolved from historical operations data under a cheap learned verifier that is calibrated against an expensive human oracle on a budget.
 
-Status: design only. Nothing is built. The design is verifier-first (v0.3): the primary artifact is a learned verifier that earns the right to stand in for the human operator bucket by bucket; the procedure is what search against that verifier produces. See `DESIGN.md` §11 — experiments E0′–E2 at the firm and the kill test in `paper/OUTLINE.md` §9 on public data decide whether anything should be built.
+Status: design only. Nothing is built. Design v0.4, revised after an external review of commit 0c01a49: the floor checks facts not decisions, data roles are disjoint, evaluation is reference-free against executable ground truth, the selective stand-in uses a sound procedure with its label cost stated, and scope is cut to a two-week pilot that tests whether a learned verifier beats simply handing the inferred specification to the agent. See `paper/OUTLINE.md` §9.
 
 ## Files
 
@@ -30,6 +30,10 @@ Read `DESIGN.md` in full, then follow `PROMPT.md`. Stop after experiments E0–E
 - LLM-as-a-Judge Is Not an Oracle (PROCTOR) — arXiv 2609.02246
 - More Convincing, Not More Correct: Self-Play Reward Hacking of Reference-Free LLM Judges — arXiv 2607.05904
 - Trust or Escalate: LLM Judges with Provable Guarantees for Human Agreement — 2024
+- Learn then Test: Calibrating Predictive Algorithms to Achieve Risk Control — Angelopoulos, Bates, Candès, Jordan, Lei 2021
+- SibylSense: Adaptive Rubric Learning via Memory Tuning and Adversarial Probing — arXiv 2602.20751 (closest prior method)
+- EvoRubrics — arXiv 2606.23038; AdaRubric — arXiv 2603.21362; Learnable Assessment Skills — arXiv 2605.29274
+- Rulers: Locked Rubrics and Evidence-Anchored Scoring — arXiv 2601.08654; Rubrics as an Attack Surface — arXiv 2602.13576
 - Scaling Laws for Reward Model Overoptimization — Gao et al. 2022
 - Deep RL from Human Preferences — Christiano et al. 2017 (query selection by ensemble disagreement)
 - Conformal Risk Control — Angelopoulos, Bates et al.

@@ -2,7 +2,9 @@
 
 What is measured, how it is defined, on which slice, and what decision it drives. Every metric is written as one row per `(epoch, aop_version, split, slice, bucket, metric, value, n)` so that curves can be drawn without re-running anything.
 
-Splits: `dev`, `sealed`, `rolling` (new production cases never trained on). Slices: `signal`, `frontier`, `coverage`, `random` (`docs/selection.md` §4); `all` for the sealed set.
+**Terminology (v0.2).** `DESIGN.md` §7 now defines four roles: *learning*, *search validation*, *calibration*, *final test*. In this document, `dev` = learning, `sealed` = **search validation** (it is not a test set; its numbers are validation numbers), `rolling` = final test. "Goodhart gap" = the exploitation gap, computed on the random-calibration slice only, against executable ground truth on the benchmark and against operator verdicts on the real desk. Experiment ids E3/E4 refer to the firm's series (`DESIGN.md` §11); the paper's series is X0–X8 (`paper/OUTLINE.md` §7).
+
+Slices: `signal`, `frontier`, `coverage`, `random-curation` (learning) and `random-calibration` (calibration only) (`docs/selection.md` §4); `all` for search validation.
 
 ---
 

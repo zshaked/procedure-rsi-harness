@@ -2,7 +2,18 @@
 
 Self-improving harness that evolves Agentic Operating Procedures (AOPs) from historical operations data, under a fixed execution engine, with a cheap learned verifier calibrated against an expensive human oracle on a budget.
 
-Status: design v0.3. Nothing is built. Experiments E0′–E2 gate whether anything should be.
+Status: design v0.4. Nothing is built. Experiments E0′–E2 at the firm and the two-week pilot (`paper/OUTLINE.md` §9) on public data gate whether anything should be.
+
+### v0.4 changes (after external review of commit 0c01a49)
+
+1. **Floor checks facts, not decisions** (§4.1). Outcome-class match removed from the floor; the historical decision is evidence for the specification, not a constraint. Fixes a bug that rewarded imitating operator mistakes.
+2. **Four disjoint data roles** (§7): learning, search validation, calibration, final test. The old "sealed" set is search validation. Random audit queries are split into random-curation and random-calibration so no operator answer serves two roles.
+3. **Reference-free is the principal evaluation regime** (§4.1, `paper/OUTLINE.md` §5.3).
+4. **Selective stand-in uses a sound selective-risk procedure** with its sample-size cost stated; recertified after every accepted policy change (§4.4, `paper/MATH.md` §3).
+5. **The Goodhart bound is background**; no κ threshold or flip point is claimed (`paper/MATH.md` §2).
+6. **Scope cut**: H5, drift, reliability scoring, the taxonomy agent's cluster maintenance and the meta-level loop are deferred until the pilot and X1–X4 have results.
+7. **Missing control added**: infer the specification once and hand it to the agent, with no verifier loop. Verifier-first must beat it under matched expert seconds or the method claim is dropped.
+8. **Closest prior work** is SibylSense (2602.20751); also EvoRubrics, AdaRubric, Learnable Assessment Skills, Rulers / Locked Rubrics. Compared directly (`paper/OUTLINE.md` §3).
 
 Deeper treatments live in `docs/`:
 - `docs/rl.md` — how each RL piece works, where the analogy stops, a worked example, hyperparameters
@@ -132,16 +143,22 @@ We sit in the gap between "no verifier" and "benchmark verifier." The main figur
 
 Lexicographic. A candidate that fails the verifiable floor scores 0 regardless of judge output. This is the hard constraint that stops the loop from learning to please the judge while being factually wrong.
 
-### 4.1 Verifiable floor (deterministic)
+### 4.1 Verifiable floor (deterministic) — facts only
 
-Computed against `sor_snapshot` and `historical_reply`:
+**Corrected (v0.4).** The floor checks only what *state* can establish. It does not check the historical reply's business decision, because operators make mistakes (that is why ρ_op exists): if an operator wrongly confirmed, a candidate that correctly escalates must not score zero for failing to imitate the error. The earlier "outcome class match" floor check rewarded imitation of mistakes and is removed from the floor.
 
-- Entity match — every account / position / instrument identifier in the candidate reply resolves in the snapshot and matches the entities referenced in the historical reply.
-- Figure match — every quantity / amount / date in the candidate reply matches the snapshot within tolerance.
-- Outcome class match — candidate outcome ∈ {confirmed, not confirmed, escalate, request info} equals the class of the historical reply.
-- Schema / safety — reply is well-formed; no hallucinated identifiers.
+Computed against `sor_snapshot`:
+
+- Entity resolution — every account / position / instrument identifier in the candidate reply resolves in the snapshot; no hallucinated identifiers.
+- Figure match — every quantity / amount / date the candidate reply *asserts* matches the snapshot within tolerance.
+- Internal consistency — the candidate's stated outcome is consistent with the facts it asserts (e.g. "confirmed" with a quantity that matches; "not held" only if the position is absent).
+- Schema / safety — reply is well-formed.
 
 Any failure → reward 0.
+
+**What moves to the specification.** Whether to confirm, escalate, request authorization, or request information is a business requirement, not a fact of state. The historical reply's outcome class is *evidence* about that requirement with likelihood `(1 − ρ_op)` (`paper/MATH.md` §1.2), consumed by the verifier's rubric, not enforced by the floor. A candidate that disagrees with the historical class is scored by the verifier on whether its decision satisfies the inferred rules — which is exactly where operator mistakes get overridden by the accumulated specification rather than copied.
+
+**Reference-free is the principal regime.** Offline, the historical reply is available; in deployment it is not. Headline metrics are computed with the verifier scoring fresh candidates to requests *without* a reference; reference-aided scoring is a secondary condition (`paper/OUTLINE.md` §5.3).
 
 ### 4.2 Judge (learned, in context)
 
@@ -161,13 +178,14 @@ Any failure → reward 0.
 
 Binary reward makes most groups zero-variance (all pass / all fail) and kills the advantage signal. Judge sub-scores provide the gradient of quality the optimizer needs.
 
-### 4.4 Selective stand-in (v0.3)
+### 4.4 Selective stand-in (v0.4, corrected)
 
 The verifier does not replace ops all at once; it replaces them on cases where it is confident and escalates the rest.
 
-- **Conformal risk control** (`paper/MATH.md` §3): from the held-out audit slice, choose a confidence threshold τ_ε such that the verifier's disagreement with ops on auto-decided cases is ≤ ε with probability 1 − α. **Coverage at risk**, cov_ε = P(confidence ≥ τ_ε), is the stand-in metric, computed per bucket. Simple complete cases are covered long before escalation cases.
-- **Two thresholds.** As a *production gate* (auto-approve a reply), the risk is a wrong reply to a client: ε is a business number (e.g. 0.05) and the conformal guarantee applies. As the *optimization target* for the inner loop, the risk is Goodhart under pressure: judged gain must exceed the divergence penalty (`paper/MATH.md` §2), and only auto-decided cases contribute non-floor reward.
-- **Maintained, not reached.** Conformal guarantees assume exchangeability; drift breaks it. The uniform random audit slice persists indefinitely as the drift detector; τ_ε is re-estimated each batch; a bucket whose coverage drops loses stand-in status until re-earned. The label tax for holding stand-in status is the audit slice, and that is the cost to report to the firm.
+- **Selective risk, soundly** (`paper/MATH.md` §3): choose a confidence threshold τ̂ from calibration draws so that the verifier's error on auto-decided cases is ≤ ε with probability 1 − α, using Learn-then-Test-style threshold selection or the Trust-or-Escalate construction — not generic conformal risk control, which bounds expected loss marginally and does not give a conditional-on-selection guarantee. **Coverage** cov(τ̂) is the stand-in metric. Per-bucket certification multiplies the sample cost by the number of buckets.
+- **Sample cost is real.** 40 zero-error audited decisions bound selective error at 7.2% (one-sided 95%); 59 are needed for 5%; per-bucket, multiplicity-adjusted, recurring certification of ε = 5% is a several-hundred-label commitment. That number goes in front of the firm before "the verifier stands in" is promised.
+- **Two thresholds.** As a *production gate* (auto-approve a reply), the risk is a wrong reply to a client: ε is a business number and the selective-risk guarantee applies. As the *optimization target* for the inner loop, no guarantee is claimed; only auto-decided cases contribute non-floor reward, and H3 measures what optimization does to the verifier's errors.
+- **Recertified, not maintained.** Calibration draws come from the *current* policy's fresh outputs; optimizing the policy changes that distribution, so nothing certified on AOP_t transfers to AOP_{t+1}. Environment drift is a second exchangeability failure, detected by a change-point test on calibration loss. A bucket whose coverage drops loses stand-in status until re-earned.
 - Decisions use the lower confidence bound on agreement, never the point estimate.
 
 ---
@@ -243,7 +261,16 @@ Why playbook first: structural edits that change SOR traversal are exactly what 
 
 ## 7. Gate and regularization
 
-- **Time split** — oldest ~250 cases are the dev set the loop sees; newest ~150 are sealed and touched only by the gate. New production cases become a rolling held-out the loop never trains on. Time-based splitting is honest about drift and limits adaptive overfitting of a single held-out set.
+- **Four data roles (v0.4, replaces "dev / sealed").** The review found two contract conflicts: operator answers were serving both rubric curation and calibration, and the "sealed" set, consulted at every gate check, is a search-validation set whose feedback shapes future proposals even if no example is seen. Roles are now disjoint:
+
+  | Role | Contents | Touched by |
+  |---|---|---|
+  | Learning | oldest ~200 historical cases; operator answers to signal-driven and *random-curation* queries | curation, policy updates, selection |
+  | Search validation | next ~100 historical cases, time-ordered | the gate only; reported as validation, never as test |
+  | Calibration | operator answers to *random-calibration* queries on the **current** policy's fresh outputs | κ, Brier, exploitation gap, selective-risk thresholds; never curation |
+  | Final test | newest ~100 historical cases plus new production cases | once, after the system is frozen |
+
+  Time-ordering is kept within the historical cases for honesty about drift. Calibration is re-drawn after every accepted policy change (`paper/MATH.md` §3.4).
 - **Paired comparison** — AOP' vs AOP_t on identical sealed cases. Use discordant-pair statistics (McNemar on pass/fail; bootstrap CI on judge score deltas), not raw accuracy deltas. With ~150 cases, an unpaired 3-point gain is noise.
 - **Noise floor** — accept only when the paired improvement clears the estimated evaluation variance.
 - **No-regression** — no bucket may fall by more than the noise floor.
