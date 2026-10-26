@@ -2,12 +2,29 @@
 
 Self-improving harness that evolves Agentic Operating Procedures (AOPs) from historical operations data, under a fixed execution engine, with a cheap learned verifier calibrated against an expensive human oracle on a budget.
 
-Status: design v0.2. Nothing is built. Experiments E0–E2 gate whether anything should be.
+Status: design v0.3. Nothing is built. Experiments E0′–E2 gate whether anything should be.
 
 Deeper treatments live in `docs/`:
 - `docs/rl.md` — how each RL piece works, where the analogy stops, a worked example, hyperparameters
 - `docs/metrics.md` — metric definitions, gate statistics, the verifier-cost curve, v1 targets
 - `docs/selection.md` — which cases get judged and which get escalated; the taxonomy agent's role
+
+The paper and its testbed live alongside:
+- `paper/OUTLINE.md` — question, abstract, hypotheses H1–H5, baselines, experiments, kill test, timeline
+- `paper/MATH.md` — latent specification inference and the exchange rate; the Goodhart bound; conformal stand-in; reliability reward
+- `benchmark/README.md` — the synthetic confirmations domain and the τ-bench inversion; knobs, splits, oracle simulator, build order
+
+### v0.3 changes (verifier-first)
+
+The project's primary artifact is the **verifier**, not the AOP. Once the verifier generalizes, AOP improvement is cheap and automatic; until it does, every inner-loop iteration optimizes noise. Consequences, each detailed in the sections marked:
+
+1. **Ground truth v0 is an operator-verified regression set** (~100 stratified cases, ≥ 40 held out for calibration and never used for rubric curation), not two operators agreeing. E0 is replaced by E0′, a noise-floor measurement (§11).
+2. **Cold start is not zero.** The verifier opens with three provenance tiers — priors (model knowledge), context (schema, tools, sibling-procedure rubric), rules distilled from the historical replies — and the first operator questions *verify* inferred rules rather than elicit new ones. κ₀, the zero-label verifier, is a reported baseline (§4.2).
+3. **The judge is a checklist, not a critic**: independently checkable conditions with provenance; the holistic score is a shrinking residual. De-anchored: it commits to its own answer before scoring the candidate (§4.2).
+4. **Stand-in is selective and earned per bucket**: conformal risk control sets a confidence threshold with a bounded error rate; coverage-at-risk is the stand-in metric; the random audit slice persists as the drift detector (§4.4).
+5. **Two thresholds**: production gate (bounded error) vs optimization target (judged gain must exceed the divergence penalty, `paper/MATH.md` §2) (§4.4).
+6. **Representation is a knob in the paper, fixed at the firm**: AOP graphs in production for auditability; graph / skill / script compared on the benchmark with reliability in the reward (`paper/MATH.md` §4).
+7. **Two loops, one rule**: the verifier learns only from operators and state; the policy learns only from the verifier. The recursion is in the data routing (policy disagreement → operator question → verifier update), never in the supervision.
 
 ---
 
@@ -15,7 +32,7 @@ Deeper treatments live in `docs/`:
 
 An AOP is a DAG (YAML/JSON) executed by a fixed LangGraph engine. We have ~400 historical cases for one procedure (position confirmation), each a triple of inbound email, the human operator's reply, and a point-in-time snapshot of the system of record (SOR). Correctness is defined by operators, not by a spec — there is no written SOP. The harness runs k candidate executions per case against the frozen snapshot, scores them with a lexicographic reward (deterministic checks first, then a rubric-based LLM judge), computes group-relative advantage, and turns the contrast between high- and low-advantage candidates into typed edits to the AOP's playbook and graph. Edits are accepted only if they clear a sealed time-split gate with a noise floor. A small weekly budget of operator questions is spent where the judge is least certain, and every answer updates the judge's rubric. The engine, and all model weights, stay fixed.
 
-The research question embedded in the system: under a fixed budget of expensive human verdicts, which regularizers stop a self-improving harness from exploiting its cheap judge?
+The research question embedded in the system (v0.3): when can a learned verifier stand in for the human in a self-improvement loop for a latent procedure, and how many human labels does it take to get there? The bottleneck is specification, not evaluator intelligence. See `paper/OUTLINE.md`.
 
 ---
 
@@ -134,11 +151,24 @@ Any failure → reward 0.
 - Objective: predict P(ops approves) and the reason. The rubric is curated from ops verdicts + rationales (ACE deltas: add / strengthen / weaken / retire a rubric line, each with provenance).
 - Comparative, not absolute: the judge always sees the historical reply as reference. Comparative judgments are more reliable than absolute scoring.
 - Calibration metric: Cohen's kappa vs an ops audit sample. **Structural edits are unlocked only when kappa ≥ 0.7.**
-- Ceiling: the judge cannot exceed inter-operator agreement. E0 measures this before anything is built.
+- Ceiling: the judge cannot exceed the operators' own consistency. E0′ measures the noise floor before anything is built (§11).
+- **Checklist, not critic (v0.3).** The rubric is a list of independently checkable conditions, each with provenance (prior / context / inferred-from-history / ops-stated). The holistic score is a residual for what the checklist does not cover, and it shrinks as the checklist grows. A holistic judge scores plausibility; a checklist scores conditions, generalizes from fewer labels, and is auditable line by line.
+- **De-anchored.** On cases without a reference reply, the judge first commits to its own reply, then scores the candidate. Reference-free judging is the regime where judges get hacked; committing first cut false positives from 0.72 to 0.01 in the self-play judge-hacking study.
+- **Cold start (v0.3).** Three provenance tiers seed the rubric before any ops label: *prior* (model domain knowledge — useful, sometimes wrong for this desk), *context* (SOR schema, tool docs, the sibling procedure's rubric and floor checks), *inferred* (rules distilled from the historical replies: "every confirmed reply states the as-of date"). Inferred rules stay inferred until an ops verdict or a state check upgrades them. The first ops questions are rule *verification* ("here are 20 rules we inferred from your replies — which are wrong, which are missing?"), which costs seconds per rule where elicitation costs minutes. κ₀ — agreement with ops before any label — is reported as the leftmost point of every curve.
+- **Train/held-out split of ops labels.** Of the operator-verified regression set, ≥ 40% is held out, never used for rubric curation, and is the only data on which κ, Brier and coverage-at-risk are computed. Curating on all of it memorizes the test. With n = 30, κ = 0.7 has a confidence interval of roughly ±0.25; aim for ~100 labeled, ~40 held out.
 
 ### 4.3 Graded, not binary
 
 Binary reward makes most groups zero-variance (all pass / all fail) and kills the advantage signal. Judge sub-scores provide the gradient of quality the optimizer needs.
+
+### 4.4 Selective stand-in (v0.3)
+
+The verifier does not replace ops all at once; it replaces them on cases where it is confident and escalates the rest.
+
+- **Conformal risk control** (`paper/MATH.md` §3): from the held-out audit slice, choose a confidence threshold τ_ε such that the verifier's disagreement with ops on auto-decided cases is ≤ ε with probability 1 − α. **Coverage at risk**, cov_ε = P(confidence ≥ τ_ε), is the stand-in metric, computed per bucket. Simple complete cases are covered long before escalation cases.
+- **Two thresholds.** As a *production gate* (auto-approve a reply), the risk is a wrong reply to a client: ε is a business number (e.g. 0.05) and the conformal guarantee applies. As the *optimization target* for the inner loop, the risk is Goodhart under pressure: judged gain must exceed the divergence penalty (`paper/MATH.md` §2), and only auto-decided cases contribute non-floor reward.
+- **Maintained, not reached.** Conformal guarantees assume exchangeability; drift breaks it. The uniform random audit slice persists indefinitely as the drift detector; τ_ε is re-estimated each batch; a bucket whose coverage drops loses stand-in status until re-earned. The label tax for holding stand-in status is the audit slice, and that is the cost to report to the firm.
+- Decisions use the lower confidence bound on agreement, never the point estimate.
 
 ---
 
@@ -276,17 +306,19 @@ Definitions, slices, gate statistics and targets: `docs/metrics.md`. Headline se
 
 | Id | Question | Method | Decides |
 |---|---|---|---|
-| **E0** | Do operators agree with each other? | 30 cases, 2 operators, independent yes/no + reason on the historical reply; compute kappa | Ceiling for the judge. Below ~0.6, stop and fix the labeling protocol before building. |
+| **E0′** | What is the human noise floor? | Cheapest first: (a) intra-cluster consistency of the historical replies — cluster by parameter set, check outcome-class and reported-fact agreement within cluster, no new labels; (b) test–retest: the operator who verified the regression set re-labels 20 cases weeks later; (c) only if the verifier must stand in for the *team* rather than one operator: two operators on 30. | Sets ε. If the operators' own inconsistency is 15%, a 5% risk bound is unreachable and labels are spent chasing noise. The stand-in threshold is defined relative to this number. |
 | **E1** | Is the snapshot point-in-time? | For a sample, check that entities/figures in the historical reply reconcile with the snapshot | Whether the environment is valid at all. |
 | **E2** | Where is the frontier? | Run AOP_0 on dev set; pass rate per bucket under the verifiable floor only | Which buckets to sample from in E3. |
 | E3 | Does the playbook-only loop move the curve? | 10 epochs, k=8, playbook edits only, sealed-set gate | Go / no-go for structural edits. |
 | E4 | Which regularizers close the Goodhart gap? | Ablate: ± verifiable floor, ± group normalization, ops budget ∈ {0, 25, 50, 100} | The research result. |
 
-E0–E2 are cheap and run before any scaffold beyond the loader. E0 is the single number that decides whether the rest is real.
+E0′–E2 are cheap and run before any scaffold beyond the loader. E0′(a) needs no one's time but yours. The regression set itself (~100 operator-verified cases, stratified by bucket and outcome class, oversampling escalations and request-info) is requested in parallel; it is ground truth v0 and the source of the held-out calibration slice.
+
+The benchmark's kill test (`paper/OUTLINE.md` §9) runs on public data in the same window and is independent of the firm.
 
 ---
 
-## 12. Proposed repo layout (scaffold only — do not build the loop until E0–E2 pass)
+## 12. Proposed repo layout (scaffold only — do not build the loop until E0′–E2 pass)
 
 ```
 aop_rsi/
@@ -301,7 +333,7 @@ aop_rsi/
   selection/    pre-judge signals, scoring, slice allocation, taxonomy agent (docs/selection.md)
   escalation/   uncertainty ranking, question formatting, budget
   metrics/      one row per (epoch, version, split, slice, bucket, metric, value, n) (docs/metrics.md)
-  experiments/  e0_agreement.py, e1_snapshot.py, e2_baseline.py
+  experiments/  e0_noise_floor.py, e1_snapshot.py, e2_baseline.py
 ```
 
 ---
@@ -311,7 +343,9 @@ aop_rsi/
 | Risk | Mitigation |
 |---|---|
 | Judge is exploited by the proposer | Verifiable floor; group normalization; kappa gate; critic; ops audit |
-| Operators disagree with each other | E0 first; if low, refine labeling protocol (reasons, not verdicts) |
+| Operators are inconsistent | E0′ first; set ε above the measured noise; if the floor is high, refine the labeling protocol (concrete cases with contrast, reasons, not bare verdicts) |
+| Regression replies are "ideal" rather than what operators actually send | Ask for replies as they would send them in production, time-boxed; cross-check against any real outbound that exists |
+| Judge exploited on cases without a reference reply | De-anchoring; checklist structure; conformal stand-in only where calibrated |
 | Snapshot drift | E1 first |
 | Single held-out set burns | Time split + rolling production held-out |
 | Ops disengage | Budget of 5/week; one-sentence asks; approval instrumentation as a control feature |
@@ -322,7 +356,7 @@ aop_rsi/
 
 ## 14. Phasing
 
-- **v1** — one procedure; judge with evolving rubric; verifiable floor; playbook/prompt/template edits; time-split gate; escalation policy; E0–E3.
+- **v1** — one procedure; operator-verified regression set; checklist verifier seeded from three tiers, κ₀ measured; verifiable floor; playbook/prompt/template edits; time-split gate; escalation policy; conformal stand-in per bucket; E0′–E3. Process story per mailbox: label ~100 → build verifier → measure κ and coverage on the held-out → AOP optimization switches on only when the inner-loop condition holds → questionnaire loop grows the labeled set and re-measures each batch.
 - **v2** — structural edits after kappa gate; approval instrumentation; edit library consulted by curator; E4.
 - **v3** — judge fine-tuned on accumulated ops verdicts + rationales (supervised); second procedure; meta-level improvement harness. Proposer stays frozen throughout.
 
@@ -334,7 +368,7 @@ aop_rsi/
 Read DESIGN.md in full. Produce:
 (a) A short gap analysis: anything in the design that conflicts with the existing engine or data as you find them. Ask before resolving conflicts.
 (b) The scaffold in §12 with typed interfaces and docstrings only — no loop logic.
-(c) experiments/e0_agreement.py, e1_snapshot.py, e2_baseline.py, runnable.
-Stop after (c) and report E0–E2 results before building anything in optimizer/ or gate/.
+(c) experiments/e0_noise_floor.py, e1_snapshot.py, e2_baseline.py, runnable.
+Stop after (c) and report E0′–E2 results before building anything in optimizer/ or gate/.
 Constraints: engine is fixed; LangGraph 0.2.76 (Send targets receive plain dicts; retry param is `retry`); no model fine-tuning; every memory item carries provenance.
 ```
