@@ -1,0 +1,286 @@
+[
+ {
+  "policy": "Q0",
+  "n_train": 10,
+  "tree": 0.38,
+  "misses": {
+   "instrument_missing": 4,
+   "confirm": 19,
+   "account_unresolved": 17,
+   "level": 5,
+   "account_missing": 2,
+   "not_held": 7,
+   "qty_mismatch": 4,
+   "not_entitled": 3,
+   "opt_out": 1
+  }
+ },
+ {
+  "policy": "Q0",
+  "n_train": 25,
+  "tree": 0.56,
+  "misses": {
+   "confirm": 10,
+   "account_unresolved": 15,
+   "level": 6,
+   "account_missing": 2,
+   "expired_entitlement": 1,
+   "qty_mismatch": 3,
+   "not_entitled": 5,
+   "confirm_with_pending": 1,
+   "opt_out": 1
+  }
+ },
+ {
+  "policy": "Q0",
+  "n_train": 50,
+  "tree": 0.85,
+  "misses": {
+   "confirm": 6,
+   "account_missing": 2,
+   "confirm_with_pending": 3,
+   "opt_out": 1,
+   "account_unresolved": 2,
+   "qty_mismatch": 1
+  }
+ },
+ {
+  "policy": "Q0",
+  "n_train": 200,
+  "tree": 0.93,
+  "misses": {
+   "account_missing": 2,
+   "qty_mismatch": 2,
+   "confirm": 1,
+   "account_unresolved": 2
+  }
+ },
+ {
+  "policy": "Q1",
+  "n_train": 10,
+  "tree": 0.58,
+  "misses": {
+   "account_unresolved": 19,
+   "asof_non_bday": 4,
+   "account_missing": 4,
+   "asof_missing": 4,
+   "instrument_missing": 6,
+   "qty_mismatch": 3,
+   "not_held": 2
+  }
+ },
+ {
+  "policy": "Q1",
+  "n_train": 25,
+  "tree": 0.57,
+  "misses": {
+   "confirm_with_pending": 1,
+   "account_unresolved": 19,
+   "not_entitled": 1,
+   "account_missing": 3,
+   "asof_non_bday": 2,
+   "level": 5,
+   "asof_missing": 3,
+   "confirm": 3,
+   "qty_mismatch": 3,
+   "domain": 1,
+   "not_held": 2
+  }
+ },
+ {
+  "policy": "Q1",
+  "n_train": 50,
+  "tree": 0.64,
+  "misses": {
+   "not_entitled": 12,
+   "confirm_with_pending": 1,
+   "level": 12,
+   "asof_missing": 4,
+   "confirm": 2,
+   "qty_mismatch": 3,
+   "asof_non_bday": 1,
+   "account_missing": 1
+  }
+ },
+ {
+  "policy": "Q1",
+  "n_train": 200,
+  "tree": 0.86,
+  "misses": {
+   "not_entitled": 6,
+   "account_missing": 3,
+   "asof_missing": 4,
+   "qty_mismatch": 1
+  }
+ },
+ {
+  "policy": "Q2",
+  "n_train": 10,
+  "tree": 0.56,
+  "misses": {
+   "account_unresolved": 5,
+   "confirm": 12,
+   "level": 4,
+   "domain": 3,
+   "confirm_with_pending": 2,
+   "qty_mismatch": 1,
+   "not_held": 5,
+   "not_entitled": 4,
+   "opt_out": 1,
+   "asof_future": 1,
+   "instrument_missing": 2,
+   "expired_entitlement": 1,
+   "account_missing": 3
+  }
+ },
+ {
+  "policy": "Q2",
+  "n_train": 25,
+  "tree": 0.7,
+  "misses": {
+   "account_unresolved": 5,
+   "level": 1,
+   "domain": 6,
+   "not_held": 5,
+   "not_entitled": 3,
+   "opt_out": 2,
+   "asof_future": 1,
+   "instrument_missing": 2,
+   "expired_entitlement": 1,
+   "confirm": 1,
+   "account_missing": 3
+  }
+ },
+ {
+  "policy": "Q2",
+  "n_train": 50,
+  "tree": 0.78,
+  "misses": {
+   "qty_mismatch": 4,
+   "account_unresolved": 5,
+   "not_held": 5,
+   "opt_out": 2,
+   "asof_future": 1,
+   "instrument_missing": 2,
+   "confirm": 1,
+   "account_missing": 2
+  }
+ },
+ {
+  "policy": "Q2",
+  "n_train": 200,
+  "tree": 0.92,
+  "misses": {
+   "opt_out": 2,
+   "asof_future": 1,
+   "confirm_with_pending": 1,
+   "instrument_missing": 2,
+   "account_missing": 2
+  }
+ },
+ {
+  "policy": "Q3",
+  "n_train": 10,
+  "tree": 0.75,
+  "misses": {
+   "qty_mismatch": 8,
+   "asof_non_bday": 9,
+   "not_held": 4,
+   "legal_hold": 1,
+   "opt_out": 1,
+   "no_entitlement": 1,
+   "instrument_missing": 1
+  }
+ },
+ {
+  "policy": "Q3",
+  "n_train": 25,
+  "tree": 0.77,
+  "misses": {
+   "qty_mismatch": 8,
+   "asof_non_bday": 8,
+   "not_held": 4,
+   "legal_hold": 1,
+   "opt_out": 1,
+   "no_entitlement": 1
+  }
+ },
+ {
+  "policy": "Q3",
+  "n_train": 50,
+  "tree": 0.92,
+  "misses": {
+   "qty_mismatch": 5,
+   "legal_hold": 1,
+   "opt_out": 1,
+   "no_entitlement": 1
+  }
+ },
+ {
+  "policy": "Q3",
+  "n_train": 200,
+  "tree": 0.97,
+  "misses": {
+   "level": 1,
+   "no_entitlement": 1,
+   "account_unresolved": 1
+  }
+ },
+ {
+  "policy": "Q4",
+  "n_train": 10,
+  "tree": 0.6,
+  "misses": {
+   "account_unresolved": 10,
+   "asof_future": 1,
+   "no_entitlement": 2,
+   "level": 10,
+   "account_missing": 4,
+   "not_entitled": 1,
+   "not_held": 2,
+   "asof_missing": 8,
+   "instrument_missing": 2
+  }
+ },
+ {
+  "policy": "Q4",
+  "n_train": 25,
+  "tree": 0.69,
+  "misses": {
+   "asof_future": 1,
+   "no_entitlement": 3,
+   "level": 10,
+   "account_missing": 4,
+   "not_entitled": 2,
+   "domain": 7,
+   "not_held": 2,
+   "instrument_missing": 2
+  }
+ },
+ {
+  "policy": "Q4",
+  "n_train": 50,
+  "tree": 0.78,
+  "misses": {
+   "asof_future": 1,
+   "account_missing": 2,
+   "not_entitled": 2,
+   "level": 6,
+   "domain": 7,
+   "not_held": 2,
+   "no_entitlement": 1,
+   "confirm": 1
+  }
+ },
+ {
+  "policy": "Q4",
+  "n_train": 200,
+  "tree": 0.9,
+  "misses": {
+   "level": 3,
+   "account_missing": 2,
+   "confirm_with_pending": 4,
+   "not_entitled": 1
+  }
+ }
+]
