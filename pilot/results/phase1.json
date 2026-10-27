@@ -1,0 +1,331 @@
+[
+  {
+    "policy": "P0",
+    "n_train": 25,
+    "tree": 0.73,
+    "tree_outcome": 0.73,
+    "majority_outcome": 0.42,
+    "operator": 0.91,
+    "tree_errors_by_rule": {
+      "qty_mismatch": 6,
+      "instrument_missing": 9,
+      "auth_level": 2,
+      "confirm": 6,
+      "not_own_account": 2,
+      "confirm_with_pending": 1,
+      "instrument_unresolved": 1
+    },
+    "tree_depth": 4,
+    "tree_leaves": 8
+  },
+  {
+    "policy": "P0",
+    "n_train": 50,
+    "tree": 0.82,
+    "tree_outcome": 0.82,
+    "majority_outcome": 0.42,
+    "operator": 0.91,
+    "tree_errors_by_rule": {
+      "qty_mismatch": 6,
+      "instrument_missing": 9,
+      "auth_level": 2,
+      "instrument_unresolved": 1
+    },
+    "tree_depth": 7,
+    "tree_leaves": 12
+  },
+  {
+    "policy": "P0",
+    "n_train": 100,
+    "tree": 0.97,
+    "tree_outcome": 0.97,
+    "majority_outcome": 0.42,
+    "operator": 0.91,
+    "tree_errors_by_rule": {
+      "auth_level": 2,
+      "instrument_unresolved": 1
+    },
+    "tree_depth": 8,
+    "tree_leaves": 17
+  },
+  {
+    "policy": "P0",
+    "n_train": 200,
+    "tree": 0.95,
+    "tree_outcome": 0.97,
+    "majority_outcome": 0.42,
+    "operator": 0.91,
+    "tree_errors_by_rule": {
+      "auth_level": 2,
+      "confirm_with_pending": 2,
+      "instrument_unresolved": 1
+    },
+    "tree_depth": 10,
+    "tree_leaves": 23
+  },
+  {
+    "policy": "P1",
+    "n_train": 25,
+    "tree": 0.75,
+    "tree_outcome": 0.75,
+    "majority_outcome": 0.52,
+    "operator": 0.98,
+    "tree_errors_by_rule": {
+      "confirm": 16,
+      "not_held": 6,
+      "not_own_account": 1,
+      "confirm_with_pending": 2
+    },
+    "tree_depth": 4,
+    "tree_leaves": 6
+  },
+  {
+    "policy": "P1",
+    "n_train": 50,
+    "tree": 0.75,
+    "tree_outcome": 0.76,
+    "majority_outcome": 0.52,
+    "operator": 0.98,
+    "tree_errors_by_rule": {
+      "confirm": 4,
+      "asof_missing": 1,
+      "not_held": 6,
+      "external_domain": 4,
+      "account_unresolved": 2,
+      "large_position": 6,
+      "confirm_with_pending": 2
+    },
+    "tree_depth": 8,
+    "tree_leaves": 12
+  },
+  {
+    "policy": "P1",
+    "n_train": 100,
+    "tree": 0.86,
+    "tree_outcome": 0.88,
+    "majority_outcome": 0.52,
+    "operator": 0.98,
+    "tree_errors_by_rule": {
+      "auth_level": 5,
+      "external_domain": 4,
+      "asof_missing": 1,
+      "confirm_with_pending": 2,
+      "confirm": 2
+    },
+    "tree_depth": 7,
+    "tree_leaves": 22
+  },
+  {
+    "policy": "P1",
+    "n_train": 200,
+    "tree": 0.94,
+    "tree_outcome": 0.94,
+    "majority_outcome": 0.52,
+    "operator": 0.98,
+    "tree_errors_by_rule": {
+      "auth_level": 5,
+      "external_domain": 1
+    },
+    "tree_depth": 10,
+    "tree_leaves": 28
+  },
+  {
+    "policy": "P2",
+    "n_train": 25,
+    "tree": 0.78,
+    "tree_outcome": 0.78,
+    "majority_outcome": 0.26,
+    "operator": 0.97,
+    "tree_errors_by_rule": {
+      "confirm": 8,
+      "auth_level": 3,
+      "not_held": 7,
+      "account_unresolved": 1,
+      "not_own_account": 3
+    },
+    "tree_depth": 4,
+    "tree_leaves": 6
+  },
+  {
+    "policy": "P2",
+    "n_train": 50,
+    "tree": 0.79,
+    "tree_outcome": 0.79,
+    "majority_outcome": 0.26,
+    "operator": 0.97,
+    "tree_errors_by_rule": {
+      "confirm": 5,
+      "auth_level": 1,
+      "qty_mismatch": 10,
+      "account_unresolved": 1,
+      "not_own_account": 1,
+      "external_domain": 3
+    },
+    "tree_depth": 5,
+    "tree_leaves": 13
+  },
+  {
+    "policy": "P2",
+    "n_train": 100,
+    "tree": 0.92,
+    "tree_outcome": 0.92,
+    "majority_outcome": 0.26,
+    "operator": 0.97,
+    "tree_errors_by_rule": {
+      "auth_level": 1,
+      "account_unresolved": 1,
+      "confirm": 5,
+      "not_own_account": 1
+    },
+    "tree_depth": 7,
+    "tree_leaves": 20
+  },
+  {
+    "policy": "P2",
+    "n_train": 200,
+    "tree": 0.95,
+    "tree_outcome": 0.95,
+    "majority_outcome": 0.26,
+    "operator": 0.97,
+    "tree_errors_by_rule": {
+      "external_domain": 3,
+      "confirm": 2
+    },
+    "tree_depth": 12,
+    "tree_leaves": 32
+  },
+  {
+    "policy": "P3",
+    "n_train": 25,
+    "tree": 0.62,
+    "tree_outcome": 0.63,
+    "majority_outcome": 0.45,
+    "operator": 0.95,
+    "tree_errors_by_rule": {
+      "account_unresolved": 7,
+      "large_position": 7,
+      "auth_level": 9,
+      "instrument_missing": 1,
+      "qty_mismatch": 9,
+      "not_own_account": 3,
+      "confirm": 2
+    },
+    "tree_depth": 5,
+    "tree_leaves": 8
+  },
+  {
+    "policy": "P3",
+    "n_train": 50,
+    "tree": 0.7,
+    "tree_outcome": 0.73,
+    "majority_outcome": 0.45,
+    "operator": 0.95,
+    "tree_errors_by_rule": {
+      "not_held": 5,
+      "large_position": 5,
+      "confirm_with_pending": 3,
+      "not_own_account": 8,
+      "instrument_missing": 1,
+      "qty_mismatch": 8
+    },
+    "tree_depth": 5,
+    "tree_leaves": 12
+  },
+  {
+    "policy": "P3",
+    "n_train": 100,
+    "tree": 0.81,
+    "tree_outcome": 0.81,
+    "majority_outcome": 0.45,
+    "operator": 0.95,
+    "tree_errors_by_rule": {
+      "not_held": 2,
+      "large_position": 5,
+      "confirm": 3,
+      "instrument_missing": 1,
+      "qty_mismatch": 7,
+      "not_own_account": 1
+    },
+    "tree_depth": 8,
+    "tree_leaves": 20
+  },
+  {
+    "policy": "P3",
+    "n_train": 200,
+    "tree": 0.95,
+    "tree_outcome": 0.95,
+    "majority_outcome": 0.45,
+    "operator": 0.95,
+    "tree_errors_by_rule": {
+      "instrument_missing": 1,
+      "not_own_account": 1,
+      "qty_mismatch": 2,
+      "large_position": 1
+    },
+    "tree_depth": 8,
+    "tree_leaves": 30
+  },
+  {
+    "policy": "P4",
+    "n_train": 25,
+    "tree": 0.72,
+    "tree_outcome": 0.72,
+    "majority_outcome": 0.32,
+    "operator": 0.94,
+    "tree_errors_by_rule": {
+      "external_domain": 11,
+      "auth_level": 4,
+      "qty_mismatch": 4,
+      "not_held": 6,
+      "instrument_missing": 3
+    },
+    "tree_depth": 6,
+    "tree_leaves": 8
+  },
+  {
+    "policy": "P4",
+    "n_train": 50,
+    "tree": 0.84,
+    "tree_outcome": 0.84,
+    "majority_outcome": 0.32,
+    "operator": 0.94,
+    "tree_errors_by_rule": {
+      "account_unresolved": 2,
+      "auth_level": 4,
+      "qty_mismatch": 4,
+      "not_held": 6
+    },
+    "tree_depth": 6,
+    "tree_leaves": 12
+  },
+  {
+    "policy": "P4",
+    "n_train": 100,
+    "tree": 0.87,
+    "tree_outcome": 0.87,
+    "majority_outcome": 0.32,
+    "operator": 0.94,
+    "tree_errors_by_rule": {
+      "asof_missing": 5,
+      "auth_level": 4,
+      "instrument_missing": 4
+    },
+    "tree_depth": 8,
+    "tree_leaves": 17
+  },
+  {
+    "policy": "P4",
+    "n_train": 200,
+    "tree": 0.9,
+    "tree_outcome": 0.9,
+    "majority_outcome": 0.32,
+    "operator": 0.94,
+    "tree_errors_by_rule": {
+      "auth_level": 4,
+      "external_domain": 4,
+      "asof_missing": 2
+    },
+    "tree_depth": 12,
+    "tree_leaves": 28
+  }
+]
