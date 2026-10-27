@@ -1,0 +1,142 @@
+[
+ {
+  "policy": "Q3",
+  "arm": "Q3_hist25",
+  "final_test": {
+   "correct": 0.87,
+   "n": 100,
+   "misses_by_rule": {
+    "asof_non_bday": 9,
+    "not_held": 2,
+    "no_entitlement": 2
+   },
+   "misses_by_field": {
+    "outcome": 13
+   }
+  },
+  "fresh": {
+   "correct": 0.83,
+   "n": 2000,
+   "misses_by_rule": {
+    "confirm_with_pending": 22,
+    "asof_non_bday": 233,
+    "not_held": 21,
+    "large_position": 25,
+    "confirm": 33,
+    "opt_out": 1,
+    "no_entitlement": 5
+   },
+   "misses_by_field": {
+    "pending": 27,
+    "outcome": 313
+   }
+  }
+ },
+ {
+  "policy": "Q3",
+  "arm": "Q3_hist50",
+  "final_test": {
+   "correct": 0.96,
+   "n": 100,
+   "misses_by_rule": {
+    "not_held": 2,
+    "no_entitlement": 2
+   },
+   "misses_by_field": {
+    "outcome": 4
+   }
+  },
+  "fresh": {
+   "correct": 0.955,
+   "n": 2000,
+   "misses_by_rule": {
+    "not_held": 21,
+    "confirm_with_pending": 6,
+    "large_position": 25,
+    "confirm": 25,
+    "asof_non_bday": 2,
+    "opt_out": 6,
+    "no_entitlement": 5
+   },
+   "misses_by_field": {
+    "outcome": 87,
+    "pending": 3
+   }
+  }
+ },
+ {
+  "policy": "Q4",
+  "arm": "Q4_hist25",
+  "final_test": {
+   "correct": 0.9,
+   "n": 100,
+   "misses_by_rule": {
+    "asof_future": 1,
+    "confirm": 3,
+    "confirm_with_pending": 2,
+    "no_entitlement": 1,
+    "account_unresolved": 2,
+    "not_held": 1
+   },
+   "misses_by_field": {
+    "outcome": 5,
+    "as_of_assumed": 5
+   }
+  },
+  "fresh": {
+   "correct": 0.914,
+   "n": 2000,
+   "misses_by_rule": {
+    "confirm": 79,
+    "confirm_with_pending": 20,
+    "account_unresolved": 24,
+    "asof_future": 16,
+    "qty_mismatch": 11,
+    "not_held": 15,
+    "no_entitlement": 6,
+    "domain": 1
+   },
+   "misses_by_field": {
+    "outcome": 78,
+    "as_of_assumed": 94
+   }
+  }
+ },
+ {
+  "policy": "Q4",
+  "arm": "Q4_hist50",
+  "final_test": {
+   "correct": 0.89,
+   "n": 100,
+   "misses_by_rule": {
+    "not_entitled": 3,
+    "level": 4,
+    "confirm": 2,
+    "not_held": 1,
+    "no_entitlement": 1
+   },
+   "misses_by_field": {
+    "outcome": 10,
+    "as_of_assumed": 1
+   }
+  },
+  "fresh": {
+   "correct": 0.88,
+   "n": 2000,
+   "misses_by_rule": {
+    "domain": 41,
+    "not_held": 59,
+    "confirm": 35,
+    "not_entitled": 35,
+    "qty_mismatch": 11,
+    "level": 39,
+    "no_entitlement": 15,
+    "confirm_with_pending": 4
+   },
+   "misses_by_field": {
+    "outcome": 215,
+    "as_of_assumed": 24
+   }
+  }
+ }
+]
