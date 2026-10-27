@@ -344,7 +344,16 @@ def export(policy: str, out: Path, n_learn: int, budget: int = 0) -> None:
         "case_id": r["case_id"], "request": r["request"], "reply_text": r["reply_text"],
         "reply_outcome": r["hidden"]["operator_reply"]["outcome"]}) for r in rows))
     (out / "harness.py").write_text(HARNESS2)
-    oracle = "" if budget == 0 else f"- `oracle.py` — ask an operator; budget {budget} questions.\n"
+    pool = [r for r in load2(policy) if r["role"] == "learning"][n_learn:]
+    (out / "unlabeled.jsonl").write_text("\n".join(json.dumps({"case_id": r["case_id"], "request": r["request"]}) for r in pool))
+    oracle = (f"- `unlabeled.jsonl` — {len(pool)} further requests from the same period, with no reply. Use them as you see fit.\n")
+    if budget:
+        oracle += (f"- `oracle.py` — an operator you may ask. `python3 oracle.py <case_id> '<response json>'` says whether that "
+                   f"response to that request (history or unlabeled) is acceptable, with a one-sentence reason. "
+                   f"**Budget: {budget} questions, total.** It is occasionally wrong.\n")
+        (out / "oracle.py").write_text(
+            "import json, sys\n" f"sys.path.insert(0, {str(HERE)!r})\n" "from oracle_backend2 import ask\n"
+            f"print(json.dumps(ask({policy!r}, {out.name!r}, {n_learn}, sys.argv[1], json.loads(sys.argv[2]), {budget})))\n")
     (out / "README.md").write_text(README2.format(n=len(rows), oracle=oracle))
     (out / "scratch").mkdir()
 
@@ -390,6 +399,6 @@ if __name__ == "__main__":
     if cmd == "build":
         build()
     elif cmd == "export":
-        export(sys.argv[2], Path(sys.argv[3]), int(sys.argv[4]))
+        export(sys.argv[2], Path(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5]) if len(sys.argv) > 5 else 0)
     elif cmd == "eval":
         print(json.dumps(evaluate(sys.argv[2], Path(sys.argv[3]).resolve()), indent=1))
