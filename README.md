@@ -2,7 +2,7 @@
 
 A self-improving harness for Agentic Operating Procedures (AOPs): procedures expressed as DAGs and executed by a fixed LangGraph engine, evolved from historical operations data under a cheap learned verifier that is calibrated against an expensive human oracle on a budget.
 
-Status: design only. Nothing is built. Design v0.4, revised after an external review of commit 0c01a49: the floor checks facts not decisions, data roles are disjoint, evaluation is reference-free against executable ground truth, the selective stand-in uses a sound procedure with its label cost stated, and scope is cut to a two-week pilot that tests whether a learned verifier beats simply handing the inferred specification to the agent. See `paper/OUTLINE.md` §9.
+Status: **pilot complete.** Pre-registered result (`pilot/RESULTS_v3.md`): expert questions help (+9.5 points over history alone), but verifier-first does **not** beat simpler uses of the same questions (+0.6 points, CI −1.4 to +2.7). The verifier-first method claim is not supported; the design documents below describe the hypothesis that was tested.
 
 ## Files
 
@@ -15,6 +15,7 @@ Status: design only. Nothing is built. Design v0.4, revised after an external re
 | `docs/selection.md` | Which cases get judged after a run and which get escalated to operators; the taxonomy agent's role; the calibration trap. |
 | `paper/OUTLINE.md` | The paper: question, draft abstract, contributions, hypotheses H1–H5 with their figures, baselines, experiments X0–X8, related work, kill test, timeline. |
 | `paper/MATH.md` | Latent specification inference and the history-per-verdict exchange rate; a Goodhart bound with its flip-point test; conformal selective stand-in; reliability-weighted reward and structuredness. |
+| `pilot/` | Runnable pilot: environments v1/v2, executable policies, grader, oracle, baselines, all arm outputs. Results: `RESULTS.md` (v1 smoke), `RESULTS_v2.md` (hardened benchmark), `PREREG.md` + `RESULTS_v3.md` (decisive comparison). |
 | `benchmark/README.md` | The testbed: a synthetic confirmations domain and an inversion of τ-bench; knobs (history size, inconsistency, drift, budget, representation), splits, oracle simulator, schema, build order. |
 
 ## For a coding agent

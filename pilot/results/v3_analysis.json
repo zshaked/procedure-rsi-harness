@@ -1,37 +1,65 @@
 {
- "complete": false,
+ "complete": true,
  "pooled_mean": {
-  "history": 0.8599,
-  "policy_first": 0.964,
-  "spec_once": 0.9595,
-  "verifier_first": 0.952
+  "history": 0.8699,
+  "policy_first": 0.9594,
+  "spec_once": 0.9556,
+  "verifier_first": 0.965
  },
  "mean_questions": {
   "history": 0,
   "policy_first": 15,
-  "spec_once": 15,
+  "spec_once": 14.8,
   "verifier_first": 15
  },
  "per_policy": {
   "history": {
    "Q2": 0.8777,
-   "Q3": 0.831,
-   "Q4": 0.871
+   "Q3": 0.8337,
+   "Q4": 0.8983
   },
   "policy_first": {
-   "Q2": 0.927,
-   "Q3": 0.992,
-   "Q4": 0.973
+   "Q2": 0.937,
+   "Q3": 0.984,
+   "Q4": 0.9573
   },
   "spec_once": {
-   "Q2": 0.9485,
-   "Q3": 0.974,
-   "Q4": 0.956
+   "Q2": 0.933,
+   "Q3": 0.9723,
+   "Q4": 0.9613
   },
   "verifier_first": {
-   "Q2": 0.923,
-   "Q3": 0.943,
-   "Q4": 0.99
+   "Q2": 0.9433,
+   "Q3": 0.9643,
+   "Q4": 0.9873
   }
+ },
+ "Q1_questions_help": {
+  "best_oracle_arm": "verifier_first",
+  "gain_vs_history": 0.0951,
+  "YES": true
+ },
+ "Q2_verifier_first": {
+  "vs": {
+   "policy_first": {
+    "diff": 0.0055,
+    "ci95": [
+     -0.0138,
+     0.0266
+    ],
+    "policy_wins": 2
+   },
+   "spec_once": {
+    "diff": 0.0096,
+    "ci95": [
+     -0.0066,
+     0.0273
+    ],
+    "policy_wins": 2
+   }
+  },
+  "beat_both": false,
+  "question_efficient": false,
+  "VERDICT": "NO"
  }
 }

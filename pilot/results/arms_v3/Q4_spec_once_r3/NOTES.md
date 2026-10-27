@@ -1,0 +1,7 @@
+# NOTES
+
+**Rules believed:** (1) resolve the account from the mention; ambiguous or missing -> REQUEST_INFO (missing + unregistered/free-mail sender -> REQUEST_AUTHORIZATION). (2) Authorise: known contact, sender domain registered on the client profile, non-expired entitlement level >= 2; otherwise REQUEST_AUTHORIZATION (checked before completeness and legal hold). (3) Instrument unresolved, no date, or date not before the sent date -> REQUEST_INFO. (4) Legal hold -> ESCALATE. (5) Figure = ledger summed over all sub-accounts up to the requested date rolled back to the previous business day, split-adjusted (not get_position_summary). (6) Zero -> NOT_HELD. (7) Client figure off by >10% from settled and from settled+pending -> ESCALATE. (8) Otherwise CONFIRMED with pending = matched instructions settling after as_of, dated by the latest settle date. Forwarded "Date:" headers are ignored.
+
+**Inputs:** scripted joins of histories/unlabeled against the tools; ratio clustering of client figures in unlabeled (1.00/1.02/1.04/1.08/0.93 vs 0.85/1.5/0.33) to locate the tolerance; 13 oracle questions on the least certain rules (log in spec.md). Harness only used to check implementation: 25/25.
+
+**Least sure:** exact tolerance (between 8% and 15%); as_of_assumed (always false — never saw it true); no_email_confirm being ignored (oracle said so twice, but counterintuitive); order of legal hold vs missing date; missing-account with corporate sender whose domain is unregistered; date equal to sent date; negative positions.

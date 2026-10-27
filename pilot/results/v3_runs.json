@@ -99,6 +99,25 @@
   }
  },
  {
+  "run": "Q2_policy_first_r3",
+  "policy": "Q2",
+  "arm": "policy_first",
+  "rep": 3,
+  "fresh": 0.957,
+  "final_test": 0.96,
+  "questions": 15,
+  "misses_by_rule": {
+   "level": 8,
+   "opt_out": 28,
+   "domain": 17,
+   "qty_mismatch": 3,
+   "confirm_with_pending": 11,
+   "not_entitled": 15,
+   "confirm": 3,
+   "expired_entitlement": 1
+  }
+ },
+ {
   "run": "Q2_spec_once_r1",
   "policy": "Q2",
   "arm": "spec_once",
@@ -136,6 +155,35 @@
   }
  },
  {
+  "run": "Q2_spec_once_r3",
+  "policy": "Q2",
+  "arm": "spec_once",
+  "rep": 3,
+  "fresh": 0.902,
+  "final_test": 0.89,
+  "questions": 15,
+  "misses_by_rule": {
+   "confirm": 89,
+   "domain": 97,
+   "not_held": 7,
+   "confirm_with_pending": 3
+  }
+ },
+ {
+  "run": "Q2_verifier_first_r1",
+  "policy": "Q2",
+  "arm": "verifier_first",
+  "rep": 1,
+  "fresh": 0.99,
+  "final_test": 1.0,
+  "questions": 15,
+  "misses_by_rule": {
+   "qty_mismatch": 5,
+   "confirm_with_pending": 10,
+   "confirm": 6
+  }
+ },
+ {
   "run": "Q2_verifier_first_r2",
   "policy": "Q2",
   "arm": "verifier_first",
@@ -148,6 +196,26 @@
    "not_held": 39,
    "qty_mismatch": 10,
    "confirm_with_pending": 9
+  }
+ },
+ {
+  "run": "Q2_verifier_first_r3",
+  "policy": "Q2",
+  "arm": "verifier_first",
+  "rep": 3,
+  "fresh": 0.917,
+  "final_test": 0.93,
+  "questions": 15,
+  "misses_by_rule": {
+   "level": 8,
+   "confirm": 52,
+   "opt_out": 28,
+   "domain": 17,
+   "not_held": 34,
+   "qty_mismatch": 4,
+   "confirm_with_pending": 7,
+   "not_entitled": 15,
+   "expired_entitlement": 1
   }
  },
  {
@@ -189,6 +257,26 @@
   }
  },
  {
+  "run": "Q3_history_r3",
+  "policy": "Q3",
+  "arm": "history",
+  "rep": 3,
+  "fresh": 0.839,
+  "final_test": 0.87,
+  "questions": 0,
+  "misses_by_rule": {
+   "confirm_with_pending": 15,
+   "large_position": 29,
+   "asof_non_bday": 233,
+   "asof_future": 2,
+   "qty_mismatch": 4,
+   "not_held": 21,
+   "confirm": 12,
+   "opt_out": 1,
+   "no_entitlement": 5
+  }
+ },
+ {
   "run": "Q3_policy_first_r1",
   "policy": "Q3",
   "arm": "policy_first",
@@ -218,6 +306,21 @@
    "opt_out": 6,
    "no_entitlement": 3,
    "confirm_with_pending": 3
+  }
+ },
+ {
+  "run": "Q3_policy_first_r3",
+  "policy": "Q3",
+  "arm": "policy_first",
+  "rep": 3,
+  "fresh": 0.968,
+  "final_test": 0.99,
+  "questions": 15,
+  "misses_by_rule": {
+   "confirm": 52,
+   "confirm_with_pending": 3,
+   "opt_out": 6,
+   "no_entitlement": 3
   }
  },
  {
@@ -256,6 +359,42 @@
   }
  },
  {
+  "run": "Q3_spec_once_r3",
+  "policy": "Q3",
+  "arm": "spec_once",
+  "rep": 3,
+  "fresh": 0.969,
+  "final_test": 0.97,
+  "questions": 15,
+  "misses_by_rule": {
+   "confirm_with_pending": 8,
+   "asof_future": 2,
+   "confirm": 20,
+   "not_held": 21,
+   "asof_non_bday": 5,
+   "opt_out": 1,
+   "no_entitlement": 3,
+   "qty_mismatch": 2
+  }
+ },
+ {
+  "run": "Q3_verifier_first_r1",
+  "policy": "Q3",
+  "arm": "verifier_first",
+  "rep": 1,
+  "fresh": 0.97,
+  "final_test": 0.97,
+  "questions": 15,
+  "misses_by_rule": {
+   "confirm_with_pending": 17,
+   "qty_mismatch": 2,
+   "not_held": 21,
+   "confirm": 12,
+   "opt_out": 6,
+   "no_entitlement": 3
+  }
+ },
+ {
   "run": "Q3_verifier_first_r2",
   "policy": "Q3",
   "arm": "verifier_first",
@@ -274,6 +413,22 @@
    "opt_out": 3,
    "no_entitlement": 5,
    "legal_hold": 1
+  }
+ },
+ {
+  "run": "Q3_verifier_first_r3",
+  "policy": "Q3",
+  "arm": "verifier_first",
+  "rep": 3,
+  "fresh": 0.98,
+  "final_test": 0.99,
+  "questions": 15,
+  "misses_by_rule": {
+   "confirm_with_pending": 17,
+   "not_held": 3,
+   "confirm": 12,
+   "opt_out": 6,
+   "no_entitlement": 3
   }
  },
  {
@@ -314,6 +469,23 @@
   }
  },
  {
+  "run": "Q4_history_r3",
+  "policy": "Q4",
+  "arm": "history",
+  "rep": 3,
+  "fresh": 0.953,
+  "final_test": 0.96,
+  "questions": 0,
+  "misses_by_rule": {
+   "confirm": 35,
+   "qty_mismatch": 11,
+   "not_held": 36,
+   "confirm_with_pending": 4,
+   "no_entitlement": 6,
+   "domain": 3
+  }
+ },
+ {
   "run": "Q4_policy_first_r1",
   "policy": "Q4",
   "arm": "policy_first",
@@ -324,6 +496,39 @@
   "misses_by_rule": {
    "qty_mismatch": 11,
    "not_held": 35,
+   "no_entitlement": 6,
+   "domain": 3
+  }
+ },
+ {
+  "run": "Q4_policy_first_r2",
+  "policy": "Q4",
+  "arm": "policy_first",
+  "rep": 2,
+  "fresh": 0.911,
+  "final_test": 0.89,
+  "questions": 15,
+  "misses_by_rule": {
+   "account_missing": 87,
+   "account_unresolved": 24,
+   "qty_mismatch": 11,
+   "level": 39,
+   "no_entitlement": 12,
+   "not_entitled": 1,
+   "not_held": 4
+  }
+ },
+ {
+  "run": "Q4_policy_first_r3",
+  "policy": "Q4",
+  "arm": "policy_first",
+  "rep": 3,
+  "fresh": 0.988,
+  "final_test": 0.99,
+  "questions": 15,
+  "misses_by_rule": {
+   "qty_mismatch": 11,
+   "not_held": 4,
    "no_entitlement": 6,
    "domain": 3
   }
@@ -348,6 +553,39 @@
   }
  },
  {
+  "run": "Q4_spec_once_r2",
+  "policy": "Q4",
+  "arm": "spec_once",
+  "rep": 2,
+  "fresh": 0.962,
+  "final_test": 0.92,
+  "questions": 15,
+  "misses_by_rule": {
+   "domain": 47,
+   "asof_missing": 5,
+   "qty_mismatch": 11,
+   "not_held": 4,
+   "instrument_missing": 2,
+   "no_entitlement": 6,
+   "asof_future": 1
+  }
+ },
+ {
+  "run": "Q4_spec_once_r3",
+  "policy": "Q4",
+  "arm": "spec_once",
+  "rep": 3,
+  "fresh": 0.966,
+  "final_test": 0.93,
+  "questions": 13,
+  "misses_by_rule": {
+   "domain": 47,
+   "qty_mismatch": 11,
+   "not_held": 4,
+   "no_entitlement": 6
+  }
+ },
+ {
   "run": "Q4_verifier_first_r1",
   "policy": "Q4",
   "arm": "verifier_first",
@@ -362,6 +600,39 @@
    "no_entitlement": 6,
    "domain": 3,
    "asof_future": 1
+  }
+ },
+ {
+  "run": "Q4_verifier_first_r2",
+  "policy": "Q4",
+  "arm": "verifier_first",
+  "rep": 2,
+  "fresh": 0.984,
+  "final_test": 0.98,
+  "questions": 15,
+  "misses_by_rule": {
+   "asof_missing": 5,
+   "qty_mismatch": 11,
+   "not_held": 4,
+   "instrument_missing": 2,
+   "no_entitlement": 6,
+   "domain": 3,
+   "asof_future": 1
+  }
+ },
+ {
+  "run": "Q4_verifier_first_r3",
+  "policy": "Q4",
+  "arm": "verifier_first",
+  "rep": 3,
+  "fresh": 0.988,
+  "final_test": 0.99,
+  "questions": 15,
+  "misses_by_rule": {
+   "qty_mismatch": 11,
+   "not_held": 4,
+   "no_entitlement": 6,
+   "domain": 3
   }
  }
 ]
