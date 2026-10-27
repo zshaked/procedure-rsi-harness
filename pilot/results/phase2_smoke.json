@@ -1,0 +1,107 @@
+[
+  {
+    "arm": "P3_history",
+    "final_test": 0.96,
+    "search_val": 0.95,
+    "fresh_2000": 0.97,
+    "fresh_misses_by_rule": {
+      "confirm": 53,
+      "confirm_with_pending": 7
+    },
+    "oracle_q": 0,
+    "verifier": null
+  },
+  {
+    "arm": "P3_policy_first",
+    "final_test": 1.0,
+    "search_val": 1.0,
+    "fresh_2000": 1.0,
+    "fresh_misses_by_rule": {},
+    "oracle_q": 12,
+    "verifier": null
+  },
+  {
+    "arm": "P3_spec_once",
+    "final_test": 1.0,
+    "search_val": 1.0,
+    "fresh_2000": 1.0,
+    "fresh_misses_by_rule": {},
+    "oracle_q": 23,
+    "verifier": null
+  },
+  {
+    "arm": "P3_truespec",
+    "final_test": 1.0,
+    "search_val": 1.0,
+    "fresh_2000": 1.0,
+    "fresh_misses_by_rule": {},
+    "oracle_q": 0,
+    "verifier": null
+  },
+  {
+    "arm": "P3_verifier_first",
+    "final_test": 1.0,
+    "search_val": 1.0,
+    "fresh_2000": 1.0,
+    "fresh_misses_by_rule": {},
+    "oracle_q": 21,
+    "verifier": {
+      "agreement": 1.0,
+      "n": 200,
+      "false_accept_rate_on_wrong": 0.0,
+      "false_reject_rate_on_right": 0.0
+    }
+  },
+  {
+    "arm": "P4_history",
+    "final_test": 1.0,
+    "search_val": 1.0,
+    "fresh_2000": 1.0,
+    "fresh_misses_by_rule": {},
+    "oracle_q": 0,
+    "verifier": null
+  },
+  {
+    "arm": "P4_policy_first",
+    "final_test": 1.0,
+    "search_val": 1.0,
+    "fresh_2000": 1.0,
+    "fresh_misses_by_rule": {},
+    "oracle_q": 19,
+    "verifier": null
+  },
+  {
+    "arm": "P4_spec_once",
+    "final_test": 1.0,
+    "search_val": 1.0,
+    "fresh_2000": 1.0,
+    "fresh_misses_by_rule": {},
+    "oracle_q": 21,
+    "verifier": null
+  },
+  {
+    "arm": "P4_truespec",
+    "final_test": 1.0,
+    "search_val": 1.0,
+    "fresh_2000": 1.0,
+    "fresh_misses_by_rule": {},
+    "oracle_q": 0,
+    "verifier": null
+  },
+  {
+    "arm": "P4_verifier_first",
+    "final_test": 1.0,
+    "search_val": 1.0,
+    "fresh_2000": 0.998,
+    "fresh_misses_by_rule": {
+      "not_held": 4
+    },
+    "oracle_q": 21,
+    "verifier": {
+      "agreement": 1.0,
+      "n": 200,
+      "false_accept_rate_on_wrong": 0.0,
+      "false_reject_rate_on_right": 0.0
+    }
+  }
+]
