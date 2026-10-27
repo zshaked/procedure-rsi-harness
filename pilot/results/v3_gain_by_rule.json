@@ -1,0 +1,360 @@
+{
+ "Q2": {
+  "not_held": {
+   "hist25": 0,
+   "fresh2k": 76,
+   "miss_history": 29.0,
+   "miss_oracle": 13.9,
+   "gain": 15.1,
+   "questions": 15
+  },
+  "account_unresolved": {
+   "hist25": 3,
+   "fresh2k": 321,
+   "miss_history": 0,
+   "miss_oracle": 0,
+   "gain": 0,
+   "questions": 0
+  },
+  "confirm": {
+   "hist25": 5,
+   "fresh2k": 448,
+   "miss_history": 94.0,
+   "miss_oracle": 47.7,
+   "gain": 46.3,
+   "questions": 50
+  },
+  "level": {
+   "hist25": 1,
+   "fresh2k": 145,
+   "miss_history": 17.3,
+   "miss_oracle": 6.0,
+   "gain": 11.3,
+   "questions": 5
+  },
+  "instrument_missing": {
+   "hist25": 0,
+   "fresh2k": 54,
+   "miss_history": 0,
+   "miss_oracle": 0,
+   "gain": 0,
+   "questions": 0
+  },
+  "not_entitled": {
+   "hist25": 4,
+   "fresh2k": 261,
+   "miss_history": 24.7,
+   "miss_oracle": 10.6,
+   "gain": 14.1,
+   "questions": 2
+  },
+  "domain": {
+   "hist25": 1,
+   "fresh2k": 253,
+   "miss_history": 27.3,
+   "miss_oracle": 22.6,
+   "gain": 4.8,
+   "questions": 14
+  },
+  "qty_mismatch": {
+   "hist25": 8,
+   "fresh2k": 207,
+   "miss_history": 10.0,
+   "miss_oracle": 4.0,
+   "gain": 6.0,
+   "questions": 17
+  },
+  "opt_out": {
+   "hist25": 0,
+   "fresh2k": 28,
+   "miss_history": 28.0,
+   "miss_oracle": 12.4,
+   "gain": 15.6,
+   "questions": 3
+  },
+  "account_missing": {
+   "hist25": 1,
+   "fresh2k": 87,
+   "miss_history": 0,
+   "miss_oracle": 0,
+   "gain": 0,
+   "questions": 0
+  },
+  "confirm_with_pending": {
+   "hist25": 1,
+   "fresh2k": 51,
+   "miss_history": 11.7,
+   "miss_oracle": 6.7,
+   "gain": 5.0,
+   "questions": 21
+  },
+  "legal_hold": {
+   "hist25": 0,
+   "fresh2k": 21,
+   "miss_history": 0,
+   "miss_oracle": 0,
+   "gain": 0,
+   "questions": 8
+  },
+  "asof_future": {
+   "hist25": 0,
+   "fresh2k": 13,
+   "miss_history": 0,
+   "miss_oracle": 0,
+   "gain": 0,
+   "questions": 0
+  },
+  "expired_entitlement": {
+   "hist25": 1,
+   "fresh2k": 35,
+   "miss_history": 2.3,
+   "miss_oracle": 0.8,
+   "gain": 1.6,
+   "questions": 0
+  }
+ },
+ "Q3": {
+  "level": {
+   "hist25": 5,
+   "fresh2k": 624,
+   "miss_history": 0,
+   "miss_oracle": 3.2,
+   "gain": -3.2,
+   "questions": 4
+  },
+  "account_unresolved": {
+   "hist25": 5,
+   "fresh2k": 278,
+   "miss_history": 0,
+   "miss_oracle": 0,
+   "gain": 0,
+   "questions": 0
+  },
+  "confirm_with_pending": {
+   "hist25": 1,
+   "fresh2k": 32,
+   "miss_history": 15.0,
+   "miss_oracle": 7.2,
+   "gain": 7.8,
+   "questions": 17
+  },
+  "asof_future": {
+   "hist25": 0,
+   "fresh2k": 16,
+   "miss_history": 0.7,
+   "miss_oracle": 0.7,
+   "gain": 0.0,
+   "questions": 8
+  },
+  "not_entitled": {
+   "hist25": 4,
+   "fresh2k": 258,
+   "miss_history": 0,
+   "miss_oracle": 0,
+   "gain": 0,
+   "questions": 4
+  },
+  "qty_mismatch": {
+   "hist25": 1,
+   "fresh2k": 82,
+   "miss_history": 2.7,
+   "miss_oracle": 1.2,
+   "gain": 1.4,
+   "questions": 11
+  },
+  "large_position": {
+   "hist25": 0,
+   "fresh2k": 29,
+   "miss_history": 26.3,
+   "miss_oracle": 0,
+   "gain": 26.3,
+   "questions": 15
+  },
+  "asof_non_bday": {
+   "hist25": 0,
+   "fresh2k": 233,
+   "miss_history": 233.0,
+   "miss_oracle": 2.0,
+   "gain": 231.0,
+   "questions": 31
+  },
+  "confirm": {
+   "hist25": 5,
+   "fresh2k": 263,
+   "miss_history": 29.7,
+   "miss_oracle": 24.2,
+   "gain": 5.4,
+   "questions": 31
+  },
+  "opt_out": {
+   "hist25": 2,
+   "fresh2k": 26,
+   "miss_history": 1.0,
+   "miss_oracle": 4.0,
+   "gain": -3.0,
+   "questions": 7
+  },
+  "not_held": {
+   "hist25": 1,
+   "fresh2k": 49,
+   "miss_history": 21.0,
+   "miss_oracle": 7.3,
+   "gain": 13.7,
+   "questions": 7
+  },
+  "instrument_missing": {
+   "hist25": 1,
+   "fresh2k": 44,
+   "miss_history": 0,
+   "miss_oracle": 0,
+   "gain": 0,
+   "questions": 0
+  },
+  "legal_hold": {
+   "hist25": 0,
+   "fresh2k": 9,
+   "miss_history": 0,
+   "miss_oracle": 0.1,
+   "gain": -0.1,
+   "questions": 0
+  },
+  "no_entitlement": {
+   "hist25": 0,
+   "fresh2k": 40,
+   "miss_history": 3.7,
+   "miss_oracle": 3.2,
+   "gain": 0.4,
+   "questions": 0
+  },
+  "account_missing": {
+   "hist25": 0,
+   "fresh2k": 15,
+   "miss_history": 0,
+   "miss_oracle": 0,
+   "gain": 0,
+   "questions": 0
+  },
+  "expired_entitlement": {
+   "hist25": 0,
+   "fresh2k": 2,
+   "miss_history": 0,
+   "miss_oracle": 0,
+   "gain": 0,
+   "questions": 0
+  }
+ },
+ "Q4": {
+  "domain": {
+   "hist25": 2,
+   "fresh2k": 346,
+   "miss_history": 38.3,
+   "miss_oracle": 17.3,
+   "gain": 21.0,
+   "questions": 7
+  },
+  "confirm_with_pending": {
+   "hist25": 2,
+   "fresh2k": 127,
+   "miss_history": 18.3,
+   "miss_oracle": 0,
+   "gain": 18.3,
+   "questions": 31
+  },
+  "account_unresolved": {
+   "hist25": 3,
+   "fresh2k": 235,
+   "miss_history": 0,
+   "miss_oracle": 2.7,
+   "gain": -2.7,
+   "questions": 0
+  },
+  "confirm": {
+   "hist25": 7,
+   "fresh2k": 415,
+   "miss_history": 84.3,
+   "miss_oracle": 0,
+   "gain": 84.3,
+   "questions": 30
+  },
+  "not_held": {
+   "hist25": 0,
+   "fresh2k": 72,
+   "miss_history": 42.0,
+   "miss_oracle": 7.4,
+   "gain": 34.6,
+   "questions": 11
+  },
+  "qty_mismatch": {
+   "hist25": 4,
+   "fresh2k": 75,
+   "miss_history": 11.0,
+   "miss_oracle": 9.8,
+   "gain": 1.2,
+   "questions": 4
+  },
+  "account_missing": {
+   "hist25": 0,
+   "fresh2k": 106,
+   "miss_history": 0,
+   "miss_oracle": 9.7,
+   "gain": -9.7,
+   "questions": 7
+  },
+  "not_entitled": {
+   "hist25": 4,
+   "fresh2k": 214,
+   "miss_history": 0,
+   "miss_oracle": 0.1,
+   "gain": -0.1,
+   "questions": 1
+  },
+  "asof_missing": {
+   "hist25": 2,
+   "fresh2k": 98,
+   "miss_history": 2.3,
+   "miss_oracle": 2.2,
+   "gain": 0.1,
+   "questions": 6
+  },
+  "level": {
+   "hist25": 1,
+   "fresh2k": 169,
+   "miss_history": 0,
+   "miss_oracle": 5.8,
+   "gain": -5.8,
+   "questions": 9
+  },
+  "instrument_missing": {
+   "hist25": 0,
+   "fresh2k": 63,
+   "miss_history": 0.7,
+   "miss_oracle": 0.9,
+   "gain": -0.2,
+   "questions": 1
+  },
+  "asof_future": {
+   "hist25": 0,
+   "fresh2k": 16,
+   "miss_history": 0.3,
+   "miss_oracle": 0.4,
+   "gain": -0.1,
+   "questions": 12
+  },
+  "legal_hold": {
+   "hist25": 0,
+   "fresh2k": 15,
+   "miss_history": 0,
+   "miss_oracle": 0,
+   "gain": 0,
+   "questions": 9
+  },
+  "no_entitlement": {
+   "hist25": 0,
+   "fresh2k": 49,
+   "miss_history": 6.0,
+   "miss_oracle": 6.7,
+   "gain": -0.7,
+   "questions": 5
+  }
+ }
+}
