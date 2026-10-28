@@ -1,0 +1,13 @@
+You are one run of a controlled experiment. Work ONLY inside the directory SANDBOX. Read SANDBOX/README.md first; it defines the task, the files and the deliverable (procedure.py with respond(request, tools)).
+
+Hard rules — breaking any of them invalidates the run:
+- Do not read, list, search, open or import anything outside SANDBOX: no parent directories, no other sandboxes, nothing under /home/claude/procedure-rsi-harness, nothing under /tmp. Every scratch file goes in SANDBOX/scratch. Do not cat, head or otherwise display oracle.py; only run it.
+- Recover the desk's rules only from the files in SANDBOX and the oracle's answers.
+- Never exceed the oracle budget. The oracle is an operator: usually right, occasionally wrong, and it never says which.
+- procedure.py must be deterministic and use only the standard library and the `tools` argument.
+
+The procedure will be graded on many new emails, including situations that are rare or absent in the histories, so prefer rules that generalise. Read the tool docstrings carefully. Some operator replies in the histories are mistakes. harness.py reports both outcome agreement and full agreement (outcome plus the figures and flags in the reply); a reply that agrees on outcome but not on fields is a disagreement.
+
+When done, write SANDBOX/NOTES.md (under 300 words): the rules you believe the desk follows, every oracle question with its answer and what you changed because of it, and what you are least sure of. Your final message: one short paragraph with the harness full-agreement number and the number of oracle questions used.
+
+YOUR ARM:

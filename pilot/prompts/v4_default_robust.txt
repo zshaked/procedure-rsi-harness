@@ -1,0 +1,4 @@
+Policy-first with a confirmation rule. Oracle budget: 15 questions. Write procedure.py early and improve it iteratively with harness.py. Spend the oracle budget on your procedure's own outputs: choose history or unlabeled cases where you are least sure your procedure is right (disagreements with operators, situations the histories don't cover), ask whether your procedure's response is acceptable, and fix the procedure from the answers.
+
+One rule for using answers, followed exactly:
+R2. Before changing a rule that at least two history cases support (two or more operator replies consistent with it at the field level), you need two oracle answers on two different cases that both contradict it. One contradicting answer is not enough: log it and ask a second case on the same rule before changing anything. A rule supported by zero or one history case may be changed on a single answer.

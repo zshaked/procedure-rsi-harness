@@ -309,7 +309,17 @@ from pathlib import Path
 import tools
 H = [json.loads(l) for l in (Path(__file__).parent / "histories.jsonl").read_text().splitlines()]
 spec = importlib.util.spec_from_file_location("procedure", sys.argv[1]); mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
-agree, dis, conf = 0, [], collections.Counter()
+NEED = {"CONFIRMED": ["account_id", "instrument_id", "as_of", "as_of_assumed", "settled", "pending", "pending_date"],
+        "NOT_HELD": ["account_id", "instrument_id", "as_of", "as_of_assumed"], "ESCALATE": ["account_id", "instrument_id"]}
+def fields_agree(r, h):
+    f = h["reply_fields"]
+    for k in NEED.get(h["reply_outcome"], []):
+        a, b = r.get(k), f.get(k)
+        if k == "as_of_assumed": a, b = bool(a), bool(b)
+        if k in ("pending", "pending_date"): a, b = (a or None), (b or None)
+        if a != b: return False, k
+    return True, None
+agree_out, agree_full, dis, conf = 0, 0, [], collections.Counter()
 for h in H:
     try:
         r = mod.respond(h["request"], tools)
@@ -317,12 +327,15 @@ for h in H:
         r = {"outcome": "ERROR:" + repr(e)[:80]}
     conf[(h["reply_outcome"], r.get("outcome"))] += 1
     if r.get("outcome") == h["reply_outcome"]:
-        agree += 1
+        agree_out += 1
+        ok, k = fields_agree(r, h)
+        if ok: agree_full += 1
+        else: dis.append((h["case_id"], "outcome agrees; field differs:", k, "yours", r.get(k), "operator", h["reply_fields"].get(k)))
     else:
-        dis.append((h["case_id"], h["reply_outcome"], r.get("outcome")))
-print(f"agreement with operator decisions: {agree}/{len(H)} = {agree/len(H):.3f}")
+        dis.append((h["case_id"], "outcome differs:", h["reply_outcome"], "->", r.get(outcome_key := "outcome")))
+print(f"outcome agreement: {agree_out}/{len(H)} = {agree_out/len(H):.3f}   full (outcome + fields) agreement: {agree_full}/{len(H)} = {agree_full/len(H):.3f}")
 print("confusion (operator -> yours):", {f"{a}->{b}": n for (a, b), n in sorted(conf.items()) if a != b})
-for d in dis[:20]:
+for d in dis[:25]:
     print(" -", d)
 '''
 
@@ -342,7 +355,9 @@ def export(policy: str, out: Path, n_learn: int, budget: int = 0) -> None:
     rows = [r for r in load2(policy) if r["role"] == "learning"][:n_learn]
     (out / "histories.jsonl").write_text("\n".join(json.dumps({
         "case_id": r["case_id"], "request": r["request"], "reply_text": r["reply_text"],
-        "reply_outcome": r["hidden"]["operator_reply"]["outcome"]}) for r in rows))
+        "reply_outcome": r["hidden"]["operator_reply"]["outcome"],
+        "reply_fields": {k: r["hidden"]["operator_reply"].get(k) for k in
+                         ("account_id", "instrument_id", "as_of", "as_of_assumed", "settled", "pending", "pending_date")}}) for r in rows))
     (out / "harness.py").write_text(HARNESS2)
     pool = [r for r in load2(policy) if r["role"] == "learning"][n_learn:]
     (out / "unlabeled.jsonl").write_text("\n".join(json.dumps({"case_id": r["case_id"], "request": r["request"]}) for r in pool))
