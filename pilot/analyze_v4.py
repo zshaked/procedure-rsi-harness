@@ -31,7 +31,7 @@ def grade_all() -> list[dict]:
         qs = [json.loads(l) for l in log.read_text().splitlines()] if log.exists() else []
         cache[d.name] = {"run": d.name, "policy": pol, "arm": arm, "rep": int(rep),
                          "fresh": r["fresh"]["correct"], "final_test": r["final_test"]["correct"], "questions": len(qs),
-                         "flips_seen": sum(q.get("truth") != q["acceptable"] for q in qs), "model": "claude-fable-5-1 (subagent)",
+                         "flips_seen": sum(q.get("truth") != q["acceptable"] for q in qs), "model": "sonnet (Agent model=sonnet)",
                          "misses_by_rule": r["fresh"]["misses_by_rule"]}
         print("graded", d.name, cache[d.name]["fresh"], "q", len(qs))
     CACHE.write_text(json.dumps(sorted(cache.values(), key=lambda r: r["run"]), indent=1))
