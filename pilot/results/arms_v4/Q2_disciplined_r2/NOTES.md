@@ -1,0 +1,10 @@
+# NOTES (full pre-registered plan: scratch/PLAN.md; oracle log: scratch/oracle_log.txt)
+
+**Rules (first firing decides):** missing/ambiguous account or instrument (exact name beats prefix) -> REQUEST_INFO; no entitlement on the exact-matched account, expired (vs sent date), level<2, or sender domain not in profile domains -> REQUEST_AUTHORIZATION; legal_hold / no_email_confirm -> ESCALATE (after auth); nothing settled -> NOT_HELD (before mismatch); client figure != settled+pending -> ESCALATE; else CONFIRMED. Settled = ledger <= as_of summed over all sub-accounts, pre-split rows x ratio once split date <= as_of. Pending = matched instructions settling after as_of (sum; latest date). as_of = date in text/relative phrase, else sent date (assumed=True), rolled back to a business day (weekends and calendar holidays).
+
+**Oracle (15/15 used; all "Looks right" except #14):**
+1 Q2-0106 domain mismatch, REQUEST_AUTH: ok. 2 Q2-0025 L2 with pending, CONFIRMED: ok. 3 Q2-0078 L1: ok. 4 Q2-0071 no instrument, REQUEST_INFO: ok. 5 Q2-0037 no account: ok. 6 Q2-0197 empty ledger plus client figure, NOT_HELD: ok. 7 Q2-0121 expired between as_of and sent: ok. 8 Q2-0096 legal hold, ESCALATE: ok. 9 Q2-0055 no date on holiday: as_of rolled back, ok. 10 Q2-0191 "yesterday", assumed=False: ok. 11 Q2-0077 holiday date rolled back: ok. 12 Q2-0097 figure equals settled but pending exists, ESCALATE: ok (confirms settled+pending basis, which Q2-0006 implied). 13 Q2-0112 instruction settling on as_of not pending: ok. 14 Q2-0089 two matched pending, I gave sum with earliest date: **rejected, date wrong** -> changed pending_date to the latest date. 15 Q2-0174 legal-hold account, unauthorised sender, REQUEST_AUTH: ok (auth first).
+
+Harness: 25/25 full agreement.
+
+**Least sure:** multi-pending date (one answer, fix unverified; quantity assumed to be the sum); no_email_confirm -> ESCALATE (no case reaches it); future as_of date -> REQUEST_INFO (untested); rounding tolerance for "12.5k"/"1.2mm" figures; pre-split client figures (Q2-0128) treated as mismatch; closed-out zero positions -> NOT_HELD.

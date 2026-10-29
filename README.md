@@ -4,6 +4,8 @@ A self-improving harness for Agentic Operating Procedures (AOPs): procedures exp
 
 Status: **pilot complete.** Pre-registered result (`pilot/RESULTS_v3.md`): expert questions help (+9.5 points over history alone), but verifier-first does **not** beat simpler uses of the same questions (+0.6 points, CI −1.4 to +2.7). The verifier-first method claim is not supported; the design documents below describe the hypothesis that was tested.
 
+Follow-up (`pilot/PREREG_v4.md` + `pilot/RESULTS_v4.md`, 60 runs on Sonnet): which questions get asked matters (model-chosen beats random by +3.3 points, p < 0.001), but a disciplined selection protocol does **not** beat the model's default (−1.0 points, CI −1.9 to −0.1) and is 8 points worse on the held-out policy, because its noise-robustness rule entrenches operator errors in the histories. Per the pre-registered stop rule, the research thread ends here; the benchmark and the nulls are the write-up.
+
 ## Files
 
 | File | What it is |

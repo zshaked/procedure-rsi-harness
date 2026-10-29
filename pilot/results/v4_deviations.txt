@@ -1,0 +1,5 @@
+Q2_disciplined_r5: self-reported 4 follow-up questions beyond the written plan (protocol says no re-planning)
+Q1_disciplined_r2: replaced one planned question (Q1-0063) with an unplanned one (Q1-0032) — re-planning, protocol deviation
+Q4_disciplined_r6: accidental duplicate oracle question (Q4-0054 asked twice); last planned question not asked
+Q4_random_r2: asked Q4-0196 twice (breach); last listed case Q4-0155 not asked
+Q3_default_robust_r2: 2 questions wasted by agent slips (wrong account id; unchecked Saturday). Its 'did not follow R2' note is actually consistent with R2 (R2 binds only rules with >=2 history cases).

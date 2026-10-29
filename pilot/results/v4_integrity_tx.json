@@ -1,0 +1,307 @@
+{
+ "Q1_default_r1": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q1_default_r2": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q1_default_r3": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q1_disciplined_r1": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q1_disciplined_r2": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q1_disciplined_r3": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q2_default_r1": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q2_default_r2": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q2_default_r3": {
+  "hard": [],
+  "soft": 4,
+  "other": []
+ },
+ "Q2_default_r4": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q2_default_r5": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q2_default_r6": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q2_default_robust_r1": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q2_default_robust_r2": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q2_default_robust_r3": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q2_disciplined_r1": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q2_disciplined_r2": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q2_disciplined_r3": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q2_disciplined_r4": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q2_disciplined_r5": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q2_disciplined_r6": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q2_random_r1": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q2_random_r2": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q2_random_r3": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q2_smoke_r9": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q3_default_r1": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q3_default_r2": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q3_default_r3": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q3_default_r4": {
+  "hard": [],
+  "soft": 2,
+  "other": []
+ },
+ "Q3_default_r5": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q3_default_r6": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q3_default_robust_r1": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q3_default_robust_r2": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q3_default_robust_r3": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q3_disciplined_r1": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q3_disciplined_r2": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q3_disciplined_r3": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q3_disciplined_r4": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q3_disciplined_r5": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q3_disciplined_r6": {
+  "hard": [],
+  "soft": 2,
+  "other": []
+ },
+ "Q3_random_r1": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q3_random_r2": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q3_random_r3": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q4_default_r1": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q4_default_r2": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q4_default_r3": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q4_default_r4": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q4_default_r5": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q4_default_r6": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q4_default_robust_r1": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q4_default_robust_r2": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q4_default_robust_r3": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q4_disciplined_r1": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q4_disciplined_r2": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q4_disciplined_r3": {
+  "hard": [],
+  "soft": 0,
+  "other": []
+ },
+ "Q4_disciplined_r4": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q4_disciplined_r5": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q4_disciplined_r6": {
+  "hard": [],
+  "soft": 2,
+  "other": []
+ },
+ "Q4_random_r1": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q4_random_r2": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ },
+ "Q4_random_r3": {
+  "hard": [],
+  "soft": 1,
+  "other": []
+ }
+}

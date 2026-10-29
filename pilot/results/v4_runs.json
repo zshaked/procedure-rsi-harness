@@ -1,0 +1,1201 @@
+[
+ {
+  "run": "Q1_default_r1",
+  "policy": "Q1",
+  "arm": "default",
+  "rep": 1,
+  "fresh": 0.928,
+  "final_test": 0.92,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "qty_mismatch": 61,
+   "domain": 48,
+   "confirm": 8,
+   "no_entitlement": 14,
+   "confirm_with_pending": 1,
+   "large_position": 11
+  }
+ },
+ {
+  "run": "Q1_default_r2",
+  "policy": "Q1",
+  "arm": "default",
+  "rep": 2,
+  "fresh": 0.95,
+  "final_test": 0.92,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "qty_mismatch": 4,
+   "domain": 48,
+   "confirm": 8,
+   "asof_non_bday": 9,
+   "no_entitlement": 14,
+   "asof_future": 1,
+   "confirm_with_pending": 1,
+   "large_position": 11,
+   "not_held": 1,
+   "asof_missing": 4
+  }
+ },
+ {
+  "run": "Q1_default_r3",
+  "policy": "Q1",
+  "arm": "default",
+  "rep": 3,
+  "fresh": 0.921,
+  "final_test": 0.91,
+  "questions": 14,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "qty_mismatch": 61,
+   "domain": 48,
+   "confirm": 8,
+   "asof_non_bday": 9,
+   "no_entitlement": 14,
+   "asof_future": 1,
+   "instrument_missing": 1,
+   "confirm_with_pending": 1,
+   "large_position": 11,
+   "asof_missing": 4
+  }
+ },
+ {
+  "run": "Q1_disciplined_r1",
+  "policy": "Q1",
+  "arm": "disciplined",
+  "rep": 1,
+  "fresh": 0.81,
+  "final_test": 0.77,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "not_entitled": 238,
+   "qty_mismatch": 5,
+   "domain": 85,
+   "confirm": 18,
+   "no_entitlement": 19,
+   "confirm_with_pending": 3,
+   "large_position": 10,
+   "not_held": 1
+  }
+ },
+ {
+  "run": "Q1_disciplined_r2",
+  "policy": "Q1",
+  "arm": "disciplined",
+  "rep": 2,
+  "fresh": 0.923,
+  "final_test": 0.92,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "qty_mismatch": 61,
+   "domain": 48,
+   "confirm": 8,
+   "asof_future": 9,
+   "no_entitlement": 14,
+   "confirm_with_pending": 1,
+   "large_position": 11,
+   "not_held": 1
+  }
+ },
+ {
+  "run": "Q1_disciplined_r3",
+  "policy": "Q1",
+  "arm": "disciplined",
+  "rep": 3,
+  "fresh": 0.817,
+  "final_test": 0.78,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "not_entitled": 238,
+   "qty_mismatch": 4,
+   "domain": 85,
+   "confirm": 8,
+   "no_entitlement": 19,
+   "confirm_with_pending": 1,
+   "large_position": 11,
+   "not_held": 1
+  }
+ },
+ {
+  "run": "Q2_default_r1",
+  "policy": "Q2",
+  "arm": "default",
+  "rep": 1,
+  "fresh": 0.965,
+  "final_test": 0.98,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 52,
+   "asof_future": 13,
+   "not_held": 5,
+   "confirm_with_pending": 1
+  }
+ },
+ {
+  "run": "Q2_default_r2",
+  "policy": "Q2",
+  "arm": "default",
+  "rep": 2,
+  "fresh": 0.973,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 52,
+   "not_held": 2,
+   "confirm_with_pending": 1
+  }
+ },
+ {
+  "run": "Q2_default_r3",
+  "policy": "Q2",
+  "arm": "default",
+  "rep": 3,
+  "fresh": 0.961,
+  "final_test": 0.98,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 52,
+   "qty_mismatch": 10,
+   "asof_future": 13,
+   "not_held": 2,
+   "confirm_with_pending": 1
+  }
+ },
+ {
+  "run": "Q2_default_r4",
+  "policy": "Q2",
+  "arm": "default",
+  "rep": 4,
+  "fresh": 0.932,
+  "final_test": 0.95,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "level": 8,
+   "confirm": 52,
+   "opt_out": 28,
+   "domain": 17,
+   "qty_mismatch": 4,
+   "confirm_with_pending": 11,
+   "not_entitled": 15,
+   "expired_entitlement": 1
+  }
+ },
+ {
+  "run": "Q2_default_r5",
+  "policy": "Q2",
+  "arm": "default",
+  "rep": 5,
+  "fresh": 0.938,
+  "final_test": 0.95,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "level": 8,
+   "confirm": 52,
+   "opt_out": 28,
+   "domain": 17,
+   "not_entitled": 15,
+   "not_held": 2,
+   "confirm_with_pending": 1,
+   "expired_entitlement": 1
+  }
+ },
+ {
+  "run": "Q2_default_r6",
+  "policy": "Q2",
+  "arm": "default",
+  "rep": 6,
+  "fresh": 0.913,
+  "final_test": 0.93,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "level": 14,
+   "confirm": 52,
+   "opt_out": 28,
+   "domain": 21,
+   "not_held": 36,
+   "not_entitled": 20,
+   "expired_entitlement": 2,
+   "confirm_with_pending": 1
+  }
+ },
+ {
+  "run": "Q2_default_robust_r1",
+  "policy": "Q2",
+  "arm": "default_robust",
+  "rep": 1,
+  "fresh": 0.976,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 47,
+   "confirm_with_pending": 1
+  }
+ },
+ {
+  "run": "Q2_default_robust_r2",
+  "policy": "Q2",
+  "arm": "default_robust",
+  "rep": 2,
+  "fresh": 0.934,
+  "final_test": 0.94,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "level": 8,
+   "confirm": 47,
+   "opt_out": 28,
+   "domain": 17,
+   "not_entitled": 15,
+   "asof_future": 13,
+   "not_held": 2,
+   "confirm_with_pending": 1,
+   "expired_entitlement": 1
+  }
+ },
+ {
+  "run": "Q2_default_robust_r3",
+  "policy": "Q2",
+  "arm": "default_robust",
+  "rep": 3,
+  "fresh": 0.96,
+  "final_test": 0.98,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 52,
+   "qty_mismatch": 10,
+   "asof_future": 13,
+   "not_held": 5,
+   "confirm_with_pending": 1
+  }
+ },
+ {
+  "run": "Q2_disciplined_r1",
+  "policy": "Q2",
+  "arm": "disciplined",
+  "rep": 1,
+  "fresh": 0.973,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 52,
+   "not_held": 2,
+   "confirm_with_pending": 1
+  }
+ },
+ {
+  "run": "Q2_disciplined_r2",
+  "policy": "Q2",
+  "arm": "disciplined",
+  "rep": 2,
+  "fresh": 0.938,
+  "final_test": 0.95,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "level": 8,
+   "confirm": 52,
+   "opt_out": 28,
+   "domain": 17,
+   "not_entitled": 15,
+   "not_held": 2,
+   "confirm_with_pending": 1,
+   "expired_entitlement": 1
+  }
+ },
+ {
+  "run": "Q2_disciplined_r3",
+  "policy": "Q2",
+  "arm": "disciplined",
+  "rep": 3,
+  "fresh": 0.957,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 52,
+   "qty_mismatch": 9,
+   "confirm_with_pending": 23,
+   "not_held": 2
+  }
+ },
+ {
+  "run": "Q2_disciplined_r4",
+  "policy": "Q2",
+  "arm": "disciplined",
+  "rep": 4,
+  "fresh": 0.945,
+  "final_test": 0.96,
+  "questions": 14,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 52,
+   "opt_out": 28,
+   "confirm_with_pending": 15,
+   "asof_future": 13,
+   "not_held": 2
+  }
+ },
+ {
+  "run": "Q2_disciplined_r5",
+  "policy": "Q2",
+  "arm": "disciplined",
+  "rep": 5,
+  "fresh": 0.935,
+  "final_test": 0.93,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "level": 8,
+   "opt_out": 28,
+   "domain": 17,
+   "not_held": 35,
+   "qty_mismatch": 3,
+   "not_entitled": 15,
+   "asof_future": 13,
+   "confirm": 8,
+   "confirm_with_pending": 1,
+   "expired_entitlement": 1
+  }
+ },
+ {
+  "run": "Q2_disciplined_r6",
+  "policy": "Q2",
+  "arm": "disciplined",
+  "rep": 6,
+  "fresh": 0.951,
+  "final_test": 0.97,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 47,
+   "opt_out": 28,
+   "qty_mismatch": 10,
+   "confirm_with_pending": 11,
+   "not_held": 2
+  }
+ },
+ {
+  "run": "Q2_random_r1",
+  "policy": "Q2",
+  "arm": "random",
+  "rep": 1,
+  "fresh": 0.927,
+  "final_test": 0.94,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 52,
+   "opt_out": 28,
+   "not_held": 35,
+   "qty_mismatch": 10,
+   "confirm_with_pending": 7,
+   "asof_future": 13
+  }
+ },
+ {
+  "run": "Q2_random_r2",
+  "policy": "Q2",
+  "arm": "random",
+  "rep": 2,
+  "fresh": 0.931,
+  "final_test": 0.94,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 50,
+   "opt_out": 28,
+   "not_held": 34,
+   "qty_mismatch": 10,
+   "confirm_with_pending": 15
+  }
+ },
+ {
+  "run": "Q2_random_r3",
+  "policy": "Q2",
+  "arm": "random",
+  "rep": 3,
+  "fresh": 0.913,
+  "final_test": 0.92,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "level": 8,
+   "opt_out": 28,
+   "domain": 17,
+   "confirm_with_pending": 33,
+   "not_held": 35,
+   "qty_mismatch": 9,
+   "not_entitled": 15,
+   "confirm": 28,
+   "expired_entitlement": 1
+  }
+ },
+ {
+  "run": "Q2_smoke_r9",
+  "policy": "Q2",
+  "arm": "smoke",
+  "rep": 9,
+  "fresh": 0.969,
+  "final_test": 0.98,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 47,
+   "asof_future": 13,
+   "not_held": 2,
+   "confirm_with_pending": 1
+  }
+ },
+ {
+  "run": "Q3_default_r1",
+  "policy": "Q3",
+  "arm": "default",
+  "rep": 1,
+  "fresh": 0.964,
+  "final_test": 0.97,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 18,
+   "account_missing": 15,
+   "asof_non_bday": 13,
+   "not_held": 9,
+   "qty_mismatch": 3,
+   "instrument_missing": 3,
+   "opt_out": 1,
+   "no_entitlement": 3,
+   "confirm_with_pending": 7,
+   "legal_hold": 1
+  }
+ },
+ {
+  "run": "Q3_default_r2",
+  "policy": "Q3",
+  "arm": "default",
+  "rep": 2,
+  "fresh": 0.97,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "large_position": 29,
+   "qty_mismatch": 2,
+   "not_held": 3,
+   "account_missing": 10,
+   "confirm": 1,
+   "opt_out": 6,
+   "no_entitlement": 3,
+   "confirm_with_pending": 6
+  }
+ },
+ {
+  "run": "Q3_default_r3",
+  "policy": "Q3",
+  "arm": "default",
+  "rep": 3,
+  "fresh": 0.943,
+  "final_test": 0.98,
+  "questions": 15,
+  "flips_seen": 4,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 24,
+   "qty_mismatch": 4,
+   "not_entitled": 49,
+   "not_held": 3,
+   "level": 18,
+   "confirm": 8,
+   "opt_out": 6,
+   "no_entitlement": 3
+  }
+ },
+ {
+  "run": "Q3_default_r4",
+  "policy": "Q3",
+  "arm": "default",
+  "rep": 4,
+  "fresh": 0.989,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "qty_mismatch": 4,
+   "not_held": 3,
+   "confirm": 1,
+   "opt_out": 6,
+   "no_entitlement": 3,
+   "confirm_with_pending": 6
+  }
+ },
+ {
+  "run": "Q3_default_r5",
+  "policy": "Q3",
+  "arm": "default",
+  "rep": 5,
+  "fresh": 0.977,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 9,
+   "asof_future": 2,
+   "qty_mismatch": 2,
+   "confirm": 22,
+   "not_held": 3,
+   "asof_non_bday": 5,
+   "opt_out": 1,
+   "no_entitlement": 3
+  }
+ },
+ {
+  "run": "Q3_default_r6",
+  "policy": "Q3",
+  "arm": "default",
+  "rep": 6,
+  "fresh": 0.971,
+  "final_test": 0.98,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "asof_future": 2,
+   "qty_mismatch": 2,
+   "legal_hold": 9,
+   "not_held": 3,
+   "confirm_with_pending": 8,
+   "confirm": 25,
+   "asof_non_bday": 5,
+   "opt_out": 1,
+   "no_entitlement": 3
+  }
+ },
+ {
+  "run": "Q3_default_robust_r1",
+  "policy": "Q3",
+  "arm": "default_robust",
+  "rep": 1,
+  "fresh": 0.963,
+  "final_test": 0.98,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 20,
+   "qty_mismatch": 2,
+   "not_held": 3,
+   "confirm": 35,
+   "opt_out": 9,
+   "no_entitlement": 5
+  }
+ },
+ {
+  "run": "Q3_default_robust_r2",
+  "policy": "Q3",
+  "arm": "default_robust",
+  "rep": 2,
+  "fresh": 0.947,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 19,
+   "qty_mismatch": 2,
+   "not_held": 3,
+   "large_position": 25,
+   "confirm": 36,
+   "asof_future": 12,
+   "opt_out": 6,
+   "no_entitlement": 3
+  }
+ },
+ {
+  "run": "Q3_default_robust_r3",
+  "policy": "Q3",
+  "arm": "default_robust",
+  "rep": 3,
+  "fresh": 0.939,
+  "final_test": 0.97,
+  "questions": 15,
+  "flips_seen": 4,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 40,
+   "account_missing": 15,
+   "asof_non_bday": 13,
+   "not_held": 9,
+   "confirm_with_pending": 10,
+   "large_position": 25,
+   "qty_mismatch": 3,
+   "instrument_missing": 3,
+   "opt_out": 1,
+   "no_entitlement": 3,
+   "legal_hold": 1
+  }
+ },
+ {
+  "run": "Q3_disciplined_r1",
+  "policy": "Q3",
+  "arm": "disciplined",
+  "rep": 1,
+  "fresh": 0.957,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 21,
+   "qty_mismatch": 2,
+   "not_held": 3,
+   "large_position": 26,
+   "confirm": 25,
+   "opt_out": 6,
+   "no_entitlement": 3
+  }
+ },
+ {
+  "run": "Q3_disciplined_r2",
+  "policy": "Q3",
+  "arm": "disciplined",
+  "rep": 2,
+  "fresh": 0.953,
+  "final_test": 0.97,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 24,
+   "large_position": 29,
+   "qty_mismatch": 4,
+   "not_held": 21,
+   "confirm": 8,
+   "opt_out": 6,
+   "no_entitlement": 3
+  }
+ },
+ {
+  "run": "Q3_disciplined_r3",
+  "policy": "Q3",
+  "arm": "disciplined",
+  "rep": 3,
+  "fresh": 0.954,
+  "final_test": 0.97,
+  "questions": 15,
+  "flips_seen": 4,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "qty_mismatch": 2,
+   "confirm": 32,
+   "not_held": 21,
+   "confirm_with_pending": 8,
+   "large_position": 21,
+   "opt_out": 6,
+   "no_entitlement": 3
+  }
+ },
+ {
+  "run": "Q3_disciplined_r4",
+  "policy": "Q3",
+  "arm": "disciplined",
+  "rep": 4,
+  "fresh": 0.972,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 17,
+   "qty_mismatch": 4,
+   "not_held": 3,
+   "asof_future": 12,
+   "confirm": 12,
+   "opt_out": 6,
+   "no_entitlement": 3
+  }
+ },
+ {
+  "run": "Q3_disciplined_r5",
+  "policy": "Q3",
+  "arm": "disciplined",
+  "rep": 5,
+  "fresh": 0.947,
+  "final_test": 0.97,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 23,
+   "qty_mismatch": 7,
+   "confirm": 28,
+   "account_missing": 15,
+   "asof_non_bday": 13,
+   "not_held": 9,
+   "instrument_missing": 3,
+   "opt_out": 5,
+   "no_entitlement": 3,
+   "legal_hold": 1
+  }
+ },
+ {
+  "run": "Q3_disciplined_r6",
+  "policy": "Q3",
+  "arm": "disciplined",
+  "rep": 6,
+  "fresh": 0.931,
+  "final_test": 0.98,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 20,
+   "qty_mismatch": 4,
+   "not_entitled": 42,
+   "confirm": 38,
+   "instrument_missing": 1,
+   "not_held": 3,
+   "level": 16,
+   "no_entitlement": 8,
+   "opt_out": 6
+  }
+ },
+ {
+  "run": "Q3_random_r1",
+  "policy": "Q3",
+  "arm": "random",
+  "rep": 1,
+  "fresh": 0.957,
+  "final_test": 0.97,
+  "questions": 15,
+  "flips_seen": 2,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 30,
+   "not_held": 21,
+   "confirm": 27,
+   "opt_out": 6,
+   "no_entitlement": 3
+  }
+ },
+ {
+  "run": "Q3_random_r2",
+  "policy": "Q3",
+  "arm": "random",
+  "rep": 2,
+  "fresh": 0.906,
+  "final_test": 0.93,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 20,
+   "asof_future": 2,
+   "opt_out": 26,
+   "level": 29,
+   "confirm": 50,
+   "not_held": 22,
+   "large_position": 25,
+   "qty_mismatch": 3,
+   "asof_non_bday": 5,
+   "no_entitlement": 5,
+   "legal_hold": 1
+  }
+ },
+ {
+  "run": "Q3_random_r3",
+  "policy": "Q3",
+  "arm": "random",
+  "rep": 3,
+  "fresh": 0.926,
+  "final_test": 0.94,
+  "questions": 15,
+  "flips_seen": 4,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 29,
+   "large_position": 29,
+   "level": 29,
+   "confirm": 22,
+   "not_held": 22,
+   "qty_mismatch": 3,
+   "opt_out": 7,
+   "no_entitlement": 5,
+   "legal_hold": 1
+  }
+ },
+ {
+  "run": "Q4_default_r1",
+  "policy": "Q4",
+  "arm": "default",
+  "rep": 1,
+  "fresh": 0.983,
+  "final_test": 0.97,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "account_unresolved": 24,
+   "not_held": 4,
+   "no_entitlement": 6,
+   "domain": 1
+  }
+ },
+ {
+  "run": "Q4_default_r2",
+  "policy": "Q4",
+  "arm": "default",
+  "rep": 2,
+  "fresh": 0.988,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "qty_mismatch": 11,
+   "not_held": 4,
+   "no_entitlement": 6,
+   "domain": 3
+  }
+ },
+ {
+  "run": "Q4_default_r3",
+  "policy": "Q4",
+  "arm": "default",
+  "rep": 3,
+  "fresh": 0.98,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 3,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "account_unresolved": 28,
+   "not_held": 4,
+   "no_entitlement": 6,
+   "domain": 2
+  }
+ },
+ {
+  "run": "Q4_default_r4",
+  "policy": "Q4",
+  "arm": "default",
+  "rep": 4,
+  "fresh": 0.994,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "not_held": 4,
+   "no_entitlement": 6,
+   "domain": 3
+  }
+ },
+ {
+  "run": "Q4_default_r5",
+  "policy": "Q4",
+  "arm": "default",
+  "rep": 5,
+  "fresh": 0.968,
+  "final_test": 0.92,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "domain": 47,
+   "asof_missing": 5,
+   "not_held": 4,
+   "instrument_missing": 2,
+   "no_entitlement": 6,
+   "asof_future": 1
+  }
+ },
+ {
+  "run": "Q4_default_r6",
+  "policy": "Q4",
+  "arm": "default",
+  "rep": 6,
+  "fresh": 0.988,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "qty_mismatch": 11,
+   "not_held": 4,
+   "no_entitlement": 6,
+   "domain": 3
+  }
+ },
+ {
+  "run": "Q4_default_robust_r1",
+  "policy": "Q4",
+  "arm": "default_robust",
+  "rep": 1,
+  "fresh": 0.982,
+  "final_test": 0.97,
+  "questions": 14,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "account_unresolved": 24,
+   "not_held": 4,
+   "level": 9
+  }
+ },
+ {
+  "run": "Q4_default_robust_r2",
+  "policy": "Q4",
+  "arm": "default_robust",
+  "rep": 2,
+  "fresh": 0.957,
+  "final_test": 0.92,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "domain": 47,
+   "qty_mismatch": 11,
+   "instrument_missing": 19,
+   "not_held": 4,
+   "no_entitlement": 6
+  }
+ },
+ {
+  "run": "Q4_default_robust_r3",
+  "policy": "Q4",
+  "arm": "default_robust",
+  "rep": 3,
+  "fresh": 0.956,
+  "final_test": 0.92,
+  "questions": 15,
+  "flips_seen": 3,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "domain": 46,
+   "asof_missing": 5,
+   "qty_mismatch": 11,
+   "account_missing": 16,
+   "not_held": 4,
+   "instrument_missing": 2,
+   "no_entitlement": 4,
+   "asof_future": 1
+  }
+ },
+ {
+  "run": "Q4_disciplined_r1",
+  "policy": "Q4",
+  "arm": "disciplined",
+  "rep": 1,
+  "fresh": 0.957,
+  "final_test": 0.93,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 16,
+   "confirm": 44,
+   "asof_missing": 5,
+   "not_held": 9,
+   "instrument_missing": 2,
+   "no_entitlement": 6,
+   "domain": 3,
+   "qty_mismatch": 1,
+   "asof_future": 1
+  }
+ },
+ {
+  "run": "Q4_disciplined_r2",
+  "policy": "Q4",
+  "arm": "disciplined",
+  "rep": 2,
+  "fresh": 0.952,
+  "final_test": 0.92,
+  "questions": 12,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "domain": 46,
+   "confirm": 15,
+   "qty_mismatch": 11,
+   "account_missing": 16,
+   "not_held": 5,
+   "no_entitlement": 4
+  }
+ },
+ {
+  "run": "Q4_disciplined_r3",
+  "policy": "Q4",
+  "arm": "disciplined",
+  "rep": 3,
+  "fresh": 0.977,
+  "final_test": 0.97,
+  "questions": 15,
+  "flips_seen": 3,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "account_unresolved": 24,
+   "qty_mismatch": 11,
+   "not_held": 4,
+   "no_entitlement": 6,
+   "domain": 1
+  }
+ },
+ {
+  "run": "Q4_disciplined_r4",
+  "policy": "Q4",
+  "arm": "disciplined",
+  "rep": 4,
+  "fresh": 0.952,
+  "final_test": 0.91,
+  "questions": 14,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "domain": 47,
+   "asof_missing": 5,
+   "not_held": 35,
+   "instrument_missing": 2,
+   "no_entitlement": 6,
+   "asof_future": 1
+  }
+ },
+ {
+  "run": "Q4_disciplined_r5",
+  "policy": "Q4",
+  "arm": "disciplined",
+  "rep": 5,
+  "fresh": 0.983,
+  "final_test": 0.99,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm_with_pending": 3,
+   "legal_hold": 15,
+   "confirm": 4,
+   "not_held": 4,
+   "no_entitlement": 6,
+   "domain": 3
+  }
+ },
+ {
+  "run": "Q4_disciplined_r6",
+  "policy": "Q4",
+  "arm": "disciplined",
+  "rep": 6,
+  "fresh": 0.982,
+  "final_test": 0.97,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "account_unresolved": 24,
+   "asof_missing": 5,
+   "not_held": 4,
+   "instrument_missing": 2,
+   "asof_future": 1
+  }
+ },
+ {
+  "run": "Q4_random_r1",
+  "policy": "Q4",
+  "arm": "random",
+  "rep": 1,
+  "fresh": 0.963,
+  "final_test": 0.97,
+  "questions": 15,
+  "flips_seen": 0,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 19,
+   "confirm_with_pending": 3,
+   "asof_missing": 7,
+   "not_held": 36,
+   "no_entitlement": 6,
+   "domain": 3,
+   "asof_future": 1
+  }
+ },
+ {
+  "run": "Q4_random_r2",
+  "policy": "Q4",
+  "arm": "random",
+  "rep": 2,
+  "fresh": 0.92,
+  "final_test": 0.89,
+  "questions": 15,
+  "flips_seen": 1,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "domain": 46,
+   "confirm": 19,
+   "confirm_with_pending": 3,
+   "asof_future": 16,
+   "asof_missing": 7,
+   "qty_mismatch": 11,
+   "not_held": 36,
+   "account_missing": 16,
+   "instrument_missing": 2,
+   "no_entitlement": 4
+  }
+ },
+ {
+  "run": "Q4_random_r3",
+  "policy": "Q4",
+  "arm": "random",
+  "rep": 3,
+  "fresh": 0.961,
+  "final_test": 0.97,
+  "questions": 15,
+  "flips_seen": 3,
+  "model": "sonnet (Agent model=sonnet)",
+  "misses_by_rule": {
+   "confirm": 15,
+   "asof_future": 16,
+   "qty_mismatch": 11,
+   "not_held": 36
+  }
+ }
+]

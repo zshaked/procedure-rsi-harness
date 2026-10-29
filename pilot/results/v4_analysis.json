@@ -1,0 +1,94 @@
+{
+ "complete": true,
+ "n_runs": {
+  "random": {
+   "Q2": 3,
+   "Q3": 3,
+   "Q4": 3
+  },
+  "default": {
+   "Q2": 6,
+   "Q3": 6,
+   "Q4": 6
+  },
+  "default_robust": {
+   "Q2": 3,
+   "Q3": 3,
+   "Q4": 3
+  },
+  "disciplined": {
+   "Q2": 6,
+   "Q3": 6,
+   "Q4": 6
+  }
+ },
+ "per_policy": {
+  "random": {
+   "Q2": 0.9237,
+   "Q3": 0.9297,
+   "Q4": 0.948
+  },
+  "default": {
+   "Q2": 0.947,
+   "Q3": 0.969,
+   "Q4": 0.9835
+  },
+  "default_robust": {
+   "Q2": 0.9567,
+   "Q3": 0.9497,
+   "Q4": 0.965
+  },
+  "disciplined": {
+   "Q2": 0.9498,
+   "Q3": 0.9523,
+   "Q4": 0.9672
+  }
+ },
+ "pooled_mean": {
+  "random": 0.9338,
+  "default": 0.9665,
+  "default_robust": 0.9571,
+  "disciplined": 0.9564
+ },
+ "Q1_confirmatory": {
+  "default": 0.933,
+  "disciplined": 0.85
+ },
+ "voided": [],
+ "S1_selection_matters": {
+  "default_minus_random": 0.0327,
+  "p": 0.0005,
+  "ci": [
+   0.0327,
+   0.0195,
+   0.0458
+  ],
+  "YES": true,
+  "random_ge_default": false
+ },
+ "S2_disciplined_beats_default": {
+  "diff": -0.0101,
+  "p": 0.9666,
+  "ci": [
+   -0.0101,
+   -0.0192,
+   -0.0008
+  ],
+  "wins": 1,
+  "YES": false,
+  "Q1_contradicts": true
+ },
+ "S3_attribution_exploratory": {
+  "robust_minus_default": [
+   -0.0094,
+   -0.0206,
+   0.0018
+  ],
+  "disciplined_minus_robust": [
+   -0.0007,
+   -0.0114,
+   0.0099
+  ]
+ },
+ "VERDICT": "NO"
+}
