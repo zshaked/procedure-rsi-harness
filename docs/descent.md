@@ -57,6 +57,8 @@ This is the known failure of tuning on a validation set through model selection 
 | Rolling held-out from new production cases | `rl.md` §8 | A fresh sample every period; the gap against S_val is the overfitting signal |
 | Edit budget b_t annealed toward 1 | `rl.md` §5.3 | Small steps: fewer degrees of freedom per accepted edit |
 
+The closest precedent for the gate itself is Blum & Hardt's Ladder mechanism for ML leaderboards: a submission's score is updated only when it beats the current best by more than a fixed threshold, and under that rule the leaderboard's generalization error grows only logarithmically in the number of submissions rather than polynomially. The noise-floor gate is a Ladder with an empirically estimated threshold; the sealed-reads counter is the conservative fallback for when the threshold is misestimated.
+
 The honest statement for a reviewer: descent on S_val is guaranteed by construction; descent on D is guaranteed only as far as the rolling held-out confirms it, which is the same position every supervised model is in.
 
 ### 2.3 The loss is an estimate from a learned judge
@@ -89,7 +91,7 @@ Steepest descent is defined relative to a norm on the tangent space. Harness edi
 
 What can be guaranteed is always relative to something. Four options, in order of strength:
 
-**4.1 Best of the sampled neighborhood.** Generate N candidate edits, evaluate all, take the best. This guarantees maximal descent *over the N sampled*. It is what the per-epoch candidate set and the compose step already do (`rl.md` §5.3). Cost is N gate evaluations; racing reduces it — evaluate all N on the target bucket's cases first, drop the bottom half, repeat, and only survivors reach the full gate. Successive halving gives the best of N with probability 1 − δ at a fraction of the evaluations.
+**4.1 Best of the sampled neighborhood.** Generate N candidate edits, evaluate all, take the best. This guarantees maximal descent *over the N sampled*. It is what the per-epoch candidate set and the compose step already do (`rl.md` §5.3). Cost is N gate evaluations; racing reduces it — evaluate all N on the target bucket's cases first, drop the bottom half, repeat, and only survivors reach the full gate. This is Maron & Moore's Hoeffding race for model selection, in its modern successive-halving form: it returns the best of N with probability 1 − δ at a fraction of the evaluations, and its sample-complexity bounds are the only "how many rollouts do we need" results that apply directly here.
 
 **4.2 Exhaustive neighborhood.** Define the neighborhood finitely — every `playbook.add` from the current lesson pool, every `playbook.retire` of a line with negative counters — and evaluate every member. This is discrete steepest descent and a true guarantee within the neighborhood. It is feasible when the pool is small and rollouts are cached, which is the v1 regime (typed edits, playbook-first), and infeasible once structural edits unlock.
 
@@ -97,7 +99,7 @@ What can be guaranteed is always relative to something. Four options, in order o
 
 **4.4 Submodularity.** The one real theorem available. Treat the playbook as a set of lines and the objective as floor-pass coverage: the number of cases a policy handles correctly as a function of which lines are present. Coverage functions are the canonical monotone submodular objective, and for monotone submodular maximization greedy — always add the element with the largest marginal gain — is within (1 − 1/e) ≈ 0.63 of the optimal set (Nemhauser, Wolsey, Fisher 1978). Under a precision constraint the problem becomes constrained submodular maximization, which still admits constant-factor greedy guarantees.
 
-That is a bound on the *trajectory*, not on one step, and the greedy algorithm it certifies is the one the loop runs anyway. The assumption is diminishing marginal returns, which fails when lines *interfere* — when adding one changes how another applies. The design has a direct interference detector: every edit's `predicts_unaffected` set, checked at the gate and in later epochs. A rising rate of predicted-unaffected cases that changed is a measured violation of submodularity, and the per-bucket no-regression rule bounds its damage. Narrow, well-scoped lines keep interference small, which means the choices that make the playbook auditable are the same choices that make the theorem closer to true.
+That is a bound on the *trajectory*, not on one step, and the greedy algorithm it certifies is the one the loop runs anyway. The assumption is diminishing marginal returns, which fails when lines *interfere* — when adding one changes how another applies. Interference need not be all-or-nothing: Das & Kempe's submodularity ratio γ_s ∈ [0, 1] measures how far a set function is from submodular, and greedy still achieves a (1 − e^{−γ_s}) approximation. So the question is not "is coverage submodular" but "what is γ_s," and the design has a direct estimator for it: every edit's `predicts_unaffected` set, checked at the gate and in later epochs. A rising rate of predicted-unaffected cases that changed is a measured drop in γ_s, and the per-bucket no-regression rule bounds its damage. Narrow, well-scoped lines keep γ_s near 1, which means the choices that make the playbook auditable are the same choices that make the theorem closer to true.
 
 ---
 
@@ -137,7 +139,9 @@ since the largest of B buckets holds at least L̂_t / B. Hence L̂_t ≤ (1 − 
 
 With gate noise the no-regression condition holds only up to η_b per bucket, which adds at most (B − 1) η to the right-hand side each epoch. The recursion then converges not to zero but to a floor of order B(B − 1) η / γ. Two design implications fall out: keep the top-level taxonomy small (B appears squared), and buy down η with k_gate rather than tolerating a wide floor.
 
-The shape is AdaBoost's: target the current residual, require only an edge from each round, get geometric decrease of the training error. The assumption is on the proposer and it is weak — any positive edge — and it is measured every epoch as e_t, so the bound is live rather than asserted. Together with §4.4, this is as close to "guaranteed maximal descent" as the problem admits: optimal targeting, best-of-N fixing with a measured edge, and near-optimality of the greedy sequence when interference is small.
+The shape is AdaBoost's: target the current residual, require only an edge from each round, get geometric decrease of the training error. The assumption is on the proposer and it is weak — any positive edge — and it is measured every epoch as e_t, so the bound is live rather than asserted.
+
+This also closes the loop on the original question. Mason et al. and Friedman showed that boosting *is* gradient descent — in function space, where each weak learner is the best available approximation to the negative functional gradient (the residual). Target-then-fix is the discrete analogue: the failure histogram is the residual, the typed edit is the weak learner, and the gate measures the edge. The reviewer was right that the text proposer is not a gradient; the correct reply is that the loop does not need one, because it is organized the way gradient boosting is, where the "gradient" is read off the residual and the learner only has to beat chance on it. Together with §4.4, this is as close to "guaranteed maximal descent" as the problem admits: optimal targeting, best-of-N fixing with a measured edge, and near-optimality of the greedy sequence when interference is small.
 
 ### 5.4 What breaks it
 
@@ -172,17 +176,73 @@ The proposer is a mutation operator, not a gradient; nothing about it is assumed
 
 ---
 
-## References
+## Literature
 
-- Pryzant et al. 2023 — Automatic Prompt Optimization with "Gradient Descent" and Beam Search (ProTeGi)
-- Yuksekgonul et al. 2024 — TextGrad: Automatic "Differentiation" via Text
-- Yang et al. 2023 — Large Language Models as Optimizers (OPRO)
-- Cheng et al. 2024 — Trace is the Next AutoDiff: Generative Optimization with Rich Feedback, Execution Traces, and LLMs (OPTO)
-- Agrawal et al. 2025 — GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning
-- Beyer & Schwefel 2002 — Evolution Strategies: A Comprehensive Introduction ((1+λ)-ES)
-- Dwork, Feldman, Hardt, Pitassi, Reingold, Roth 2015 — The Reusable Holdout: Preserving Validity in Adaptive Data Analysis
-- Recht, Roelofs, Schmidt, Shankar 2019 — Do ImageNet Classifiers Generalize to ImageNet?
-- Nemhauser, Wolsey, Fisher 1978 — An Analysis of Approximations for Maximizing Submodular Set Functions
-- Freund & Schapire 1997 — A Decision-Theoretic Generalization of On-Line Learning and an Application to Boosting (AdaBoost)
-- Jamieson & Talwalkar 2016 — Non-stochastic Best Arm Identification and Hyperparameter Optimization (successive halving)
-- Harness² — arXiv 2610.14224; RRSI — github.com/google-research/rrsi (proposer conditioned on edit history)
+Grouped by the section each result supports. One line each on what it contributes here; `README.md` carries the judge-reliability and reward-model references, which are not repeated.
+
+### §1 — The optimizer class: derivative-free search
+
+- Beyer & Schwefel 2002 — *Evolution Strategies: A Comprehensive Introduction.* The (1+λ)-ES and (1,λ)-ES formalism; the loop is a (1+λ)-ES with a held-out fitness and a learned mutation distribution.
+- Hansen 2016 — *The CMA Evolution Strategy: A Tutorial* (arXiv 1604.00772). What a *learned* mutation distribution buys in continuous spaces; the curator conditioning on the edit library is the discrete, text-valued analogue.
+- Salimans et al. 2017 — *Evolution Strategies as a Scalable Alternative to Reinforcement Learning.* ES competitive with policy gradients on RL benchmarks; the empirical case that "no gradient" is not "no optimization."
+- Nesterov & Spokoiny 2017 — *Random Gradient-Free Minimization of Convex Functions.* Zeroth-order methods pay a factor of the dimension d per gradient estimate; the formal reason "certify the steepest step" is unavailable when d is undefined.
+- Duchi, Jordan, Wainwright, Wibisono 2015 — *Optimal Rates for Zero-Order Convex Optimization.* Matching lower bounds for the above.
+- Glover 1989 — *Tabu Search — Part I.* Memory of rejected moves as a first-class component of a local search; the edit library's rejection record is a tabu list.
+
+### §1 — Text-valued proposers ("textual gradients")
+
+- Pryzant et al. 2023 — *Automatic Prompt Optimization with "Gradient Descent" and Beam Search* (ProTeGi). The first explicit textual-gradient framing; the scare quotes are the authors' own. Beam search over edits is §4.1's best-of-N.
+- Yuksekgonul et al. 2024 — *TextGrad: Automatic "Differentiation" via Text.* The metaphor taken furthest: backpropagated natural-language feedback through a compound system. Useful for intuition; no descent guarantee is claimed.
+- Yang et al. 2023 — *Large Language Models as Optimizers* (OPRO). The optimizer's context holds the trajectory of (solution, score) pairs — the optimizer-memory half of §3.
+- Cheng et al. 2024 — *Trace is the Next AutoDiff* (OPTO). The one framing that formalizes rich feedback as a generalization of a first-order oracle and is careful about what properties survive the generalization. Recommended for anyone who wants the colleague's question answered at the level of definitions.
+- Agrawal et al. 2025 — *GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning.* Pareto-front population search over reflective edits; the population-based alternative to a single accepted AOP_t when local optima become the problem.
+- Opsahl-Ong et al. 2024 — *Optimizing Instructions and Demonstrations for Multi-Stage Language Model Programs* (MIPROv2 / DSPy). Bayesian optimization over instruction candidates — §4.3's surrogate route, with its assumptions visible.
+- Fernando et al. 2023 — *Promptbreeder*; Guo et al. 2023 — *EvoPrompt.* Evolutionary prompt optimization with LLM mutation operators; the lineage the harness belongs to, with the same absence of per-step guarantees.
+- Shinn et al. 2023 — *Reflexion*; Madaan et al. 2023 — *Self-Refine.* Verbal self-critique as the update signal; the ancestors of the reflector. Neither has a gate, which is why neither has a descent guarantee.
+- Zhang et al. 2025 — *Agentic Context Engineering* (ACE); Suzgun et al. 2025 — *Dynamic Cheatsheet.* Delta-updated playbooks with helpful/harmful counters; the "context collapse" failure in ACE is divergence from too large a step and is the empirical argument for the edit budget b_t.
+
+### §1 — Harness-level optimizers (2024–2026)
+
+- Hu, Lu, Clune 2024 — *Automated Design of Agentic Systems* (ADAS / Meta Agent Search). Code-valued search over whole agent designs with an archive; the archive is optimizer memory.
+- Zhang et al. 2024 — *AFlow.* MCTS over workflow graphs — tree search as the alternative to (1+λ)-ES when the edit space is structural (`graph.*`).
+- Novikov et al. 2025 — *AlphaEvolve.* Evolutionary search over programs under an automated evaluator at scale; the cleanest demonstration that evaluator quality, not proposer cleverness, is the binding constraint.
+- Lee et al. 2026 — *Meta-Harness: End-to-End Optimization of Model Harnesses* (arXiv 2603.28052). Harness search with full execution traces as optimizer input; reports gains on *online text classification*, the closest published benchmark to a routing problem.
+- Lin et al. 2026 — *Agentic Harness Engineering* (AHE, arXiv 2604.25850). Every edit paired with a self-declared prediction verified on the next round — the decision-observability discipline `DESIGN.md` §7 adopts, and the source of the "edit → prediction → outcome" log §3 depends on.
+- *Towards Direct Evaluation of Harness Optimizers via Priority Ranking* (arXiv 2605.22505). Asks whether harness optimizers act on information or by trial-and-error, and proposes evaluating the optimizer directly rather than through end performance — precisely the §6 question of whether the proposer is informed.
+- Pan et al. 2026 — *Evolving Agents in the Dark: Retrospective Harness Optimization via Self-Preference* (RHO, arXiv 2606.05922). Harness optimization from past trajectories with no labels, selected by pairwise self-preference; the relevant design for mailboxes with no historical replies, and a reminder that self-preference without an external anchor is exactly the Goodhart surface §2.3 warns about.
+- Liu et al. 2026 — *Adaptive Auto-Harness* (arXiv 2606.01770). Harness evolution on unbounded, heterogeneous, non-stationary task streams — the deployment regime, and the reason the rolling held-out exists.
+- *Harness²: Recursive Agent Harnessing for an Open World* (arXiv 2610.14224). Two-level recursion; probe-then-compose is §4.1; its verifier-free contrastive probing is what the harness does *not* need because it has a judge, and its reported case of a lower-scoring output being preferred is the canonical illustration of §2.3.
+- *RRSI: Regularized Recursive Self-Improvement of Agent Harnesses* (github.com/google-research/rrsi). Proposer conditioned on edit history; the regularization-by-rejection stance the gate takes.
+
+### §2 — Adaptive data analysis and the validation gap
+
+- Dwork, Feldman, Hardt, Pitassi, Reingold, Roth 2015 — *The Reusable Holdout* (Science) and *Preserving Statistical Validity in Adaptive Data Analysis* (STOC). The √(k/n) adaptive versus √(log k / n) non-adaptive gap, and Thresholdout: answer a holdout query only when it differs from the training estimate by more than a noisy threshold. The noise-floor gate is a crude Thresholdout without the budget accounting; the sealed-reads counter supplies it.
+- Blum & Hardt 2015 — *The Ladder: A Reliable Leaderboard for Machine Learning Competitions.* Update the reported score only on improvements above a threshold; generalization error then grows logarithmically in submissions. The closest precedent for the gate as designed.
+- Bassily et al. 2016 — *Algorithmic Stability for Adaptive Data Analysis.* Tighter bounds and the general stability argument behind the above.
+- Recht, Roelofs, Schmidt, Shankar 2019 — *Do ImageNet Classifiers Generalize to ImageNet?* The empirical demonstration that years of adaptive selection on a fixed test set did overfit it — the §2.2 failure at field scale.
+
+### §4 — Submodularity and greedy guarantees
+
+- Nemhauser, Wolsey, Fisher 1978 — *An Analysis of Approximations for Maximizing Submodular Set Functions.* The (1 − 1/e) greedy bound for monotone submodular maximization under a cardinality constraint.
+- Sviridenko 2004 — *A Note on Maximizing a Submodular Set Function Subject to a Knapsack Constraint.* (1 − 1/e) survives a knapsack constraint with partial enumeration; the form a token-cost or precision budget takes.
+- Leskovec et al. 2007 — *Cost-Effective Outbreak Detection in Networks* (CELF). Cost-benefit greedy with lazy evaluation; the practical algorithm when each marginal-gain evaluation is a gate run.
+- Das & Kempe 2011 — *Submodular Meets Spectral.* The submodularity ratio γ_s and the (1 − e^{−γ_s}) greedy bound for approximately submodular objectives; turns "do lines interfere" into a quantity the `predicts_unaffected` record estimates.
+- Krause & Golovin 2014 — *Submodular Function Maximization* (survey chapter). The map of what else is available: curvature, adaptive submodularity, online greedy.
+
+### §4.1 — Racing and best-arm identification
+
+- Maron & Moore 1994 — *Hoeffding Races: Accelerating Model Selection Search.* The original: evaluate all candidates on growing samples and eliminate those whose confidence intervals fall below the leader's.
+- Even-Dar, Mannor, Mansour 2006 — *Action Elimination and Stopping Conditions for the Multi-Armed Bandit and RL Problems.* PAC sample-complexity bounds for identifying the best arm.
+- Jamieson & Talwalkar 2016 — *Non-stochastic Best Arm Identification and Hyperparameter Optimization* (successive halving); Li et al. 2018 — *Hyperband.* The budget-allocation versions used in practice.
+
+### §5 — Boosting and residual targeting
+
+- Freund & Schapire 1997 — *A Decision-Theoretic Generalization of On-Line Learning and an Application to Boosting* (AdaBoost). Geometric decrease of training error from a weak-learner edge; the shape of Proposition 2.
+- Mason, Baxter, Bartlett, Frean 1999 — *Boosting Algorithms as Gradient Descent*; Friedman 2001 — *Greedy Function Approximation: A Gradient Boosting Machine.* Boosting as gradient descent in function space, with the residual as the negative functional gradient. The precise sense in which target-then-fix is a descent method without a parameter-space gradient.
+- Schapire & Freund 2012 — *Boosting: Foundations and Algorithms.* The margin-based generalization theory, relevant if the loop ever needs a generalization bound stronger than §2.2's.
+
+### §2.3 — Optimizing against a learned objective
+
+- Gao, Schulman, Hilton 2022 — *Scaling Laws for Reward Model Overoptimization.* Proxy reward rises while gold reward peaks and falls as optimization pressure grows; the quantitative version of the Goodhart gap, and the reason judge quality bounds how many epochs the loop can run.
+- Skalse, Howe, Krasheninnikov, Krueger 2022 — *Defining and Characterizing Reward Hacking.* When a proxy is "hackable" relative to the true objective; a learned judge is hackable almost by construction, which is why the lexicographic floor is not.
+- Manheim & Garrabrant 2018 — *Categorizing Variants of Goodhart's Law.* Regressional, extremal, causal, adversarial — the gate faces the first two from sampling noise and the fourth from the proposer.
