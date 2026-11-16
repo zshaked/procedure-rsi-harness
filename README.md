@@ -15,6 +15,7 @@ Follow-up (`pilot/PREREG_v4.md` + `pilot/RESULTS_v4.md`, 60 runs on Sonnet): whi
 | `docs/rl.md` | How each RL piece works (environment, policy, reward, advantage, update, trust region, reward model, Goodhart), where the analogy stops, a worked example, hyperparameters. |
 | `docs/metrics.md` | Metric definitions by split and slice, gate statistics and noise floor, the accuracy-vs-verifier-cost curve, edit/memory health, v1 targets. |
 | `docs/selection.md` | Which cases get judged after a run and which get escalated to operators; the taxonomy agent's role; the calibration trap. |
+| `docs/descent.md` | Why the loop descends without a gradient: the optimizer class ((1+λ)-ES under a held-out gate), what the gate does and does not guarantee, the adaptive-validation gap, what "maximal descent" can mean over discrete edits, and a target-then-fix schedule with a boosting-shaped bound. |
 | `paper/OUTLINE.md` | The paper: question, draft abstract, contributions, hypotheses H1–H5 with their figures, baselines, experiments X0–X8, related work, kill test, timeline. |
 | `paper/MATH.md` | Latent specification inference and the history-per-verdict exchange rate; a Goodhart bound with its flip-point test; conformal selective stand-in; reliability-weighted reward and structuredness. |
 | `pilot/` | Runnable pilot: environments v1/v2, executable policies, grader, oracle, baselines, all arm outputs. Results: `RESULTS.md` (v1 smoke), `RESULTS_v2.md` (hardened benchmark), `PREREG.md` + `RESULTS_v3.md` (decisive comparison). |
