@@ -312,7 +312,23 @@ All items are itemized, versioned, and carry provenance. Updates are deltas.
 | `procedure/` | The AOP graph (versioned) | edit ids |
 | `questions/` | Open-questions queue for escalation | case ids |
 | `edits/` | Edit log: edit, prediction, evidence, gate outcome, later verification | — |
-| `library/` | Past edits + outcomes, consulted by the curator | edit ids |
+| `library/` | Past edits + outcomes, **indexed by problem** (see below), consulted by the curator | edit ids, taxonomy bucket |
+
+### 9.1 Indexing: by problem, not by edit (added 2026-11-18, after SIM)
+
+`library/` is keyed by the failure it addresses, not by the edit. The key is the two-level failure taxonomy of `docs/descent.md` §5.1 — a fixed top level (wrong field extraction, wrong node or tool, wrong arguments, precondition missed, unsafe side effect, should have escalated, over-escalated) with free-text root-cause hypotheses as children. Under each problem, every attempt is kept: the edit, its rationale, the predicted-fixed and predicted-unaffected sets, the gate outcome, the realized effect, and provenance (mailbox, policy model, epoch). Rejected and regressing attempts are kept alongside accepted ones.
+
+The curator reads the library by problem — "every attempt at this failure and how each did" — rather than as a chronological edit log. This is the structure of Self-Improvement Memory (Yu et al. 2026, arXiv 2611.18856), whose ablation found that root causes alone were mixed against plain harness transfer and that the full attempt record with predicted-vs-observed outcomes is what helped (+2.4 paired on coding, 95% CI [1.05, 3.68]). SIM merges entries by identical root-cause text; here the taxonomy is the key and free-text hypotheses are children, which merges more reliably and keeps the index stable across mailboxes.
+
+Two things are deliberately **not** adopted from SIM. Its LLM selector, which screens and chooses among candidates by judgment, is replaced by the statistical gate of §7: the gate must remain a measurement, or `docs/descent.md` §2 does not hold. And memory informs selection only *before* evaluation — ordering which candidates race first — never the accept/reject decision itself.
+
+### 9.2 Transfer: the history travels with the harness
+
+When a reservoir moves to a new mailbox (cross-dataset) or the policy model changes (cross-model), `edits/` and `library/` move with it. SIM's transfer results are the reason: an evolved harness carried alone to a new target started *below* the cold seed in several of their settings, and carrying the optimization record alongside recovered and exceeded it (+2.4 to +4.4 cross-dataset, +3.6 to +11.3 cross-model over harness-only continuation). So:
+
+- Inherited fragments arrive as **revisable with provenance**, not as fixed rules. The curator may retain, revise, retire, or replace them, and the record of why they existed is what lets it decide.
+- A transfer is a **continuation run on the target**, gated on the target's own search-validation set — never a direct deploy of the source harness. A new mailbox's onboarding treats the transferred reservoir plus library as the *seed* for its induction stage, not as its output.
+- A **model upgrade** is a transfer. SIM's continuation beat fresh optimization on two model generations and lost on a third by under a point; the loop re-runs with memory on the new model and the gate decides, rather than assuming the AOP carries over.
 
 ---
 
@@ -384,7 +400,7 @@ aop_rsi/
 ## 14. Phasing
 
 - **v1** — one procedure; operator-verified regression set; checklist verifier seeded from three tiers, κ₀ measured; verifiable floor; playbook/prompt/template edits; time-split gate; escalation policy; conformal stand-in per bucket; E0′–E3. Process story per mailbox: label ~100 → build verifier → measure κ and coverage on the held-out → AOP optimization switches on only when the inner-loop condition holds → questionnaire loop grows the labeled set and re-measures each batch.
-- **v2** — structural edits after kappa gate; approval instrumentation; edit library consulted by curator; E4.
+- **v2** — structural edits after kappa gate; approval instrumentation; problem-indexed edit library consulted by curator (§9.1); E4; first transfer to a second mailbox as a continuation run with the library (§9.2).
 - **v3** — judge fine-tuned on accumulated ops verdicts + rationales (supervised); second procedure; meta-level improvement harness. Proposer stays frozen throughout.
 
 ---

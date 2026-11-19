@@ -213,6 +213,7 @@ Grouped by the section each result supports. One line each on what it contribute
 - Liu et al. 2026 — *Adaptive Auto-Harness* (arXiv 2606.01770). Harness evolution on unbounded, heterogeneous, non-stationary task streams — the deployment regime, and the reason the rolling held-out exists.
 - *Harness²: Recursive Agent Harnessing for an Open World* (arXiv 2610.14224). Two-level recursion; probe-then-compose is §4.1; its verifier-free contrastive probing is what the harness does *not* need because it has a judge, and its reported case of a lower-scoring output being preferred is the canonical illustration of §2.3.
 - *RRSI: Regularized Recursive Self-Improvement of Agent Harnesses* (github.com/google-research/rrsi). Proposer conditioned on edit history; the regularization-by-rejection stance the gate takes.
+- Yu et al. 2026 — *Self-Improvement Memory Enables Continual Recursive Self-Improvement* (SIM, arXiv 2611.18856). Optimizer memory indexed by root-cause problem, each holding every attempt's edit, rationale, predicted and observed outcome, and provenance; carried across datasets and models it beat harness-only transfer by 2–11 points, and root causes without the attempt record did not. The §3 optimizer-memory argument with measurements behind it; adopted in `DESIGN.md` §9.1–9.2, minus its LLM selector.
 
 ### §2 — Adaptive data analysis and the validation gap
 

@@ -34,6 +34,7 @@ Read `DESIGN.md` in full, then follow `PROMPT.md`. Stop after experiments E0–E
 - Procedural Graphs: Self-Evolving Execution Structures for LLM Agents — arXiv 2609.09153
 - Harness²: Recursive Agent Harnessing for an Open World — arXiv 2610.14224
 - RRSI: Regularized Recursive Self-Improvement of Agent Harnesses — github.com/google-research/rrsi
+- Self-Improvement Memory Enables Continual Recursive Self-Improvement (SIM) — arXiv 2611.18856 (problem-indexed optimizer memory; history travels with the harness across datasets and models; `DESIGN.md` §9.1–9.2)
 - LLM-as-a-Judge Is Not an Oracle (PROCTOR) — arXiv 2609.02246
 - More Convincing, Not More Correct: Self-Play Reward Hacking of Reference-Free LLM Judges — arXiv 2607.05904
 - Trust or Escalate: LLM Judges with Provable Guarantees for Human Agreement — 2024
