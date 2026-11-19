@@ -1,0 +1,509 @@
+{
+ "source": "env2_Q4",
+ "n": 400,
+ "e0_noise_floor": {
+  "n_cases": 400,
+  "levels": {
+   "coarse": {
+    "clusters": 26,
+    "singletons": 4,
+    "cases_in_clusters_ge2": 396,
+    "outcome_disagreement": 0.46464646464646464,
+    "pending_field_disagreement_among_confirmed": 0.19444444444444445,
+    "worst_clusters": [
+     {
+      "size": 115,
+      "outcomes": {
+       "REQUEST_AUTHORIZATION": 44,
+       "CONFIRMED": 53,
+       "REQUEST_INFO": 9,
+       "NOT_HELD": 5,
+       "ESCALATE": 4
+      },
+      "minority_ids": [
+       "Q4-0005",
+       "Q4-0011",
+       "Q4-0029",
+       "Q4-0032",
+       "Q4-0042",
+       "Q4-0051",
+       "Q4-0052",
+       "Q4-0056",
+       "Q4-0061",
+       "Q4-0062",
+       "Q4-0064",
+       "Q4-0065",
+       "Q4-0069",
+       "Q4-0072",
+       "Q4-0076",
+       "Q4-0083",
+       "Q4-0085",
+       "Q4-0096",
+       "Q4-0097",
+       "Q4-0105",
+       "Q4-0107",
+       "Q4-0109",
+       "Q4-0114",
+       "Q4-0124",
+       "Q4-0127",
+       "Q4-0136",
+       "Q4-0138",
+       "Q4-0141",
+       "Q4-0142",
+       "Q4-0144",
+       "Q4-0161",
+       "Q4-0164",
+       "Q4-0171",
+       "Q4-0173",
+       "Q4-0189",
+       "Q4-0197",
+       "Q4-0215",
+       "Q4-0225",
+       "Q4-0227",
+       "Q4-0230",
+       "Q4-0240",
+       "Q4-0242",
+       "Q4-0244",
+       "Q4-0258",
+       "Q4-0260",
+       "Q4-0266",
+       "Q4-0273",
+       "Q4-0275",
+       "Q4-0279",
+       "Q4-0293",
+       "Q4-0302",
+       "Q4-0323",
+       "Q4-0333",
+       "Q4-0335",
+       "Q4-0340",
+       "Q4-0341",
+       "Q4-0346",
+       "Q4-0364",
+       "Q4-0370",
+       "Q4-0392",
+       "Q4-0396",
+       "Q4-0399"
+      ]
+     },
+     {
+      "size": 88,
+      "outcomes": {
+       "CONFIRMED": 32,
+       "ESCALATE": 18,
+       "REQUEST_AUTHORIZATION": 29,
+       "NOT_HELD": 4,
+       "REQUEST_INFO": 5
+      },
+      "minority_ids": [
+       "Q4-0001",
+       "Q4-0004",
+       "Q4-0019",
+       "Q4-0020",
+       "Q4-0024",
+       "Q4-0027",
+       "Q4-0034",
+       "Q4-0035",
+       "Q4-0044",
+       "Q4-0059",
+       "Q4-0066",
+       "Q4-0081",
+       "Q4-0092",
+       "Q4-0101",
+       "Q4-0130",
+       "Q4-0137",
+       "Q4-0145",
+       "Q4-0146",
+       "Q4-0150",
+       "Q4-0154",
+       "Q4-0157",
+       "Q4-0159",
+       "Q4-0168",
+       "Q4-0169",
+       "Q4-0170",
+       "Q4-0176",
+       "Q4-0177",
+       "Q4-0182",
+       "Q4-0200",
+       "Q4-0202",
+       "Q4-0204",
+       "Q4-0210",
+       "Q4-0216",
+       "Q4-0221",
+       "Q4-0238",
+       "Q4-0245",
+       "Q4-0252",
+       "Q4-0264",
+       "Q4-0268",
+       "Q4-0281",
+       "Q4-0283",
+       "Q4-0284",
+       "Q4-0286",
+       "Q4-0305",
+       "Q4-0306",
+       "Q4-0316",
+       "Q4-0324",
+       "Q4-0325",
+       "Q4-0350",
+       "Q4-0357",
+       "Q4-0361",
+       "Q4-0371",
+       "Q4-0389",
+       "Q4-0391",
+       "Q4-0393",
+       "Q4-0398"
+      ]
+     },
+     {
+      "size": 33,
+      "outcomes": {
+       "CONFIRMED": 16,
+       "REQUEST_AUTHORIZATION": 13,
+       "REQUEST_INFO": 2,
+       "ESCALATE": 1,
+       "NOT_HELD": 1
+      },
+      "minority_ids": [
+       "Q4-0026",
+       "Q4-0040",
+       "Q4-0073",
+       "Q4-0088",
+       "Q4-0205",
+       "Q4-0219",
+       "Q4-0241",
+       "Q4-0250",
+       "Q4-0251",
+       "Q4-0255",
+       "Q4-0289",
+       "Q4-0303",
+       "Q4-0304",
+       "Q4-0336",
+       "Q4-0338",
+       "Q4-0390",
+       "Q4-0397"
+      ]
+     },
+     {
+      "size": 30,
+      "outcomes": {
+       "ESCALATE": 7,
+       "REQUEST_AUTHORIZATION": 15,
+       "REQUEST_INFO": 1,
+       "CONFIRMED": 7
+      },
+      "minority_ids": [
+       "Q4-0003",
+       "Q4-0036",
+       "Q4-0057",
+       "Q4-0090",
+       "Q4-0098",
+       "Q4-0104",
+       "Q4-0115",
+       "Q4-0153",
+       "Q4-0188",
+       "Q4-0234",
+       "Q4-0235",
+       "Q4-0278",
+       "Q4-0296",
+       "Q4-0314",
+       "Q4-0347"
+      ]
+     },
+     {
+      "size": 27,
+      "outcomes": {
+       "REQUEST_INFO": 18,
+       "REQUEST_AUTHORIZATION": 9
+      },
+      "minority_ids": [
+       "Q4-0086",
+       "Q4-0110",
+       "Q4-0116",
+       "Q4-0174",
+       "Q4-0192",
+       "Q4-0294",
+       "Q4-0311",
+       "Q4-0381",
+       "Q4-0386"
+      ]
+     }
+    ],
+    "_benchmark": {
+     "true_perturbation_rate": 0.08,
+     "minority_flag_precision": 0.11413043478260869,
+     "minority_flag_recall_within_clusters": 0.65625
+    }
+   },
+   "decision": {
+    "clusters": 138,
+    "singletons": 74,
+    "cases_in_clusters_ge2": 326,
+    "outcome_disagreement": 0.09815950920245399,
+    "pending_field_disagreement_among_confirmed": 0.18181818181818182,
+    "worst_clusters": [
+     {
+      "size": 29,
+      "outcomes": {
+       "REQUEST_INFO": 20,
+       "REQUEST_AUTHORIZATION": 9
+      },
+      "minority_ids": [
+       "Q4-0043",
+       "Q4-0231",
+       "Q4-0320",
+       "Q4-0326",
+       "Q4-0337",
+       "Q4-0343",
+       "Q4-0344",
+       "Q4-0363",
+       "Q4-0365"
+      ]
+     },
+     {
+      "size": 31,
+      "outcomes": {
+       "CONFIRMED": 29,
+       "ESCALATE": 2
+      },
+      "minority_ids": [
+       "Q4-0127",
+       "Q4-0336"
+      ]
+     },
+     {
+      "size": 7,
+      "outcomes": {
+       "CONFIRMED": 2,
+       "ESCALATE": 5
+      },
+      "minority_ids": [
+       "Q4-0013",
+       "Q4-0102"
+      ]
+     },
+     {
+      "size": 2,
+      "outcomes": {
+       "REQUEST_AUTHORIZATION": 1,
+       "REQUEST_INFO": 1
+      },
+      "minority_ids": [
+       "Q4-0180"
+      ]
+     },
+     {
+      "size": 8,
+      "outcomes": {
+       "CONFIRMED": 7,
+       "ESCALATE": 1
+      },
+      "minority_ids": [
+       "Q4-0124"
+      ]
+     }
+    ],
+    "_benchmark": {
+     "true_perturbation_rate": 0.08,
+     "minority_flag_precision": 0.53125,
+     "minority_flag_recall_within_clusters": 0.6538461538461539
+    }
+   },
+   "fine": {
+    "clusters": 222,
+    "singletons": 155,
+    "cases_in_clusters_ge2": 245,
+    "outcome_disagreement": 0.09387755102040816,
+    "pending_field_disagreement_among_confirmed": 0.023809523809523808,
+    "worst_clusters": [
+     {
+      "size": 11,
+      "outcomes": {
+       "REQUEST_INFO": 5,
+       "REQUEST_AUTHORIZATION": 6
+      },
+      "minority_ids": [
+       "Q4-0022",
+       "Q4-0113",
+       "Q4-0191",
+       "Q4-0301",
+       "Q4-0367"
+      ]
+     },
+     {
+      "size": 3,
+      "outcomes": {
+       "CONFIRMED": 1,
+       "ESCALATE": 2
+      },
+      "minority_ids": [
+       "Q4-0013"
+      ]
+     },
+     {
+      "size": 2,
+      "outcomes": {
+       "ESCALATE": 1,
+       "CONFIRMED": 1
+      },
+      "minority_ids": [
+       "Q4-0102"
+      ]
+     },
+     {
+      "size": 4,
+      "outcomes": {
+       "ESCALATE": 3,
+       "CONFIRMED": 1
+      },
+      "minority_ids": [
+       "Q4-0183"
+      ]
+     },
+     {
+      "size": 3,
+      "outcomes": {
+       "REQUEST_AUTHORIZATION": 2,
+       "REQUEST_INFO": 1
+      },
+      "minority_ids": [
+       "Q4-0088"
+      ]
+     }
+    ],
+    "_benchmark": {
+     "true_perturbation_rate": 0.08,
+     "minority_flag_precision": 0.5217391304347826,
+     "minority_flag_recall_within_clusters": 0.7058823529411765
+    }
+   }
+  }
+ },
+ "e1_snapshot": {
+  "n_cases": 400,
+  "fact_asserting_replies": 118,
+  "reconciled": 117,
+  "reconciliation_rate": 0.9915254237288136,
+  "failure_kinds": {
+   "date": 1,
+   "figure": 1
+  },
+  "failures": [
+   {
+    "case_id": "Q4-0134",
+    "failures": [
+     "date: as_of 2026-04-02 is after the reply time 2026-03-16",
+     "figure: settled asserted without a resolvable account, instrument and as_of"
+    ]
+   }
+  ],
+  "dated_position_replies": 118,
+  "position_moved_between_as_of_and_reply": 27,
+  "movement_rate": 0.2288135593220339,
+  "verdict": "PASS: snapshot reconciles and shows movement between as-of and reply time"
+ },
+ "e2_baseline": {
+  "n_learning": 200,
+  "n_validation": 100,
+  "majority": {
+   "n": 100,
+   "overall": {
+    "n": 100,
+    "floor": 1.0,
+    "outcome": 0.21,
+    "fields": 0.21,
+    "_benchmark_gold_outcome": 0.21
+   },
+   "buckets": {
+    "1/complete": {
+     "n": 30,
+     "floor": 1.0,
+     "outcome": 0.0,
+     "fields": 0.0,
+     "_benchmark_gold_outcome": 0.0
+    },
+    "2/complete": {
+     "n": 37,
+     "floor": 1.0,
+     "outcome": 0.08108108108108109,
+     "fields": 0.08108108108108109,
+     "_benchmark_gold_outcome": 0.05405405405405406
+    },
+    "2/partial": {
+     "n": 12,
+     "floor": 1.0,
+     "outcome": 0.75,
+     "fields": 0.75,
+     "_benchmark_gold_outcome": 0.75
+    },
+    "3/complete": {
+     "n": 11,
+     "floor": 1.0,
+     "outcome": 0.45454545454545453,
+     "fields": 0.45454545454545453,
+     "_benchmark_gold_outcome": 0.45454545454545453
+    },
+    "3/partial": {
+     "n": 10,
+     "floor": 1.0,
+     "outcome": 0.4,
+     "fields": 0.4,
+     "_benchmark_gold_outcome": 0.5
+    }
+   },
+   "frontier_buckets": [
+    "3/complete",
+    "3/partial"
+   ]
+  },
+  "retrieval": {
+   "n": 100,
+   "overall": {
+    "n": 100,
+    "floor": 1.0,
+    "outcome": 0.8,
+    "fields": 0.8,
+    "_benchmark_gold_outcome": 0.81
+   },
+   "buckets": {
+    "1/complete": {
+     "n": 30,
+     "floor": 1.0,
+     "outcome": 0.9333333333333333,
+     "fields": 0.9333333333333333,
+     "_benchmark_gold_outcome": 0.9333333333333333
+    },
+    "2/complete": {
+     "n": 37,
+     "floor": 1.0,
+     "outcome": 0.6486486486486487,
+     "fields": 0.6486486486486487,
+     "_benchmark_gold_outcome": 0.6486486486486487
+    },
+    "2/partial": {
+     "n": 12,
+     "floor": 1.0,
+     "outcome": 0.9166666666666666,
+     "fields": 0.9166666666666666,
+     "_benchmark_gold_outcome": 0.9166666666666666
+    },
+    "3/complete": {
+     "n": 11,
+     "floor": 1.0,
+     "outcome": 0.9090909090909091,
+     "fields": 0.9090909090909091,
+     "_benchmark_gold_outcome": 0.9090909090909091
+    },
+    "3/partial": {
+     "n": 10,
+     "floor": 1.0,
+     "outcome": 0.7,
+     "fields": 0.7,
+     "_benchmark_gold_outcome": 0.8
+    }
+   },
+   "frontier_buckets": [
+    "2/complete",
+    "3/partial"
+   ]
+  }
+ }
+}

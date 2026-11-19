@@ -23,10 +23,11 @@ Proposed next study (`audit/PREREG.md`, draft 1, unreviewed, no runs): how much 
 | `pilot/` | Runnable pilot: environments v1/v2, executable policies, grader, oracle, baselines, all arm outputs. Results: `RESULTS.md` (v1 smoke), `RESULTS_v2.md` (hardened benchmark), `PREREG.md` + `RESULTS_v3.md` (decisive comparison). |
 | `benchmark/README.md` | The testbed: a synthetic confirmations domain and an inversion of τ-bench; knobs (history size, inconsistency, drift, budget, representation), splits, oracle simulator, schema, build order. |
 | `audit/PREREG.md` | Pre-registration (draft 1) for the reusable-holdout study: optimizers, benchmarks, data roles, the k × n × gate grid, decision rules A1–A4, continue/stop, integrity, limitations. |
+| `aop_rsi/` | Firm-agnostic scaffold (`DESIGN.md` §12): case schema and the closed snapshot interface, env2 and firm adapters, four-role split, bucket scorer, verifiable floor, field extractor, problem-indexed edit library, deterministic baselines, and experiments E0′–E2 with results on env2 Q1–Q4. No loop. See `aop_rsi/README.md`. |
 
 ## For a coding agent
 
-Read `DESIGN.md` in full, then follow `PROMPT.md`. Stop after experiments E0–E2 and report before building the optimizer or gate.
+Read `DESIGN.md` in full, then follow `PROMPT.md`. E0′–E2 are implemented in `aop_rsi/` and run on the synthetic environment; point them at a firm export via `aop_rsi/cases/adapters/firm.py`. Stop after E0′–E2 and report before building the optimizer or gate.
 
 ## References
 

@@ -1,0 +1,453 @@
+{
+ "source": "env2_Q1",
+ "n": 400,
+ "e0_noise_floor": {
+  "n_cases": 400,
+  "levels": {
+   "coarse": {
+    "clusters": 23,
+    "singletons": 4,
+    "cases_in_clusters_ge2": 396,
+    "outcome_disagreement": 0.3409090909090909,
+    "pending_field_disagreement_among_confirmed": 0.3333333333333333,
+    "worst_clusters": [
+     {
+      "size": 105,
+      "outcomes": {
+       "REQUEST_AUTHORIZATION": 61,
+       "CONFIRMED": 21,
+       "REQUEST_INFO": 15,
+       "NOT_HELD": 5,
+       "ESCALATE": 3
+      },
+      "minority_ids": [
+       "Q1-0003",
+       "Q1-0006",
+       "Q1-0017",
+       "Q1-0019",
+       "Q1-0022",
+       "Q1-0028",
+       "Q1-0031",
+       "Q1-0032",
+       "Q1-0036",
+       "Q1-0042",
+       "Q1-0055",
+       "Q1-0057",
+       "Q1-0094",
+       "Q1-0112",
+       "Q1-0121",
+       "Q1-0128",
+       "Q1-0131",
+       "Q1-0140",
+       "Q1-0179",
+       "Q1-0184",
+       "Q1-0192",
+       "Q1-0202",
+       "Q1-0208",
+       "Q1-0210",
+       "Q1-0223",
+       "Q1-0234",
+       "Q1-0236",
+       "Q1-0243",
+       "Q1-0249",
+       "Q1-0255",
+       "Q1-0260",
+       "Q1-0264",
+       "Q1-0271",
+       "Q1-0276",
+       "Q1-0289",
+       "Q1-0297",
+       "Q1-0302",
+       "Q1-0306",
+       "Q1-0313",
+       "Q1-0339",
+       "Q1-0363",
+       "Q1-0370",
+       "Q1-0378",
+       "Q1-0391"
+      ]
+     },
+     {
+      "size": 93,
+      "outcomes": {
+       "CONFIRMED": 7,
+       "REQUEST_AUTHORIZATION": 52,
+       "REQUEST_INFO": 21,
+       "ESCALATE": 12,
+       "NOT_HELD": 1
+      },
+      "minority_ids": [
+       "Q1-0000",
+       "Q1-0007",
+       "Q1-0021",
+       "Q1-0026",
+       "Q1-0050",
+       "Q1-0051",
+       "Q1-0053",
+       "Q1-0068",
+       "Q1-0095",
+       "Q1-0099",
+       "Q1-0100",
+       "Q1-0111",
+       "Q1-0113",
+       "Q1-0114",
+       "Q1-0119",
+       "Q1-0120",
+       "Q1-0126",
+       "Q1-0129",
+       "Q1-0134",
+       "Q1-0137",
+       "Q1-0145",
+       "Q1-0153",
+       "Q1-0165",
+       "Q1-0171",
+       "Q1-0185",
+       "Q1-0194",
+       "Q1-0198",
+       "Q1-0216",
+       "Q1-0220",
+       "Q1-0253",
+       "Q1-0258",
+       "Q1-0262",
+       "Q1-0284",
+       "Q1-0299",
+       "Q1-0315",
+       "Q1-0316",
+       "Q1-0341",
+       "Q1-0351",
+       "Q1-0355",
+       "Q1-0374",
+       "Q1-0386"
+      ]
+     },
+     {
+      "size": 29,
+      "outcomes": {
+       "REQUEST_INFO": 10,
+       "REQUEST_AUTHORIZATION": 19
+      },
+      "minority_ids": [
+       "Q1-0016",
+       "Q1-0048",
+       "Q1-0063",
+       "Q1-0143",
+       "Q1-0178",
+       "Q1-0245",
+       "Q1-0273",
+       "Q1-0342",
+       "Q1-0385",
+       "Q1-0388"
+      ]
+     },
+     {
+      "size": 24,
+      "outcomes": {
+       "REQUEST_AUTHORIZATION": 15,
+       "REQUEST_INFO": 3,
+       "CONFIRMED": 5,
+       "NOT_HELD": 1
+      },
+      "minority_ids": [
+       "Q1-0025",
+       "Q1-0059",
+       "Q1-0092",
+       "Q1-0241",
+       "Q1-0257",
+       "Q1-0291",
+       "Q1-0350",
+       "Q1-0362",
+       "Q1-0365"
+      ]
+     },
+     {
+      "size": 19,
+      "outcomes": {
+       "REQUEST_INFO": 6,
+       "REQUEST_AUTHORIZATION": 12,
+       "ESCALATE": 1
+      },
+      "minority_ids": [
+       "Q1-0005",
+       "Q1-0013",
+       "Q1-0142",
+       "Q1-0159",
+       "Q1-0164",
+       "Q1-0183",
+       "Q1-0209"
+      ]
+     }
+    ],
+    "_benchmark": {
+     "true_perturbation_rate": 0.0725,
+     "minority_flag_precision": 0.17037037037037037,
+     "minority_flag_recall_within_clusters": 0.7931034482758621
+    }
+   },
+   "decision": {
+    "clusters": 137,
+    "singletons": 78,
+    "cases_in_clusters_ge2": 322,
+    "outcome_disagreement": 0.11801242236024845,
+    "pending_field_disagreement_among_confirmed": 0.3793103448275862,
+    "worst_clusters": [
+     {
+      "size": 40,
+      "outcomes": {
+       "REQUEST_INFO": 30,
+       "REQUEST_AUTHORIZATION": 10
+      },
+      "minority_ids": [
+       "Q1-0056",
+       "Q1-0086",
+       "Q1-0091",
+       "Q1-0138",
+       "Q1-0207",
+       "Q1-0211",
+       "Q1-0229",
+       "Q1-0270",
+       "Q1-0343",
+       "Q1-0393"
+      ]
+     },
+     {
+      "size": 28,
+      "outcomes": {
+       "CONFIRMED": 25,
+       "ESCALATE": 3
+      },
+      "minority_ids": [
+       "Q1-0128",
+       "Q1-0255",
+       "Q1-0363"
+      ]
+     },
+     {
+      "size": 10,
+      "outcomes": {
+       "REQUEST_AUTHORIZATION": 3,
+       "REQUEST_INFO": 7
+      },
+      "minority_ids": [
+       "Q1-0045",
+       "Q1-0278",
+       "Q1-0320"
+      ]
+     },
+     {
+      "size": 6,
+      "outcomes": {
+       "CONFIRMED": 4,
+       "ESCALATE": 2
+      },
+      "minority_ids": [
+       "Q1-0153",
+       "Q1-0386"
+      ]
+     },
+     {
+      "size": 23,
+      "outcomes": {
+       "REQUEST_INFO": 21,
+       "REQUEST_AUTHORIZATION": 2
+      },
+      "minority_ids": [
+       "Q1-0039",
+       "Q1-0382"
+      ]
+     }
+    ],
+    "_benchmark": {
+     "true_perturbation_rate": 0.0725,
+     "minority_flag_precision": 0.5263157894736842,
+     "minority_flag_recall_within_clusters": 0.8695652173913043
+    }
+   },
+   "fine": {
+    "clusters": 227,
+    "singletons": 170,
+    "cases_in_clusters_ge2": 230,
+    "outcome_disagreement": 0.11739130434782609,
+    "pending_field_disagreement_among_confirmed": 0.037037037037037035,
+    "worst_clusters": [
+     {
+      "size": 16,
+      "outcomes": {
+       "REQUEST_INFO": 13,
+       "REQUEST_AUTHORIZATION": 3
+      },
+      "minority_ids": [
+       "Q1-0056",
+       "Q1-0138",
+       "Q1-0343"
+      ]
+     },
+     {
+      "size": 12,
+      "outcomes": {
+       "CONFIRMED": 10,
+       "ESCALATE": 2
+      },
+      "minority_ids": [
+       "Q1-0255",
+       "Q1-0363"
+      ]
+     },
+     {
+      "size": 5,
+      "outcomes": {
+       "REQUEST_AUTHORIZATION": 2,
+       "REQUEST_INFO": 3
+      },
+      "minority_ids": [
+       "Q1-0045",
+       "Q1-0278"
+      ]
+     },
+     {
+      "size": 12,
+      "outcomes": {
+       "REQUEST_INFO": 10,
+       "REQUEST_AUTHORIZATION": 2
+      },
+      "minority_ids": [
+       "Q1-0211",
+       "Q1-0270"
+      ]
+     },
+     {
+      "size": 11,
+      "outcomes": {
+       "CONFIRMED": 10,
+       "ESCALATE": 1
+      },
+      "minority_ids": [
+       "Q1-0128"
+      ]
+     }
+    ],
+    "_benchmark": {
+     "true_perturbation_rate": 0.0725,
+     "minority_flag_precision": 0.5185185185185185,
+     "minority_flag_recall_within_clusters": 0.8235294117647058
+    }
+   }
+  }
+ },
+ "e1_snapshot": {
+  "n_cases": 400,
+  "fact_asserting_replies": 40,
+  "reconciled": 40,
+  "reconciliation_rate": 1.0,
+  "failure_kinds": {},
+  "failures": [],
+  "dated_position_replies": 40,
+  "position_moved_between_as_of_and_reply": 3,
+  "movement_rate": 0.075,
+  "verdict": "PASS: snapshot reconciles and shows movement between as-of and reply time"
+ },
+ "e2_baseline": {
+  "n_learning": 200,
+  "n_validation": 100,
+  "majority": {
+   "n": 100,
+   "overall": {
+    "n": 100,
+    "floor": 1.0,
+    "outcome": 0.5,
+    "fields": 0.5,
+    "_benchmark_gold_outcome": 0.52
+   },
+   "buckets": {
+    "1/complete": {
+     "n": 35,
+     "floor": 1.0,
+     "outcome": 0.5714285714285714,
+     "fields": 0.5714285714285714,
+     "_benchmark_gold_outcome": 0.6285714285714286
+    },
+    "2/complete": {
+     "n": 30,
+     "floor": 1.0,
+     "outcome": 0.5333333333333333,
+     "fields": 0.5333333333333333,
+     "_benchmark_gold_outcome": 0.5333333333333333
+    },
+    "2/partial": {
+     "n": 12,
+     "floor": 1.0,
+     "outcome": 0.5,
+     "fields": 0.5,
+     "_benchmark_gold_outcome": 0.5833333333333334
+    },
+    "3/complete": {
+     "n": 15,
+     "floor": 1.0,
+     "outcome": 0.4,
+     "fields": 0.4,
+     "_benchmark_gold_outcome": 0.3333333333333333
+    },
+    "3/partial": {
+     "n": 8,
+     "floor": 1.0,
+     "outcome": 0.25,
+     "fields": 0.25,
+     "_benchmark_gold_outcome": 0.25
+    }
+   },
+   "frontier_buckets": [
+    "1/complete",
+    "2/complete",
+    "2/partial",
+    "3/complete"
+   ]
+  },
+  "retrieval": {
+   "n": 100,
+   "overall": {
+    "n": 100,
+    "floor": 1.0,
+    "outcome": 0.83,
+    "fields": 0.83,
+    "_benchmark_gold_outcome": 0.89
+   },
+   "buckets": {
+    "1/complete": {
+     "n": 35,
+     "floor": 1.0,
+     "outcome": 0.8571428571428571,
+     "fields": 0.8571428571428571,
+     "_benchmark_gold_outcome": 0.9142857142857143
+    },
+    "2/complete": {
+     "n": 30,
+     "floor": 1.0,
+     "outcome": 0.8666666666666667,
+     "fields": 0.8666666666666667,
+     "_benchmark_gold_outcome": 1.0
+    },
+    "2/partial": {
+     "n": 12,
+     "floor": 1.0,
+     "outcome": 0.8333333333333334,
+     "fields": 0.8333333333333334,
+     "_benchmark_gold_outcome": 0.75
+    },
+    "3/complete": {
+     "n": 15,
+     "floor": 1.0,
+     "outcome": 0.7333333333333333,
+     "fields": 0.7333333333333333,
+     "_benchmark_gold_outcome": 0.8
+    },
+    "3/partial": {
+     "n": 8,
+     "floor": 1.0,
+     "outcome": 0.75,
+     "fields": 0.75,
+     "_benchmark_gold_outcome": 0.75
+    }
+   },
+   "frontier_buckets": []
+  }
+ }
+}

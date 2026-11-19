@@ -1,0 +1,475 @@
+{
+ "source": "env2_Q2",
+ "n": 400,
+ "e0_noise_floor": {
+  "n_cases": 400,
+  "levels": {
+   "coarse": {
+    "clusters": 22,
+    "singletons": 4,
+    "cases_in_clusters_ge2": 396,
+    "outcome_disagreement": 0.4065656565656566,
+    "pending_field_disagreement_among_confirmed": 0.12280701754385964,
+    "worst_clusters": [
+     {
+      "size": 111,
+      "outcomes": {
+       "REQUEST_AUTHORIZATION": 49,
+       "CONFIRMED": 17,
+       "ESCALATE": 36,
+       "REQUEST_INFO": 5,
+       "NOT_HELD": 4
+      },
+      "minority_ids": [
+       "Q2-0004",
+       "Q2-0006",
+       "Q2-0008",
+       "Q2-0011",
+       "Q2-0013",
+       "Q2-0015",
+       "Q2-0016",
+       "Q2-0020",
+       "Q2-0035",
+       "Q2-0040",
+       "Q2-0045",
+       "Q2-0051",
+       "Q2-0059",
+       "Q2-0064",
+       "Q2-0067",
+       "Q2-0068",
+       "Q2-0072",
+       "Q2-0075",
+       "Q2-0083",
+       "Q2-0097",
+       "Q2-0116",
+       "Q2-0124",
+       "Q2-0128",
+       "Q2-0132",
+       "Q2-0133",
+       "Q2-0135",
+       "Q2-0148",
+       "Q2-0154",
+       "Q2-0164",
+       "Q2-0166",
+       "Q2-0168",
+       "Q2-0169",
+       "Q2-0177",
+       "Q2-0180",
+       "Q2-0181",
+       "Q2-0185",
+       "Q2-0197",
+       "Q2-0201",
+       "Q2-0203",
+       "Q2-0206",
+       "Q2-0208",
+       "Q2-0228",
+       "Q2-0239",
+       "Q2-0245",
+       "Q2-0254",
+       "Q2-0266",
+       "Q2-0271",
+       "Q2-0272",
+       "Q2-0328",
+       "Q2-0340",
+       "Q2-0344",
+       "Q2-0353",
+       "Q2-0359",
+       "Q2-0363",
+       "Q2-0365",
+       "Q2-0367",
+       "Q2-0371",
+       "Q2-0374",
+       "Q2-0376",
+       "Q2-0377",
+       "Q2-0383",
+       "Q2-0397"
+      ]
+     },
+     {
+      "size": 119,
+      "outcomes": {
+       "CONFIRMED": 68,
+       "REQUEST_AUTHORIZATION": 40,
+       "ESCALATE": 2,
+       "NOT_HELD": 3,
+       "REQUEST_INFO": 6
+      },
+      "minority_ids": [
+       "Q2-0009",
+       "Q2-0014",
+       "Q2-0019",
+       "Q2-0024",
+       "Q2-0039",
+       "Q2-0060",
+       "Q2-0062",
+       "Q2-0066",
+       "Q2-0074",
+       "Q2-0078",
+       "Q2-0099",
+       "Q2-0100",
+       "Q2-0101",
+       "Q2-0106",
+       "Q2-0119",
+       "Q2-0121",
+       "Q2-0123",
+       "Q2-0127",
+       "Q2-0137",
+       "Q2-0153",
+       "Q2-0156",
+       "Q2-0161",
+       "Q2-0162",
+       "Q2-0187",
+       "Q2-0196",
+       "Q2-0212",
+       "Q2-0217",
+       "Q2-0220",
+       "Q2-0226",
+       "Q2-0240",
+       "Q2-0247",
+       "Q2-0252",
+       "Q2-0274",
+       "Q2-0279",
+       "Q2-0283",
+       "Q2-0284",
+       "Q2-0291",
+       "Q2-0298",
+       "Q2-0310",
+       "Q2-0316",
+       "Q2-0324",
+       "Q2-0332",
+       "Q2-0338",
+       "Q2-0343",
+       "Q2-0345",
+       "Q2-0352",
+       "Q2-0369",
+       "Q2-0372",
+       "Q2-0380",
+       "Q2-0392",
+       "Q2-0393"
+      ]
+     },
+     {
+      "size": 25,
+      "outcomes": {
+       "CONFIRMED": 11,
+       "REQUEST_AUTHORIZATION": 12,
+       "ESCALATE": 1,
+       "REQUEST_INFO": 1
+      },
+      "minority_ids": [
+       "Q2-0034",
+       "Q2-0055",
+       "Q2-0076",
+       "Q2-0096",
+       "Q2-0098",
+       "Q2-0103",
+       "Q2-0136",
+       "Q2-0140",
+       "Q2-0299",
+       "Q2-0306",
+       "Q2-0313",
+       "Q2-0339",
+       "Q2-0398"
+      ]
+     },
+     {
+      "size": 22,
+      "outcomes": {
+       "REQUEST_AUTHORIZATION": 10,
+       "CONFIRMED": 11,
+       "NOT_HELD": 1
+      },
+      "minority_ids": [
+       "Q2-0018",
+       "Q2-0054",
+       "Q2-0139",
+       "Q2-0142",
+       "Q2-0199",
+       "Q2-0215",
+       "Q2-0232",
+       "Q2-0267",
+       "Q2-0331",
+       "Q2-0342",
+       "Q2-0388"
+      ]
+     },
+     {
+      "size": 17,
+      "outcomes": {
+       "REQUEST_AUTHORIZATION": 7,
+       "ESCALATE": 5,
+       "NOT_HELD": 1,
+       "CONFIRMED": 3,
+       "REQUEST_INFO": 1
+      },
+      "minority_ids": [
+       "Q2-0151",
+       "Q2-0157",
+       "Q2-0188",
+       "Q2-0218",
+       "Q2-0229",
+       "Q2-0300",
+       "Q2-0302",
+       "Q2-0346",
+       "Q2-0348",
+       "Q2-0379"
+      ]
+     }
+    ],
+    "_benchmark": {
+     "true_perturbation_rate": 0.065,
+     "minority_flag_precision": 0.12422360248447205,
+     "minority_flag_recall_within_clusters": 0.8
+    }
+   },
+   "decision": {
+    "clusters": 132,
+    "singletons": 75,
+    "cases_in_clusters_ge2": 325,
+    "outcome_disagreement": 0.05846153846153846,
+    "pending_field_disagreement_among_confirmed": 0.12727272727272726,
+    "worst_clusters": [
+     {
+      "size": 6,
+      "outcomes": {
+       "CONFIRMED": 2,
+       "ESCALATE": 4
+      },
+      "minority_ids": [
+       "Q2-0051",
+       "Q2-0229"
+      ]
+     },
+     {
+      "size": 7,
+      "outcomes": {
+       "REQUEST_AUTHORIZATION": 6,
+       "REQUEST_INFO": 1
+      },
+      "minority_ids": [
+       "Q2-0124"
+      ]
+     },
+     {
+      "size": 8,
+      "outcomes": {
+       "CONFIRMED": 7,
+       "ESCALATE": 1
+      },
+      "minority_ids": [
+       "Q2-0097"
+      ]
+     },
+     {
+      "size": 2,
+      "outcomes": {
+       "ESCALATE": 1,
+       "CONFIRMED": 1
+      },
+      "minority_ids": [
+       "Q2-0203"
+      ]
+     },
+     {
+      "size": 29,
+      "outcomes": {
+       "CONFIRMED": 28,
+       "ESCALATE": 1
+      },
+      "minority_ids": [
+       "Q2-0100"
+      ]
+     }
+    ],
+    "_benchmark": {
+     "true_perturbation_rate": 0.065,
+     "minority_flag_precision": 0.6842105263157895,
+     "minority_flag_recall_within_clusters": 0.7222222222222222
+    }
+   },
+   "fine": {
+    "clusters": 207,
+    "singletons": 141,
+    "cases_in_clusters_ge2": 259,
+    "outcome_disagreement": 0.04633204633204633,
+    "pending_field_disagreement_among_confirmed": 0.04081632653061224,
+    "worst_clusters": [
+     {
+      "size": 5,
+      "outcomes": {
+       "REQUEST_AUTHORIZATION": 4,
+       "REQUEST_INFO": 1
+      },
+      "minority_ids": [
+       "Q2-0124"
+      ]
+     },
+     {
+      "size": 3,
+      "outcomes": {
+       "ESCALATE": 2,
+       "CONFIRMED": 1
+      },
+      "minority_ids": [
+       "Q2-0377"
+      ]
+     },
+     {
+      "size": 3,
+      "outcomes": {
+       "REQUEST_INFO": 1,
+       "REQUEST_AUTHORIZATION": 2
+      },
+      "minority_ids": [
+       "Q2-0040"
+      ]
+     },
+     {
+      "size": 3,
+      "outcomes": {
+       "CONFIRMED": 1,
+       "ESCALATE": 2
+      },
+      "minority_ids": [
+       "Q2-0051"
+      ]
+     },
+     {
+      "size": 4,
+      "outcomes": {
+       "ESCALATE": 1,
+       "CONFIRMED": 3
+      },
+      "minority_ids": [
+       "Q2-0075"
+      ]
+     }
+    ],
+    "_benchmark": {
+     "true_perturbation_rate": 0.065,
+     "minority_flag_precision": 0.8333333333333334,
+     "minority_flag_recall_within_clusters": 0.7692307692307693
+    }
+   }
+  }
+ },
+ "e1_snapshot": {
+  "n_cases": 400,
+  "fact_asserting_replies": 124,
+  "reconciled": 124,
+  "reconciliation_rate": 1.0,
+  "failure_kinds": {},
+  "failures": [],
+  "dated_position_replies": 124,
+  "position_moved_between_as_of_and_reply": 28,
+  "movement_rate": 0.22580645161290322,
+  "verdict": "PASS: snapshot reconciles and shows movement between as-of and reply time"
+ },
+ "e2_baseline": {
+  "n_learning": 200,
+  "n_validation": 100,
+  "majority": {
+   "n": 100,
+   "overall": {
+    "n": 100,
+    "floor": 1.0,
+    "outcome": 0.33,
+    "fields": 0.33,
+    "_benchmark_gold_outcome": 0.36
+   },
+   "buckets": {
+    "1/complete": {
+     "n": 33,
+     "floor": 1.0,
+     "outcome": 0.2727272727272727,
+     "fields": 0.2727272727272727,
+     "_benchmark_gold_outcome": 0.3333333333333333
+    },
+    "2/complete": {
+     "n": 38,
+     "floor": 1.0,
+     "outcome": 0.5,
+     "fields": 0.5,
+     "_benchmark_gold_outcome": 0.5263157894736842
+    },
+    "2/partial": {
+     "n": 7,
+     "floor": 1.0,
+     "outcome": 0.42857142857142855,
+     "fields": 0.42857142857142855,
+     "_benchmark_gold_outcome": 0.42857142857142855
+    },
+    "3/complete": {
+     "n": 10,
+     "floor": 1.0,
+     "outcome": 0.2,
+     "fields": 0.2,
+     "_benchmark_gold_outcome": 0.2
+    },
+    "3/partial": {
+     "n": 12,
+     "floor": 1.0,
+     "outcome": 0.0,
+     "fields": 0.0,
+     "_benchmark_gold_outcome": 0.0
+    }
+   },
+   "frontier_buckets": [
+    "2/complete",
+    "2/partial"
+   ]
+  },
+  "retrieval": {
+   "n": 100,
+   "overall": {
+    "n": 100,
+    "floor": 1.0,
+    "outcome": 0.65,
+    "fields": 0.64,
+    "_benchmark_gold_outcome": 0.67
+   },
+   "buckets": {
+    "1/complete": {
+     "n": 33,
+     "floor": 1.0,
+     "outcome": 0.7575757575757576,
+     "fields": 0.7272727272727273,
+     "_benchmark_gold_outcome": 0.7878787878787878
+    },
+    "2/complete": {
+     "n": 38,
+     "floor": 1.0,
+     "outcome": 0.5526315789473685,
+     "fields": 0.5526315789473685,
+     "_benchmark_gold_outcome": 0.5789473684210527
+    },
+    "2/partial": {
+     "n": 7,
+     "floor": 1.0,
+     "outcome": 0.5714285714285714,
+     "fields": 0.5714285714285714,
+     "_benchmark_gold_outcome": 0.5714285714285714
+    },
+    "3/complete": {
+     "n": 10,
+     "floor": 1.0,
+     "outcome": 0.9,
+     "fields": 0.9,
+     "_benchmark_gold_outcome": 0.9
+    },
+    "3/partial": {
+     "n": 12,
+     "floor": 1.0,
+     "outcome": 0.5,
+     "fields": 0.5,
+     "_benchmark_gold_outcome": 0.5
+    }
+   },
+   "frontier_buckets": [
+    "2/complete",
+    "2/partial",
+    "3/partial"
+   ]
+  }
+ }
+}
