@@ -3,8 +3,12 @@
 Firm-agnostic code for the parts of the harness that come *before* the loop: the case
 schema and loaders, the four-role split, the bucket scorer, the verifiable floor, the
 field extractor, the problem-indexed edit library, and experiments E0′–E2. No optimizer,
-judge, or gate — per `DESIGN.md` §11 those are not built until E0′–E2 pass on the target
-mailbox.
+judge, or gate.
+
+**Status 2026-11-20:** the loop is parked (`STATUS.md`). What matters here now is the
+measurement kit: the firm adapter, the floor, field-level agreement, E0′, E1, E2 and
+`experiments/power.py`. The bucket scorer and the edit library were written for the loop
+and are not needed for the plan in `STATUS.md`.
 
 Everything runs with no model calls against the synthetic confirmations environment
 (`pilot/env2.py`), so each component is exercised before it meets firm data.
@@ -32,6 +36,7 @@ python -m aop_rsi.experiments.run_all --firm export.jsonl   # firm export
 | `experiments/e0_noise_floor.py` | E0′: operator noise floor from intra-cluster disagreement; no labels needed |
 | `experiments/e1_snapshot.py` | E1: does the snapshot reconcile, and is it point-in-time rather than current-state |
 | `experiments/e2_baseline.py` | E2: per-bucket baseline rates; frontier buckets for E3 |
+| `experiments/power.py` | How big a gain n paired cases can detect; run it before trusting any before/after comparison |
 | `experiments/results/` | Outputs on env2 Q1–Q4 |
 
 ## What the environment runs say (Q1–Q4, 400 cases each, ρ_op = 0.2)

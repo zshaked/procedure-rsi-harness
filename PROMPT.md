@@ -1,5 +1,7 @@
 # Coding-agent prompt
 
+> **Status 2026-11-20 — read `STATUS.md` before using this.** The self-improving loop is parked. Steps (a) and (c) below still apply, and (c) is already implemented in `aop_rsi/experiments/`. Skip the loop scaffolding in step (b): do not create `optimizer/`, `gate/`, `reward/judge.py` or `escalation/`. This prompt has not yet been rewritten for the simpler plan in `STATUS.md`.
+
 Paste the block below as the first message to the coding agent in the target environment, after it has access to this repository, the existing AOP execution engine, and the case data.
 
 ```

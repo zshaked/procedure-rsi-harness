@@ -4,6 +4,8 @@ Self-improving harness that evolves Agentic Operating Procedures (AOPs) from his
 
 Status: design v0.4. Nothing is built. Experiments E0′–E2 at the firm and the two-week pilot (`paper/OUTLINE.md` §9) on public data gate whether anything should be.
 
+**Update 2026-11-20: the pilot is complete and did not support the verifier-first hypothesis. The loop in §6–§9 is parked. This document describes the hypothesis that was tested, not a plan. Read `STATUS.md`.**
+
 ### v0.4 changes (after external review of commit 0c01a49)
 
 1. **Floor checks facts, not decisions** (§4.1). Outcome-class match removed from the floor; the historical decision is evidence for the specification, not a constraint. Fixes a bug that rewarded imitating operator mistakes.

@@ -1,6 +1,25 @@
-# Pre-registration — the reusable-holdout problem in harness optimization (draft 1, written before any run, 2026-11-17)
+# WITHDRAWN — Pre-registration: the reusable-holdout problem in harness optimization (draft 1, 2026-11-17)
 
-Status: **first draft, not yet reviewed.** As with `pilot/PREREG_v4.md`, this document goes to an independent reviewer with no stake in the outcome before any counted run starts; blocking findings and fixes will be recorded in §7. No code has been written under this design.
+**Withdrawn 2026-11-20, before review and before any run. No code was written and no data was collected under this design.** It is kept as a record, not as a plan.
+
+**Why.** The draft was written without a literature search and treated its question as open. It was not. By the time it was drafted, others had already:
+
+| What this draft proposed | Already done by |
+|---|---|
+| Measure how much of a harness optimizer's gain survives beyond the tasks it tuned on, across several published optimizers | RRSI (arXiv 2609.24972): four published methods re-run from one starting harness and budget; gains of 1.3–3.6 points on the tuning tasks were about +2 on a held-out slice of the same benchmark and −1.7 to +0.9 on unseen benchmarks. Also *Rethinking the Evaluation of Harness Evolution for Agents* (arXiv 2607.12227): no gain on held-out tasks, and under matched budgets plain repeated sampling did better. |
+| A thresholded acceptance gate that keeps a reused evaluation set honest (§2.4, "Ladder" arm; decision rule A2) | REUSE (arXiv 2609.33180): a promotion rule with a finite-sample guarantee that every accepted change is a true improvement, tested against uncontrolled keep-the-best selection, which accepted false improvements about one time in five at 2,000 cases. |
+| Measure the size of the leak when an LLM-driven search reuses its validation set (A1, A3) | Bertran, Roth, Wu (arXiv 2606.11045): under ordinary prompting the validation-to-holdout gap was under 2 points; large gaps appeared only when overfitting was deliberately provoked. Their validation sets were much larger than the n = 50 this draft targeted, so this does not settle the small-n case, but it lowers the odds that the effect this draft was built to find (a quarter of the gain lost) is there. |
+| A preregistered look at what keep-if-better harness search is actually selecting for | *What Does a Harness Repair?* (arXiv 2610.05533), preregistered 2026-09-30. |
+
+One of these, RRSI, was already cited in this repository's `DESIGN.md` for its noise-adjusted acceptance floor. The gap was in the search, not in the field.
+
+**What would still be open**, for anyone who wants it: REUSE was tested on a tabular classification task with a 7B proposer, not on agent harnesses at small case counts. Applying its rule to a real harness optimizer with a few hundred evaluation cases has not been reported. That is an incremental study in a crowded area and is not planned here.
+
+The original draft follows unchanged.
+
+---
+
+Original status line: **first draft, not yet reviewed.** As with `pilot/PREREG_v4.md`, this document goes to an independent reviewer with no stake in the outcome before any counted run starts; blocking findings and fixes will be recorded in §7. No code has been written under this design.
 
 Motivation and the theory this tests are in `docs/descent.md` §2.2. The study is a continuation of the thread in `paper/OUTLINE.md`, not a restart: the pilot's nulls concerned *which expert questions* to ask; this concerns *how many times the optimizer may consult its validation set* before that set stops measuring anything.
 

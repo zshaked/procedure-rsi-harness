@@ -1,5 +1,7 @@
 # Why the loop descends without a gradient
 
+> **Status (2026-11-20).** This is commentary that applies known results to the parked loop in `DESIGN.md`. It contains no new result and no experiment. The question in §2.2 — how much of a loop's gain is real when it keeps re-using its evaluation set — has been measured by others; see the note added there. Two literature annotations (RRSI; Recht et al.) were wrong and have been corrected. For where the project stands, read `STATUS.md`.
+
 `docs/rl.md` maps the harness onto GRPO and says where the analogy stops: there is no unbiased gradient estimator, and monotone improvement comes from the gate, not from the proposal mechanism. This document takes that one sentence seriously, because it is the question a reviewer asks first:
 
 > In gradient descent the gradient always points downhill, so you know how to move the weights. Here a text proposer plays the role of the gradient, and nothing says its proposals point downhill. How do you guarantee the loop reduces the loss, and what is the memory that carries the descent from one step to the next?
@@ -47,7 +49,7 @@ What it does not say: that the *true* loss on S_val decreased. The measurement h
 
 The loss that matters is on the case distribution D, not on S_val. Non-adaptively — k candidate policies fixed in advance, compared once each on n cases — uniform convergence gives an error of order √(log k / n). The loop is not non-adaptive: every proposal depends on previous gate results, because the curator conditions on the edit library. Under adaptive querying the worst-case error grows like √(k / n), as though each query needed fresh data. After enough gate reads on the same S_val, the loop can be descending L̂ while ascending L_D.
 
-This is the known failure of tuning on a validation set through model selection (Dwork et al.'s adaptive-data-analysis setting; Recht et al.'s ImageNet replication). The design already carries the mitigations:
+This is the worst case in Dwork et al.'s adaptive-data-analysis setting. How often the worst case shows up in practice is an empirical question; see "Measured since" below. The design already carries the mitigations:
 
 | Mechanism | Where | What it buys |
 |---|---|---|
@@ -58,6 +60,15 @@ This is the known failure of tuning on a validation set through model selection 
 | Edit budget b_t annealed toward 1 | `rl.md` §5.3 | Small steps: fewer degrees of freedom per accepted edit |
 
 The closest precedent for the gate itself is Blum & Hardt's Ladder mechanism for ML leaderboards: a submission's score is updated only when it beats the current best by more than a fixed threshold, and under that rule the leaderboard's generalization error grows only logarithmically in the number of submissions rather than polynomially. The noise-floor gate is a Ladder with an empirically estimated threshold; the sealed-reads counter is the conservative fallback for when the threshold is misestimated.
+
+**Measured since (added 2026-11-20).** This section was first written as if the size of the gap were unmeasured for self-improvement loops. It is not:
+
+- RRSI (arXiv 2609.24972) re-ran four published harness optimizers from one starting harness: gains of 1.3–3.6 points on the tuning tasks, about +2 on a held-out slice of the same benchmark, and −1.7 to +0.9 on unseen benchmarks. The loss is on transfer to new task families, not on fresh cases of the same kind. Its own acceptance rule is an empirical noise band, not a formal reuse correction.
+- REUSE (arXiv 2609.33180) is the Ladder idea worked out for exactly this loop: the proposer sees only promote/reject, each candidate faces an exact paired sign test, and the error budget is split across every possible decision history. With probability 1 − α every promotion is a true improvement. Uncontrolled keep-the-best selection made false promotions about one time in five at n = 2,000. It also gives the minimum detectable improvement at a given n, which is the binding constraint at small case counts (`STATUS.md`).
+- Bertran, Roth, Wu (arXiv 2606.11045) found that LLM research agents, left to ordinary prompting, overfit a reused validation set by under 2 points; large gaps had to be provoked. Their explanation is that a successful strategy is short to describe, so little validation-specific information can ride along.
+- *Rethinking the Evaluation of Harness Evolution for Agents* (arXiv 2607.12227) found no held-out gain from harness evolution on Terminal-Bench 2.1 and that matched-budget repeated sampling did better.
+
+Taken together: leakage on fresh cases of the same kind has been small where it was measured; the larger loss is on transfer to new task families; and the practical problem at a few hundred cases is that the gate cannot detect gains of the size these loops produce.
 
 The honest statement for a reviewer: descent on S_val is guaranteed by construction; descent on D is guaranteed only as far as the rolling held-out confirms it, which is the same position every supervised model is in.
 
@@ -212,7 +223,8 @@ Grouped by the section each result supports. One line each on what it contribute
 - Pan et al. 2026 — *Evolving Agents in the Dark: Retrospective Harness Optimization via Self-Preference* (RHO, arXiv 2606.05922). Harness optimization from past trajectories with no labels, selected by pairwise self-preference; the relevant design for mailboxes with no historical replies, and a reminder that self-preference without an external anchor is exactly the Goodhart surface §2.3 warns about.
 - Liu et al. 2026 — *Adaptive Auto-Harness* (arXiv 2606.01770). Harness evolution on unbounded, heterogeneous, non-stationary task streams — the deployment regime, and the reason the rolling held-out exists.
 - *Harness²: Recursive Agent Harnessing for an Open World* (arXiv 2610.14224). Two-level recursion; probe-then-compose is §4.1; its verifier-free contrastive probing is what the harness does *not* need because it has a judge, and its reported case of a lower-scoring output being preferred is the canonical illustration of §2.3.
-- *RRSI: Regularized Recursive Self-Improvement of Agent Harnesses* (github.com/google-research/rrsi). Proposer conditioned on edit history; the regularization-by-rejection stance the gate takes.
+- *RRSI: Regularized Recursive Self-Improvement of Agent Harnesses* (arXiv 2609.24972, github.com/google-research/rrsi). *Corrected 2026-11-20: an earlier note here described only its edit-history conditioning.* Its subject is overfitting in harness self-improvement. Four published optimizers re-run from one starting harness gained 1.3–3.6 points on their tuning tasks, about +2 on a held-out slice of the same benchmark, and −1.7 to +0.9 on unseen benchmarks; RRSI's regularizers (annealed edit budget, proposer sees the full accept/reject history, leakage screening, a noise-adjusted acceptance floor, cost-aware acceptance, pruning) traded a smaller tuning gain for about +4 on unseen ones.
+- Wang et al. 2026 — *Rethinking the Evaluation of Harness Evolution for Agents* (arXiv 2607.12227). Matched-budget comparison on Terminal-Bench 2.1: harness evolution did not beat simply sampling more attempts (67.4 vs 72.3 without tests) and showed no gain on held-out tasks. It did win on long-horizon games (ARC-AGI-3, EdgeBench) where there is headroom and granular feedback.
 - Yu et al. 2026 — *Self-Improvement Memory Enables Continual Recursive Self-Improvement* (SIM, arXiv 2611.18856). Optimizer memory indexed by root-cause problem, each holding every attempt's edit, rationale, predicted and observed outcome, and provenance; carried across datasets and models it beat harness-only transfer by 2–11 points, and root causes without the attempt record did not. The §3 optimizer-memory argument with measurements behind it; adopted in `DESIGN.md` §9.1–9.2, minus its LLM selector.
 
 ### §2 — Adaptive data analysis and the validation gap
@@ -220,7 +232,12 @@ Grouped by the section each result supports. One line each on what it contribute
 - Dwork, Feldman, Hardt, Pitassi, Reingold, Roth 2015 — *The Reusable Holdout* (Science) and *Preserving Statistical Validity in Adaptive Data Analysis* (STOC). The √(k/n) adaptive versus √(log k / n) non-adaptive gap, and Thresholdout: answer a holdout query only when it differs from the training estimate by more than a noisy threshold. The noise-floor gate is a crude Thresholdout without the budget accounting; the sealed-reads counter supplies it.
 - Blum & Hardt 2015 — *The Ladder: A Reliable Leaderboard for Machine Learning Competitions.* Update the reported score only on improvements above a threshold; generalization error then grows logarithmically in submissions. The closest precedent for the gate as designed.
 - Bassily et al. 2016 — *Algorithmic Stability for Adaptive Data Analysis.* Tighter bounds and the general stability argument behind the above.
-- Recht, Roelofs, Schmidt, Shankar 2019 — *Do ImageNet Classifiers Generalize to ImageNet?* The empirical demonstration that years of adaptive selection on a fixed test set did overfit it — the §2.2 failure at field scale.
+- Recht, Roelofs, Schmidt, Shankar 2019 — *Do ImageNet Classifiers Generalize to ImageNet?* *Corrected 2026-11-20: an earlier note here said this showed that years of test-set reuse overfit ImageNet. It shows nearly the opposite.* Accuracy fell 11–14 points on a freshly collected ImageNet test set, but gains on the original test set carried over to the new one, and the authors conclude the drop comes from the new images being slightly harder, not from adaptive reuse. Evidence that real leakage is smaller than the worst-case theory.
+- *Which Self-Improvements Should We Trust? Reliable Self-Improvement When Agents Reuse Their Benchmarks* (REUSE, arXiv 2609.33180). Decision-only feedback, exact paired sign tests, error budget split over decision histories; every promotion is a true improvement with probability 1 − α. The reusable-holdout idea made concrete for self-improvement loops. Tested on tabular classification with a 7B proposer, not on agent harnesses.
+- Bertran, Roth, Wu 2026 — *What Fits (Into Few Tokens) Doesn't Overfit* (arXiv 2606.11045). Validation-to-holdout gaps of 0–1.9 points for LLM research agents under ordinary prompting; large gaps only when provoked; a one-bit-per-query "ladder" explorer did as well as score feedback.
+- *What Does a Harness Repair? A Preregistered Study of Visibility, Baseline Adequacy and Evaluation Defects* (arXiv 2610.05533). A keep-if-better loop can be selecting for an evaluation defect, a weak baseline, or answers merely becoming parseable; replication through the same pipeline cannot detect a defect every run shares.
+
+*Verification note: RRSI, Rethinking the Evaluation of Harness Evolution, REUSE, Bertran et al. and What Does a Harness Repair? were checked against the papers' own text on 2026-11-19 (through an automated reader, not line by line); the Recht et al. correction was checked against its abstract. The other 2026 entries in this document were annotated from abstracts and summaries and should be read with that in mind.*
 
 ### §4 — Submodularity and greedy guarantees
 
